@@ -48,10 +48,10 @@ void init_offsets() {
         allproc_offset = 0x5b20e0;
         procoff = 0x360; // iphone 5s, 10.2, @Slonick (github)
         rootvnode_offset = 0x5b20b8;
-	  } else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:11 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X") == 0){
-		    allproc_offset = 0x5a4128;
-	    	procoff = 0x360; // iphone 5s, 10.1
-		    rootvnode_offset = 0x5b60b8;
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:11 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X") == 0){
+	allproc_offset = 0x5a4128;
+	procoff = 0x360; // iphone 5s, 10.1
+	rootvnode_offset = 0x5b60b8;
     } else {
         printf("missing offset, prob crashing\n");
     }
