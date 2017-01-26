@@ -45,9 +45,9 @@ void init_offsets() {
         procoff = 0x360; // ipad air 2 (wifi), 10.2, @nicogibbons (github)
         rootvnode_offset = 0x5be0b8;
     } else if (strcmp(u.version, "Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:09 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_S5L8960X") == 0) {
-        allproc_offset = 0x5b20e0;
-        procoff = 0x360; // iphone 5s, 10.2, @Slonick (github)
-        rootvnode_offset = 0x5b20b8;
+        allproc_offset = 0x5ac418;
+        procoff = 0x360;
+        rootvnode_offset = 0x5b60b8;
     } else {
         printf("missing offset, prob crashing\n");
     }
