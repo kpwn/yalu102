@@ -15,8 +15,8 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 
 ## Supported iOS Versions
 
-* 10.0
-* 10.1
+* 10.0.x
+* 10.1.x
 * 10.2
 
 ## Installing
