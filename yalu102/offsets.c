@@ -52,6 +52,46 @@ void init_offsets() {
         allproc_offset = 0x5ec478; /* @Mila432 */
         procoff = 0x360;
         rootvnode_offset = 0x5f20b8; /* @Mila432 */
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:10 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_T8010") == 0) {
+        allproc_offset = 0x5ec178; /* @Mila432 */
+        procoff = 0x360;
+        rootvnode_offset = 0x5f20b8; /* @Mila432 */
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:12 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_T7001") == 0) {
+        allproc_offset = 0x5b4228; /* @Mila432 */
+        procoff = 0x360;
+        rootvnode_offset = 0x5ba0b8; /* @Mila432 */
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:11 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_T7000") == 0) {
+        allproc_offset = 0x5b4168; /* @Mila432 */
+        procoff = 0x360;
+        rootvnode_offset = 0x5ba0b8; /* @Mila432 */
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:12 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S8000") == 0) {
+        allproc_offset = 0x5a4148; /* @Mila432 */
+        procoff = 0x360;
+        rootvnode_offset = 0x5aa0b8; /* @Mila432 */
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:11 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X") == 0) {
+        allproc_offset = 0x5a4128; /* @Mila432 */
+        procoff = 0x360;
+        rootvnode_offset = 0x5aa0b8; /* @Mila432 */
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_T8010") == 0) {
+        allproc_offset = 0x5ec178; /* @Mila432 */
+        procoff = 0x360;
+        rootvnode_offset = 0x5f20b8; /* @Mila432 */
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_T7001") == 0) {
+        allproc_offset = 0x5b0228; /* @Mila432 */
+        procoff = 0x360;
+        rootvnode_offset = 0x5b60b8; /* @Mila432 */
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:55 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_T7000") == 0) {
+        allproc_offset = 0x5b0168; /* @Mila432 */
+        procoff = 0x360;
+        rootvnode_offset = 0x5b60b8; /* @Mila432 */
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_S8000") == 0) {
+        allproc_offset = 0x5a4148; /* @Mila432 */
+        procoff = 0x360;
+        rootvnode_offset = 0x5aa0b8; /* @Mila432 */
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:55 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_S5L8960X") == 0) {
+        allproc_offset = 0x5a4128; /* @Mila432 */
+        procoff = 0x360;
+        rootvnode_offset = 0x5aa0b8; /* @Mila432 */
     } else {
         printf("missing offset, prob crashing\n");
     }
