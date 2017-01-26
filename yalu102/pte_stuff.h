@@ -150,21 +150,6 @@ void pagestuff_64(vm_address_t vmaddr, void (^pagestuff_64_callback)(vm_address_
 }
 
 uint64_t findphys_real(uint64_t virtaddr) {
-    if (hibit_guess == 0xffffffe000000000) {
-        
-        uint64_t l1_elem_edit = ReadAnywhere64(level1_table);
-        __block uint64_t physvar = 0;
-        pagestuff_64(virtaddr, ^(vm_address_t tte_addr, int addr) {
-            uint64_t tte = ReadAnywhere64(tte_addr);
-            if (addr == 3) {\
-                physvar = TTE_GET(tte, TTE_PHYS_VALUE_MASK);
-            }
-        }, TTE_GET(l1_elem_edit, TTE_PHYS_VALUE_MASK) - gPhysBase + gVirtBase, 2);
-        return physvar;
-        
-    }
-    
-    
     __block uint64_t physvar = 0;
     pagestuff_64(virtaddr, ^(vm_address_t tte_addr, int addr) {
         uint64_t tte = ReadAnywhere64(tte_addr);
