@@ -39,7 +39,7 @@ void init_offsets() {
     } else if (strcmp(u.version, "Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:08 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_T7000") == 0) {
         allproc_offset = 0x5b8468;
         procoff = 0x360; // iphone 6, credit to @Andywiik
-        rootvnode = 0x5be0b8;
+        rootvnode_offset = 0x5be0b8;
     } else {
         printf("missing offset, prob crashing\n");
     }
