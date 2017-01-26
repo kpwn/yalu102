@@ -19,7 +19,7 @@ ipa https://yalu.qwertyoruiop.com/yalu102_alpha.ipa (Current version at current 
 sha1 2fe14f1c1e1a0d26203bbb123f6747a978dd2b4f
 
 
-mobilesubstrate works on devices that have sucesfully have cydia installed
+mobilesubstrate works on devices that have been successfully installed cydia on there devices.
 
 
 licensed under wtfpl
