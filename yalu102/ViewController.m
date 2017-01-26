@@ -113,7 +113,7 @@ char dt[128];
     sprz msg2;
     
     memset(&msg2, 0, sizeof(sprz));
-    msg1.msgh_body.msgh_descriptor_count = 256;
+    msg1.msgh_body.msgh_descriptor_count = 128;
     
     msg1.head.msgh_bits = MACH_MSGH_BITS(MACH_MSG_TYPE_MAKE_SEND, 0) | MACH_MSGH_BITS_COMPLEX;
     msg1.head.msgh_local_port = MACH_PORT_NULL;
@@ -131,17 +131,21 @@ char dt[128];
         msg1.desc[i].disposition = 19;
     }
     
+    pthread_yield_np();
     for (int i=1; i<300; i++) {
         msg1.head.msgh_remote_port = ports[i];
         kern_return_t kret = mach_msg(&msg1.head, MACH_SEND_MSG, msg1.head.msgh_size, 0, 0, 0, 0);
         assert(kret==0);
     }
+    
+    pthread_yield_np();
     for (int i=500; i<800; i++) {
         msg1.head.msgh_remote_port = ports[i];
         kern_return_t kret = mach_msg(&msg1.head, MACH_SEND_MSG, msg1.head.msgh_size, 0, 0, 0, 0);
         assert(kret==0);
     }
     
+    pthread_yield_np();
     for (int i=300; i<500; i++) {
         msg1.head.msgh_remote_port = ports[i];
         if (i%4 == 0) {
@@ -153,6 +157,7 @@ char dt[128];
         assert(kret==0);
     }
     
+    pthread_yield_np();
     for (int i = 300; i<500; i+=4) {
         msg2.head.msgh_local_port = ports[i];
         kern_return_t kret = mach_msg(&msg2.head, MACH_RCV_MSG, 0, sizeof(msg1), ports[i], 0, 0);
