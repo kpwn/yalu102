@@ -36,14 +36,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for all iOS 10 up to 10.2 on other 64 bit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBH-un-0mh">
-                                <rect key="frame" x="40" y="616" width="294" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="for 10.0/10.1 on iPhone 7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkX-pC-cpR">
-                                <rect key="frame" x="-65" y="580" width="186" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for all iOS 10 up to 10.2 pre-i7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBH-un-0mh">
+                                <rect key="frame" x="74.5" y="616" width="226" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,11 +48,9 @@
                             <constraint firstItem="gOx-xh-mld" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="30" id="Lak-A4-fwI"/>
                             <constraint firstItem="dw0-9I-nv5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VK2-I1-MuP"/>
                             <constraint firstItem="dw0-9I-nv5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Vix-Ed-EfU"/>
-                            <constraint firstItem="UkX-pC-cpR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VpT-cV-t8I"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SBH-un-0mh" secondAttribute="bottom" constant="30" id="WX7-VB-beg"/>
                             <constraint firstItem="gOx-xh-mld" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="go3-GK-gg8"/>
                             <constraint firstItem="SBH-un-0mh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="llZ-Oo-VUY"/>
-                            <constraint firstItem="SBH-un-0mh" firstAttribute="top" secondItem="UkX-pC-cpR" secondAttribute="bottom" constant="15" id="t1i-50-EVn"/>
                         </constraints>
                     </view>
                     <connections>
