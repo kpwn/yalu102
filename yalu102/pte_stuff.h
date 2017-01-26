@@ -177,11 +177,6 @@ uint64_t findphys_real(uint64_t virtaddr) {
     
 }
 uint64_t physalloc(uint64_t size) {
-    if (hibit_guess == 0xffffffe000000000) {
-        uint64_t bphysmap = FuncAnywhere32(G(IOBUFMEMDESC) + slide, 0x10, size, 1)|hibit_guess;
-        uint64_t pphysmap = FuncAnywhere32(G(GETBYTESNOCOPY) + slide, bphysmap, 0, 0)|hibit_guess; // alloc physically contig IOBufferMemoryDescriptor
-        return pphysmap;
-    }
     uint64_t ret = 0;
     mach_vm_allocate(tfp0, (mach_vm_address_t*) &ret, size, VM_FLAGS_ANYWHERE);
     return ret;

@@ -1,63 +1,6 @@
 #ifndef devicesupport_h
 #define devicesupport_h
 
-#define KERNEL_TASK 0
-#define IOSURFACEROOT_VTABLE 1
-#define READ_GADGET 2
-#define WRITE_GADGET 3
-#define KERNBASE 4
-#define ROOTFS_VNODE 5
-#define SETX0 6
-#define IOBUFMEMDESC 7
-#define GETBYTESNOCOPY 8
-#define PMAP 9
-#define PHYS 10
-#define TTBRMAGIC_BX0 11
-#define TTBRMAGIC_ENTRYF 12
-#define TTBRMAGIC_ENTRY0 13
-#define TTBRMAGIC_ENTRY1 14
-#define GADGET0_PTR 16
-#define GADGET0_X8REL 15
-#define GADGET0_NEXT 17
-#define GADGET1_PTR 18
-#define GADGET2_PTR 19
-#define GADGET3_PTR 20
-#define GADGET4_PTR 21
-#define GADGET5_PTR 22
-#define MEMCPYP 23
-#define GADGET6_PTR 24
-#define GADGET7_PTR 25
-#define GADGET8_PTR 26
-#define GADGET9_PTR 27
-#define GADGET10_PTR 28
-#define GADGET11_PTR 29
-#define PINST 30
-#define VBAR 31
-#define GADGET12_PTR 32
-#define GADGET13_PTR 33
-#define GADGET14_PTR 34
-#define GADGET15_PTR 35
-#define GADGET16_PTR 36
-#define GADGET17_PTR 37
-#define GADGET18_PTR 38
-#define LWVM_WRITETO 39
-#define LWVM_NEWJUMP 40
-#define I_CAN_HAS_DBG 41
-#define MEMCMPSTUB 42
-#define RETZERO 43
-#define RETNONZERO 44
-#define CPACR 45
-#define TTBR0 46
-#define TTBR1 47
-#define TFP0_FCN 48
-#define SBOPS 49
-#define ARET 50
-#define STRX0X1PTR 51
-#define MOVX20X0PTR 52
-#define SET1IMMPTR 53
-#define ADDX0X1PTR 54
-#define MOVX0SPPTR 55
-#define SETX4TR 56
 
 
 //0xFFFFFFF0075F6000+0x50 (0xfffffff006e4d620+0x4bc0)
