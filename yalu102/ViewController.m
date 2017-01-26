@@ -312,6 +312,9 @@ gotclock:;
     
     void exploit(void*, mach_port_t, uint64_t, uint64_t);
     exploit(sender, pt, kernel_base, allproc_offset);
+    [dope setEnabled:NO];
+    [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+
 }
 
 - (void)didReceiveMemoryWarning {
