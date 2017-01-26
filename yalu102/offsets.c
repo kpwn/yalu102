@@ -40,7 +40,7 @@ void init_offsets() {
         allproc_offset = 0x5b8468;
         procoff = 0x360; // iphone 6, credit to @Andywiik
         rootvnode = 0x5be0b8;
-    else {
+    } else {
         printf("missing offset, prob crashing\n");
     }
 
