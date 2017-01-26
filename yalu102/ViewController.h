@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
+{
+    IBOutlet UIButton* dope;
+}
 - (IBAction)yolo:(id)sender;
 
 @end

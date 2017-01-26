@@ -61,6 +61,9 @@
                             <constraint firstItem="SBH-un-0mh" firstAttribute="top" secondItem="UkX-pC-cpR" secondAttribute="bottom" constant="15" id="t1i-50-EVn"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dope" destination="dw0-9I-nv5" id="h3W-Lb-cpp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

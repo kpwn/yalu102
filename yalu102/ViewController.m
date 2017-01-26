@@ -13,6 +13,8 @@
 #import <pthread.h>
 #undef __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <mach/mach.h>
+#include <sys/utsname.h>
+
 extern uint64_t procoff;
 
 typedef struct {
@@ -31,6 +33,15 @@ typedef struct {
 - (void)viewDidLoad {
     [super viewDidLoad];
     init_offsets();
+    struct utsname u = { 0 };
+    uname(&u);
+    
+
+    if (strstr(u.version, "MarijuanARM")) {
+        [dope setEnabled:NO];
+        [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+    }
+
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -44,10 +55,10 @@ struct not_essers_ipc_object {
 
 
 
-#define IO_BITS_ACTIVE      0x80000000
-#define	IKOT_TASK				2
-#define IKOT_IOKIT_CONNECT      29
-#define IKOT_CLOCK              25
+#define IO_BITS_ACTIVE 0x80000000
+#define	IKOT_TASK 2
+#define IKOT_IOKIT_CONNECT 29
+#define IKOT_CLOCK 25
 
 char dt[128];
 - (IBAction)yolo:(UIButton*)sender
