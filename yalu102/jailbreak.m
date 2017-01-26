@@ -11,7 +11,7 @@
 #import <mach/mach.h>
 #import "devicesupport.h"
 
-#import <IOKit/IOKitLib.h>
+#import "IOKit/IOKitLib.h"
 #import <dlfcn.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
