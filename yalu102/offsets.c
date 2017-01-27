@@ -28,6 +28,10 @@ void init_offsets() {
         allproc_offset = 0x5a4148;
         procoff = 0x360;
         rootvnode_offset = 0x5aa0b8;
+	} else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:12 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S8003") == 0) {
+		allproc_offset = 0x5a4148;
+		procoff = 0x360; // iPhone 6s (TSMC) 10.1.1
+		rootvnode_offset = 0x5aa0b8;
     } else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_S8000") == 0) {
         allproc_offset = 0x5a4148;
         procoff = 0x360;
@@ -35,6 +39,10 @@ void init_offsets() {
     } else if (strcmp(u.version, "Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:09 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_S8000") == 0) {
         allproc_offset = 0x5a8438;
         procoff = 0x360; // iPhone 6s/iPad pro (?), 10.2
+        rootvnode_offset = 0x5ae0b8;
+	} else if (strcmp(u.version, "Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:09 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_S8003") == 0) {
+        allproc_offset = 0x5a8438;
+        procoff = 0x360; // iPhone 6s (TSMC) 10.2
         rootvnode_offset = 0x5ae0b8;
     } else if (strcmp(u.version, "Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:08 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_T7000") == 0) {
         allproc_offset = 0x5b8468;
