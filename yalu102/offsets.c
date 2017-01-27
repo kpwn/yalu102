@@ -30,6 +30,7 @@ void init_offsets() {
         rootvnode_offset = 0x5aa0b8;
 	} else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:12 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S8003") == 0) {
 		allproc_offset = 0x5a4148;
+		procoff = 0x360; // iPhone 6s (TSMC) 10.1.1
 		rootvnode_offset = 0x5aa0b8;
     } else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_S8000") == 0) {
         allproc_offset = 0x5a4148;
