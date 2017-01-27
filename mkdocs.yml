@@ -1,4 +1,7 @@
 site_name: yalu102 Docs
+
 pages:
     - Home: index.md
     - About: about.md
+
+theme: readthedocs
