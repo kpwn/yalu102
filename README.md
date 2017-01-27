@@ -24,17 +24,8 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 1. `git clone` the repo.
 2. Open the repo in Xcode
 3. Change the bundle ID, as shown [here](https://www.reddit.com/r/sideloaded/wiki/how-to-sideload#wiki_changing_the_bundle_identifier_and_team)
-4. Download the IOKit headers, and add them to your search path, noted in section below.
+4. Include the IOKit headers, and add them to your search path.
 5. Run the project.
-
-### Fixing the IOKit error:
-
-1. Download the zip of this project https://github.com/kennytm/iphone-private-frameworks/tree/master/IOKit
-2. Go to your target’s Build Settings. In the search bar write “headers”. In the results you’ll see a section called Search Paths. Change **“Always Search User Paths”** to **YES**
-3. Add the path where you placed your headers in **“User Header Search Paths”**
-
-**Make sure to put the folder that contains the IOKit folder, and not the IOKit folder itself.**
-(steps from issue #71, thanks @4taras4)
 
 ## Installing
 
