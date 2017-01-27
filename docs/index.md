@@ -1,6 +1,6 @@
-# Welcome to MkDocs
+# Welcome to Docs
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+For the GitHub Project visit [yalu102](https://github.com/kpwn/yalu102).
 
 ## Commands
 
