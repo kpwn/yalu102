@@ -2,7 +2,7 @@ incomplete iOS 10.2 jailbreak for 64 bit devices by qwertyoruiopz and marcograss
 
 
 
-BEWARE BETA VERSION FOR DEVS MIGHT SCREW UP YOUR DEVICE
+BEWARE BETA VERSION FOR DEVS IT MIGHT SCREW UP YOUR DEVICE
 
 
 Supports ios 
