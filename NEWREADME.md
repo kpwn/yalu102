@@ -12,6 +12,7 @@ Supports ios
 Devices that it supports are 
 Iphone 7/7 plus 10.1.1 only
 Iphone 6s/6s plus 10.2
+Iphone SE 10.2
 Iphone 5s 10.2 BEWARE STILL A WORK IN PRGRESS ON THIS ONE BECAUSE OF THE 4K CHIP
 Ipad PRO 10.2
 and more to come this weekend 
