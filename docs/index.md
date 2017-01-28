@@ -6,7 +6,7 @@ Welcome to yalu102's documentation. Visit the GitHub Project [here](https://gith
 
 This is a "work in progress" Jailbreak designed for pre-i7 devices running iOS 10.2.
 
-It was created by [qwertyoruiopz](https://twitter.com/qwertyoruiopz) and [marcograssi](https://github.com/kpwn/yalu102/blob/master/marcograss)
+It was created by [qwertyoruiopz](https://twitter.com/qwertyoruiopz) and [marcograssi](https://github.com/kpwn/yalu102/blob/master/marcograss). This documentation was created, and is mantained, by [JailbreakHub](https://jailbreakhub.org). It is not affilated with Qwerty or Marcograss.
 
 ## Support List
 
