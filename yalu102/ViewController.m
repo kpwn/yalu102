@@ -51,6 +51,62 @@ struct not_essers_ipc_object {
     not_natural_t io_bits;
     not_natural_t io_references;
     char    io_lock_data[1337];
+    /*
+     
+     https://www.youtube.com/watch?v=ZADJ8S1qH3U
+     
+     
+     [Intro]
+     Lets get it
+     Steve Drive
+     R.I.P L'A Capone
+     OTF
+     These nigga's steady woofing like they want beef, want beef?
+     You want smoke? You want smoke? Just tell me
+     
+     [Hook]
+     These niggas steady woofing like they want beef, want beef?[You want smoke?]
+     I can make that happen if you want beef, you want beef?[You want smoke?]
+     Catch you while you're capping with this semi, semi
+     Put the semi-automatic to your kidney, kidney
+     
+     [Verse 1]
+     Put the semi-automatic to your kidney, kidney
+     I'm off the dope I got the pole you talking tough you getting smoked
+     These nigga's steady woofing like they want beef, but I really know
+     Glock or nickel yeah that bitch go, I'm going like I'm at a fucking show
+     I'm off Tu pack saying fuck Jojo[Fuck Jojo]
+     Talking shit get your life took no joke
+     I'm with my nigga's and my niggas ain't no joke
+     And if you got that fucking bag then you getting poked
+     And if you acting tough, I'ma fucking blow, and that's on Pluto[On Pluto]
+     Me and Durk finna spaz, and I put that on the guys, it's homicides
+     Cause we dropping Y's[Die Y, Die Y], head shot got him traumatized
+     And you want beef?[You want beef fu nigga?] but when I see you, you don't speak?[You don't even talk]
+     I got my 9 on me[Rondo] and I'ma blow and that's on me[I'm Rondo]
+     I'm getting tree tree[Getting dope], getting top from a bitch named Kiki
+     
+     [Chorus]
+     
+     [Verse 2]
+     And if you really want smoke[You want smoke little nigga?]
+     I will give your ass smoke[Give your ass smoke little nigga?]
+     This Glock 9 bitch I tote, and I will put it to your throat
+     I'm off this Tooka pack and no L'A, I'ma go crazy
+     You supposed to be my nigga but actin' like a fan that’s crazy
+     What the fuck wrong with these nigga's, they fugazi
+     I made this song for the niggas, cause they crazy
+     Separate me from them niggas[Separate Rondo]
+     Pull up on your block, with the mops
+     Then I hit the dip and put him up in case of attempts[Incase a nigga survive]
+     But we don't make throws, we shoot like Pimp[We shoot to kill]
+     I got 23[Two three] So i don't fucking speak[I don't speak]
+     Riding fast, I hit the dash, ain't gon last[You ain't gonna last nigga], I'ma blast[Cause ima blast on a nigga]
+     Numba Nine, bitch [I'm #9 lil nigga], and I'm a sav, bitch
+     
+     [Chorus]
+     */
+
 };
 
 
