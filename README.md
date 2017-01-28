@@ -6,18 +6,13 @@ A "work in progress" iOS jailbreak for 64-bit devices created by [qwertyoruiopz]
 
 Please use the "Issues" tab for **code related** issues only. If you need support please search on [/r/jailbreak](https://reddit.com/r/jailbreak) before posting a question there.
 
-## Supported Devices
+## Supported Devices and iOS versions
 
-* iPhone SE
-* iPhone 6S
-* iPhone 6S+
-* iPad Pro
-
-## Supported iOS Versions
-
-* 10.0.x
-* 10.1.x
-* 10.2
+| Device | Version | 
+|---------|----------|
+| iPhone SE  | iOS 10.0.0 -> iOS 10.2 |
+| iPhone 6S  | iOS 10.0.0 -> iOS 10.2 |
+| iPad Pro  | iOS 10.0.0 -> iOS 10.2 |
 
 ## Compiling:
 
