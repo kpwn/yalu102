@@ -10,9 +10,9 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 
 | Device | Version | 
 |---------|----------|
-| iPhone SE  | iOS 10.0.0 -> iOS 10.2 |
-| iPhone 6S  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Pro  | iOS 10.0.0 -> iOS 10.2 |
+| iPhone 6S  | iOS 10.0.0 -> iOS 10.2 |
+| iPhone SE  | iOS 10.0.0 -> iOS 10.2 |
 
 ### Planned Support:
 
