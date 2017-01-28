@@ -80,7 +80,6 @@ void parse_block_tte(uint64_t tte) {
 }
 
 void pagestuff_64(vm_address_t vmaddr, void (^pagestuff_64_callback)(vm_address_t tte_addr, int addr), vm_address_t table, int level) {
-    
     checkvad();
     if (!table) table = level1_table;
     if (!level) level = 1;
@@ -88,9 +87,9 @@ void pagestuff_64(vm_address_t vmaddr, void (^pagestuff_64_callback)(vm_address_
     vm_address_t tteaddr = 0;
     
     if (sz == 4096) {
+        NSLog(@"Indentified 4k device");
         VMA_4K target_addr;
         target_addr.vmaddr = vmaddr;
-        
         switch (level) {
             case 0:
                 tteaddr = table + TTE_INDEX(target_addr, level0);
@@ -137,15 +136,18 @@ void pagestuff_64(vm_address_t vmaddr, void (^pagestuff_64_callback)(vm_address_
         
         
     }
-    
-    //parse_block_tte(level1_entry);
-    
+//    parse_block_tte(level1_entry);
+    NSLog(@"calling back %llu %d", tteaddr, level);
     pagestuff_64_callback(tteaddr, level);
+    NSLog(@"calling back 2");
     
     uint64_t level1_entry = ReadAnywhere64(tteaddr);
+    NSLog(@"calling back 3");
     
     if (TTE_GET(level1_entry, TTE_IS_TABLE_MASK) && level != 3) {
+        NSLog(@"calling back 4");
         pagestuff_64(vmaddr, pagestuff_64_callback, (TTE_GET(level1_entry, TTE_PHYS_VALUE_MASK)) - gPhysBase + gVirtBase, level + 1);
+        NSLog(@"calling back 5");
     }
 }
 
