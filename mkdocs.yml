@@ -3,5 +3,6 @@ site_name: yalu102 Docs
 pages:
     - Welcome: index.md
     - SHA1 Calculation Tutorial: sha1.md
+    - JailbreakHub: redirect.html
 
 theme: readthedocs

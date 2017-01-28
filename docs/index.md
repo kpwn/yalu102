@@ -47,7 +47,7 @@ YaluB3 | [Link](https://yalu.qwertyoruiop.com/mach_portal+yalu-b3.ipa) | f34ba1b
 
 ## Public Wiki
 
-These docs were brought to you by [JailbreakHub](https://www.jailbreakhub.org)
+These docs were brought to you by [JailbreakHub](redirect.html/)
 
 ## Have a problem or suggestion?
 
