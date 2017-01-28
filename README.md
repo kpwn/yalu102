@@ -44,5 +44,5 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 ## Contributing
 
 Create a fork of the repository, make your changes and then create a pull request.
-Please be sure to check if the pull request has been made before, before creating a new one. Note, any pull requests adding IOKit headers will be closed. Please respect copyright laws.
+Please be sure to check if the pull request has been made before, before creating a new one. Note, any pull requests adding IOKit headers will be closed. Please respect copyright laws, and do not distribute / download IOKit headers from unofficial sources: they are bundled legally with macOS SDK
 
