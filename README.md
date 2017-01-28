@@ -34,7 +34,7 @@ In the near future, the jailbreak will support the following devices:
 | iPhone 7  | iOS 10.0.0 -> iOS 10.1.1 |
 | iPhone 7 Plus | iOS 10.0.0 -> iOS 10.1.1 |
 
-**Note, the iPhone 7 and 7 Plus is only supported till iOS 10.1.1**
+**Note, the iPhone 7 and 7 Plus are only supported through iOS 10.1.1**
 If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual exploit behind this still works, but the KPP bypass does not.
 
 ## Compiling:
