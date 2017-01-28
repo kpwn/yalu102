@@ -53,10 +53,12 @@ typedef struct {
     struct utsname u = { 0 };
     uname(&u);
     
-    bool alreadyJailbroken = strstr(u.version, "MarijuanARM");
+    bool alreadyJailbroken = strstr(u.version, "MarijuanARM") == 0;
     if (alreadyJailbroken) {
         [dope setEnabled:NO];
         [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+        [(AppDelegate*)[[UIApplication sharedApplication] delegate] shouldJailbreak:NO];
+        
     }
     return alreadyJailbroken;
 }

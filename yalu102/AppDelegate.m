@@ -13,7 +13,7 @@
 @end
 
 @implementation AppDelegate
-
+@synthesize shouldJailbreak = _shouldJailbreak;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
