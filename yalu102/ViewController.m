@@ -58,7 +58,7 @@ typedef struct {
     struct utsname u = { 0 };
     uname(&u);
     
-    bool alreadyJailbroken = strstr(u.version, "MarijuanARM") == 0;
+    bool alreadyJailbroken = strstr(u.version, "MarijuanARM");
     return alreadyJailbroken;
 }
 
