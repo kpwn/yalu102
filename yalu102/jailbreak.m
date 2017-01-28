@@ -721,6 +721,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
             __block pid_t pd = 0;
             NSString* execpath = [[NSString stringWithUTF8String:pt]  stringByDeletingLastPathComponent];
             
+            
             int f = open("/.installed_yaluX", O_RDONLY);
             
             if (f == -1) {
@@ -783,7 +784,8 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 chmod("/Library/LaunchDaemons/0.reload.plist", 0644);
                 chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
             }
-            
+            unlink("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist");
+
         }
     }
     chmod("/private", 0777);
