@@ -23,7 +23,7 @@ void init_offsets() {
     allproc_offset = 0x5a4148;
     procoff = 0x360;
     rootvnode_offset = 0x5aa0b8;
-
+    
     if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:12 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S8000") == 0) {
         allproc_offset = 0x5a4148;
         procoff = 0x360;
@@ -48,6 +48,10 @@ void init_offsets() {
         allproc_offset = 0x5ec478; /* @Mila432 */
         procoff = 0x360;
         rootvnode_offset = 0x5f20b8; /* @Mila432 */
+    } else if (strstr(u.machine, "AppleTV5,3") && strstr(u.version, "root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X")) { //Using Ian's condition, not having my AppleTV nearby
+        allproc_offset = 0x5b8168;
+        procoff = 0x360; // tvOS 10.0.1 (14U71) @onchehuh (github)
+        rootvnode_offset = 0x5ba0b8;
     }  else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Fri Aug  5 22:15:30 PDT 2016; root:xnu-3789.1.24~11/RELEASE_ARM64_S5L8960X") == 0){
         allproc_offset = 0x5a4128;
         procoff = 0x360;
@@ -95,5 +99,5 @@ void init_offsets() {
     } else {
         printf("missing offset, prob crashing\n");
     }
-
+    
 }
