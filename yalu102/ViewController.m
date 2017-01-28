@@ -14,6 +14,7 @@
 #undef __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <mach/mach.h>
 #include <sys/utsname.h>
+#include "AppDelegate.h"
 
 extern uint64_t procoff;
 
@@ -34,6 +35,13 @@ typedef struct {
     [super viewDidLoad];
     [self alreadyJailbroken];
     init_offsets();
+    
+    if([(AppDelegate*)[[UIApplication sharedApplication] delegate] shouldJailbreak]) {
+        // User opened through 3D touch or URL scheme
+        if(![self alreadyJailbroken]){
+            [self doIt];
+        }
+    }
 }
 
 - (bool) alreadyJailbroken {
@@ -120,8 +128,12 @@ struct not_essers_ipc_object {
 #define IKOT_CLOCK 25
 
 char dt[128];
-- (IBAction)yolo:(UIButton*)sender
-{
+
+- (IBAction)yolo:(UIButton*)sender {
+    [self doIt];
+}
+    
+- (void)doIt {
     /*
      
      we out here!
@@ -256,7 +268,7 @@ char dt[128];
             ports[i] = 0;
         }
     }
-    [sender setTitle:@"failed, retry" forState:UIControlStateNormal];
+    [dope setTitle:@"failed, retry" forState:UIControlStateNormal];
     return;
     
 foundp:
@@ -276,7 +288,7 @@ foundp:
             }
         }
     }
-    [sender setTitle:@"failed, retry" forState:UIControlStateNormal];
+    [dope setTitle:@"failed, retry" forState:UIControlStateNormal];
     return;
     
 gotclock:;
@@ -374,8 +386,8 @@ gotclock:;
     extern uint64_t slide;
     slide = kernel_base - 0xFFFFFFF007004000;
     
-    void exploit(void*, mach_port_t, uint64_t, uint64_t);
-    exploit(sender, pt, kernel_base, allproc_offset);
+    void exploit(mach_port_t, uint64_t, uint64_t);
+    exploit(pt, kernel_base, allproc_offset);
     [self alreadyJailbroken];
 
 }
