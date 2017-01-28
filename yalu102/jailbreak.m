@@ -11,7 +11,7 @@
 #import <mach/mach.h>
 #import "devicesupport.h"
 
-#if TARGET_OS_IPHONE
+#if !(TARGET_OS_SIMULATOR)
 #import <IOKit/IOKitLib.h>
 #import <dlfcn.h>
 #import <Foundation/Foundation.h>
