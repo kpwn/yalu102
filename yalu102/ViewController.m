@@ -46,6 +46,7 @@ typedef struct {
         if(![self alreadyJailbroken]) {
             [self doIt];
         }
+        [(AppDelegate*)[[UIApplication sharedApplication] delegate] setShouldJailbreak:NO];
     }
 }
 
@@ -61,7 +62,6 @@ typedef struct {
     if ([self alreadyJailbroken]) {
         [dope setEnabled:NO];
         [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
-        [(AppDelegate*)[[UIApplication sharedApplication] delegate] shouldJailbreak:NO];
     }
 }
 
