@@ -33,10 +33,14 @@ typedef struct {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Check if user is already jailbroken
     [self performForJailbrokenState];
     init_offsets();
     
+    // Check if user has requested to jailbreak through URL schemes or 3D Touch
     [self evaluateShouldJailbreak];
+    // Keep checking for when we need to reevaluate this
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(evaluateShouldJailbreak) name:@"ReevaluateShouldJailbreak" object:nil];
 }
 
@@ -59,6 +63,7 @@ typedef struct {
 }
 
 - (void) performForJailbrokenState {
+    // Check if the device is already jailbroken and change the UI accordingly
     if ([self alreadyJailbroken]) {
         [dope setEnabled:NO];
         [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];

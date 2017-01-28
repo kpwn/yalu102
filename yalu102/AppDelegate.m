@@ -21,8 +21,10 @@
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    // URL scheme handling
     NSString *urlParameter = [url host];
     if ([urlParameter isEqual:@"break"]) {
+        // URL scheme to jailbreak is being handled
         NSLog(@"We're breaking out of jail bois!");
         _shouldJailbreak = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReevaluateShouldJailbreak" object:nil userInfo:nil];
@@ -31,10 +33,12 @@
 }
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    // 3D Touch shortcut action handling
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     NSLog(@"%@", shortcutItem.type);
     if ([shortcutItem.type isEqual:[NSString stringWithFormat: @"%@.BREAK", bundleIdentifier]]) {
-        NSLog(@"3D Touch action to jailbreak hit");
+        // User has requested through 3D Touch to jailbreal
+        NSLog(@"3D Touch shortcut action to jailbreak hit!");
         _shouldJailbreak = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName: @"ReevaluateShouldJailbreak" object:nil userInfo:nil];
     }
