@@ -33,7 +33,7 @@ typedef struct {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self alreadyJailbroken];
+    [self performForJailbrokenState];
     init_offsets();
     
     [self evaluateShouldJailbreak];
@@ -54,13 +54,15 @@ typedef struct {
     uname(&u);
     
     bool alreadyJailbroken = strstr(u.version, "MarijuanARM") == 0;
-    if (alreadyJailbroken) {
+    return alreadyJailbroken;
+}
+
+- (void) performForJailbrokenState {
+    if ([self alreadyJailbroken]) {
         [dope setEnabled:NO];
         [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
         [(AppDelegate*)[[UIApplication sharedApplication] delegate] shouldJailbreak:NO];
-        
     }
-    return alreadyJailbroken;
 }
 
 typedef natural_t not_natural_t;
@@ -402,7 +404,7 @@ gotclock:;
     
     void exploit(mach_port_t, uint64_t, uint64_t);
     exploit(pt, kernel_base, allproc_offset);
-    [self alreadyJailbroken];
+    [self performForJailbrokenState];
     #endif
 
 }
