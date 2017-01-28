@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		925D693E1E3D44F300A7EBD8 /* Headers in Resources */ = {isa = PBXBuildFile; fileRef = 925D693D1E3D44F300A7EBD8 /* Headers */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
 		EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BA61E398E33009CA025 /* 0.reload.plist */; };
 		EA1A3BAD1E399006009CA025 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BAC1E399006009CA025 /* reload */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		925D693D1E3D44F300A7EBD8 /* Headers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Headers; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA01E398E28009CA025 /* mach_portal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mach_portal.xcodeproj; path = "../../Downloads/mach_portal_redist-1/mach_portal/mach_portal.xcodeproj"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		EA9900DA1E1E9F060056FEBD = {
 			isa = PBXGroup;
 			children = (
+				925D693D1E3D44F300A7EBD8 /* Headers */,
 				EA9900E51E1E9F060056FEBD /* yalu102 */,
 				EA9900E41E1E9F060056FEBD /* Products */,
 			);
@@ -221,6 +224,7 @@
 				EA99010A1E21A04C0056FEBD /* tar in Resources */,
 				EA99010C1E21A0520056FEBD /* launchctl in Resources */,
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,
+				925D693E1E3D44F300A7EBD8 /* Headers in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
 				EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */,
 				EA1A3BAD1E399006009CA025 /* reload in Resources */,
