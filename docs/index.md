@@ -30,13 +30,22 @@ iPad Mini 2 | 10 - 10.2 | Not Supported
 
 ## Installation
 
-* Download [Yalu B3](https://yalu.qwertyoruiop.com/mach_portal+yalu-b3.ipa)
-  or
-* Download [yalu102](https://yalu.qwertyoruiop.com/yalu102_alpha.ipa)
-^Which ^one? ^[Support List](#support list)
+* Download [Yalu B3](https://yalu.qwertyoruiop.com/mach_portal+yalu-b3.ipa) See [Support List](#support-list)
+
+* Download [yalu102](https://yalu.qwertyoruiop.com/yalu102_alpha.ipa) See [Support List](#support-list)
 
 * Download [Cydia Impactor](http://www.cydiaimpactor.com/)
 
-1. first
-2. second
-3. third
+1. Plug in your supported iDevice
+2. Open up Cydia Impactor
+3. Drag and drop the correct IPA into Cydia Impactor's window
+4. Sign in with your AppleID
+5. ???
+6. Profit.
+
+Version | Download | SHA1
+:----------- |:-------------:| -----------:
+
+## Guides
+
+* [Checking your SHA1](404/)
