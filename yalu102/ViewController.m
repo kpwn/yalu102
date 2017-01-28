@@ -134,6 +134,11 @@ char dt[128];
 }
     
 - (void)doIt {
+    #if TARGET_IPHONE_SIMULATOR
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Cannot Jailbreak" message:@"You are currently running the app in the iOS Simulator. To jailbreak, run the tool on a real device." preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction: [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+    #else
     /*
      
      we out here!
@@ -391,6 +396,7 @@ gotclock:;
     void exploit(mach_port_t, uint64_t, uint64_t);
     exploit(pt, kernel_base, allproc_offset);
     [self alreadyJailbroken];
+    #endif
 
 }
 

@@ -6,6 +6,7 @@
 //  Copyright © 2017 kimjongcracks. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
 #import <Foundation/Foundation.h>
 #undef __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <mach/mach.h>
@@ -800,3 +801,4 @@ void exploit(mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
 
     NSLog(@"done");
 }
+#endif
