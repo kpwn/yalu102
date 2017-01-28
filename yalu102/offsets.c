@@ -48,10 +48,14 @@ void init_offsets() {
         allproc_offset = 0x5ec478;     /* SoC Processor used in the: iPhone 7, iPhone 7+ */
         procoff = 0x360;               /* Offsets found by: @Mila432 */
         rootvnode_offset = 0x5f20b8;   /* SoC Processor used in the: iPhone 7, iPhone 7+ */
+    } else if (strstr(u.machine, "AppleTV5,3") && strstr(u.version, "root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X") == 0) { 
+        allproc_offset = 0x5b8168;     /* Specifically the offsets for: Apple TV 4th Gen */
+        procoff = 0x360;               /* Offsets found by: @onchehuh (github) */
+        rootvnode_offset = 0x5ba0b8;   /* Specifically the offsets for: Apple TV 4th Gen */
     }  else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Fri Aug  5 22:15:30 PDT 2016; root:xnu-3789.1.24~11/RELEASE_ARM64_S5L8960X") == 0){
-        allproc_offset = 0x5a4128;     /* SoC Processor used in the: iPhone 5s, iPad mini 2, iPad Mini 3 */
+        allproc_offset = 0x5a4128;     /* SoC Processor used in the: iPhone 5s, iPad Mini 2, iPad Mini 3 */
         procoff = 0x360;
-        rootvnode_offset = 0x5aa0b8;   /* SoC Processor used in the: iPhone 5s, iPad mini 2, iPad Mini 3 */
+        rootvnode_offset = 0x5aa0b8;   /* SoC Processor used in the: iPhone 5s, iPad Mini 2, iPad Mini 3 */
     } else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:10 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_T8010") == 0) {
         allproc_offset = 0x5ec178;     /* SoC Processor used in the: iPhone 7, iPhone 7+ */
         procoff = 0x360;               /* Offsets found by: @Mila432 */
@@ -69,9 +73,9 @@ void init_offsets() {
         procoff = 0x360;               /* Offsets found by: @Mila432 */
         rootvnode_offset = 0x5aa0b8;   /* SoC Processor used in the: iPhone 6s, iPhone 6s Plus, iPhone SE */
     } else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:11 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X") == 0) {
-        allproc_offset = 0x5a4128;     /* SoC Processor used in the: iPhone 5s, iPad mini 2, iPad Mini 3 */
+        allproc_offset = 0x5a4128;     /* SoC Processor used in the: iPhone 5s, iPad Mini 2, iPad Mini 3 */
         procoff = 0x360;               /* Offsets found by @Mila432 */
-        rootvnode_offset = 0x5aa0b8;   /* SoC Processor used in the: iPhone 5s, iPad mini 2, iPad Mini 3 */
+        rootvnode_offset = 0x5aa0b8;   /* SoC Processor used in the: iPhone 5s, iPad Mini 2, iPad Mini 3 */
     } else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_T8010") == 0) {
         allproc_offset = 0x5ec178;     /* SoC Processor used in the: iPhone 7, iPhone 7+ */
         procoff = 0x360;               /* Offsets found by @Mila432 */
@@ -89,9 +93,9 @@ void init_offsets() {
         procoff = 0x360;               /* Offsets found by: @Mila432 */
         rootvnode_offset = 0x5aa0b8;   /* SoC Processor used in the: iPhone 6s, iPhone 6s Plus, iPhone SE */
     } else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:55 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_S5L8960X") == 0) {
-        allproc_offset = 0x5a4128;     /* SoC Processor used in the: iPhone 5s, iPad mini 2, iPad Mini 3 */
+        allproc_offset = 0x5a4128;     /* SoC Processor used in the: iPhone 5s, iPad Mini 2, iPad Mini 3 */
         procoff = 0x360;               /* Offsets found by: @Mila432) */
-        rootvnode_offset = 0x5aa0b8;   /* SoC Processor used in the: iPhone 5s, iPad mini 2, iPad Mini 3 */
+        rootvnode_offset = 0x5aa0b8;   /* SoC Processor used in the: iPhone 5s, iPad Mini 2, iPad Mini 3 */
     } else {
         printf("missing offset, prob crashing\n");
     }
