@@ -13,6 +13,7 @@
     IBOutlet UIButton* dope;
 }
 - (IBAction)yolo:(id)sender;
+- (void) setAlreadyJailbroken;
 
 @end
 

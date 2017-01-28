@@ -33,16 +33,17 @@ typedef struct {
 - (void)viewDidLoad {
     [super viewDidLoad];
     init_offsets();
+
+    [self setAlreadyJailbroken];
+}
+
+- (void) setAlreadyJailbroken {
     struct utsname u = { 0 };
     uname(&u);
-    
-
     if (strstr(u.version, "MarijuanARM")) {
         [dope setEnabled:NO];
         [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
     }
-
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 typedef natural_t not_natural_t;
@@ -373,14 +374,8 @@ gotclock:;
     
     void exploit(void*, mach_port_t, uint64_t, uint64_t);
     exploit(sender, pt, kernel_base, allproc_offset);
-    [dope setEnabled:NO];
-    [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+    [self setAlreadyJailbroken];
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
