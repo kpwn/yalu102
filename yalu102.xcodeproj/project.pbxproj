@@ -150,6 +150,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA9900FA1E1E9F060056FEBD /* Build configuration list for PBXNativeTarget "yalu102" */;
 			buildPhases = (
+				A72976DF1E3CD3E10011A922 /* Create IOKit symlink */,
 				EA9900DF1E1E9F060056FEBD /* Sources */,
 				EA9900E01E1E9F060056FEBD /* Frameworks */,
 				EA9900E11E1E9F060056FEBD /* Resources */,
@@ -230,6 +231,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A72976DF1E3CD3E10011A922 /* Create IOKit symlink */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create IOKit symlink";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "DESTPATH=\"$PROJECT_DIR/yalu102/include\"\nMACOSSDK=$PLATFORM_DIR/../MacOSX.platform/Developer/SDKs/MacOSX.sdk\nset -e\n[ ! -e \"$DESTPATH/IOKit\" ] && ln -s \"$MACOSSDK/System/Library/Frameworks/IOKit.framework/Headers\" \"$DESTPATH/IOKit\"\n[ ! -e \"$DESTPATH/libkern\" ] && ln -s \"$MACOSSDK/usr/include/libkern\" \"$DESTPATH/libkern\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EA9900DF1E1E9F060056FEBD /* Sources */ = {
@@ -370,6 +389,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DEVELOPMENT_TEAM = CGTX3WH3ZS;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/yalu102/include",
+				);
 				INFOPLIST_FILE = yalu102/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -389,6 +412,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DEVELOPMENT_TEAM = CGTX3WH3ZS;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/yalu102/include",
+				);
 				INFOPLIST_FILE = yalu102/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
