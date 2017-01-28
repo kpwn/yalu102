@@ -36,9 +36,14 @@ typedef struct {
     [self alreadyJailbroken];
     init_offsets();
     
+    [self evaluateShouldJailbreak];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(evaluateShouldJailbreak) name:@"ReevaluateShouldJailbreak" object:nil];
+}
+
+- (void) evaluateShouldJailbreak {
     if([(AppDelegate*)[[UIApplication sharedApplication] delegate] shouldJailbreak]) {
         // User opened through 3D touch or URL scheme
-        if(![self alreadyJailbroken]){
+        if(![self alreadyJailbroken]) {
             [self doIt];
         }
     }

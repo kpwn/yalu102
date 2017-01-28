@@ -25,6 +25,7 @@
     if ([urlParameter isEqual:@"break"]) {
         NSLog(@"We're breaking out of jail bois!");
         _shouldJailbreak = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReevaluateShouldJailbreak" object:nil userInfo:nil];
     }
     return YES;
 }
@@ -33,7 +34,9 @@
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     NSLog(@"%@", shortcutItem.type);
     if ([shortcutItem.type isEqual:[NSString stringWithFormat: @"%@.BREAK", bundleIdentifier]]) {
+        NSLog(@"3D Touch action to jailbreak hit");
         _shouldJailbreak = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName: @"ReevaluateShouldJailbreak" object:nil userInfo:nil];
     }
 }
 
