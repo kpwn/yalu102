@@ -169,7 +169,6 @@
 				TargetAttributes = {
 					EA9900E21E1E9F060056FEBD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = CGTX3WH3ZS;
 						ProvisioningStyle = Automatic;
 					};
 				};
