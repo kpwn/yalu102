@@ -48,7 +48,7 @@ void init_offsets() {
         allproc_offset = 0x5ec478;     /* SoC Processor used in the: iPhone 7, iPhone 7+ */
         procoff = 0x360;               /* Offsets found by: @Mila432 */
         rootvnode_offset = 0x5f20b8;   /* SoC Processor used in the: iPhone 7, iPhone 7+ */
-    } else if (strstr(u.machine, "AppleTV5,3") && strstr(u.version, "root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X") == 0) { 
+    } else if (strstr(u.machine, "AppleTV5,3") && strstr(u.version, "root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X")) { 
         allproc_offset = 0x5b8168;     /* Specifically the offsets for: Apple TV 4th Gen */
         procoff = 0x360;               /* Offsets found by: @onchehuh (github) */
         rootvnode_offset = 0x5ba0b8;   /* Specifically the offsets for: Apple TV 4th Gen */
