@@ -1,0 +1,4 @@
+// Enter your custom team ID and bundle ID here.
+// Do not commit the results into the git repository.
+DEVELOPMENT_TEAM = CGTX3WH3ZS;
+PRODUCT_BUNDLE_IDENTIFIER = kim.cracksby.yalu102;
