@@ -65,8 +65,10 @@ typedef struct {
 - (void) performForJailbrokenState {
     // Check if the device is already jailbroken and change the UI accordingly
     if ([self alreadyJailbroken]) {
-        [dope setEnabled:NO];
-        [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [dope setEnabled:NO];
+            [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+        });
     }
 }
 
