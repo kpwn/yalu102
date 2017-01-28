@@ -6,12 +6,12 @@
 //  Copyright © 2017 kimjongcracks. All rights reserved.
 //
 
-#if TARGET_OS_IPHONE
 #import <Foundation/Foundation.h>
 #undef __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <mach/mach.h>
 #import "devicesupport.h"
 
+#if TARGET_OS_IPHONE
 #import <IOKit/IOKitLib.h>
 #import <dlfcn.h>
 #import <Foundation/Foundation.h>
