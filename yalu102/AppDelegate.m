@@ -21,12 +21,20 @@
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    NSString *urlParameter = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlParameter = [url host];
     if ([urlParameter isEqual:@"break"]) {
         NSLog(@"We're breaking out of jail bois!");
         _shouldJailbreak = YES;
     }
     return YES;
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSLog(@"%@", shortcutItem.type);
+    if ([shortcutItem.type isEqual:[NSString stringWithFormat: @"%@.BREAK", bundleIdentifier]]) {
+        _shouldJailbreak = YES;
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

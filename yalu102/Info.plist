@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationShortcutItems </key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Jailbreak</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>${PRODUCT_BUNDLE_IDENTIFIER}.BREAK</string>
+		</dict>
+	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -10,7 +19,7 @@
 				<string>yalu</string>
 			</array>
 			<key>CFBundleURLName</key>
-			<string>kim.cracksby.yalu102</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 		</dict>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
