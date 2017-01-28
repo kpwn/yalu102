@@ -1,3 +1,0 @@
-# About
-
-what up homie

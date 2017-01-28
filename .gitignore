@@ -22,9 +22,6 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 
-## Website
-site/
-
 
 .DS_Store
 
