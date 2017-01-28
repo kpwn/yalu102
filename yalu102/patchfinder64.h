@@ -1,6 +1,5 @@
 //
 //  patchfinder64.h
-//  yalux_clean
 //
 //  Created by qwertyoruiop on 21/09/16.
 //  Copyright © 2016 qwertyoruiop. All rights reserved.
