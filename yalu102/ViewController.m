@@ -32,20 +32,20 @@ typedef struct {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    init_offsets();
-
     [self alreadyJailbroken];
+    init_offsets();
 }
 
 - (bool) alreadyJailbroken {
     struct utsname u = { 0 };
     uname(&u);
-    if (strstr(u.version, "MarijuanARM")) {
+    
+    bool alreadyJailbroken = strstr(u.version, "MarijuanARM");
+    if (alreadyJailbroken) {
         [dope setEnabled:NO];
         [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
-        return YES;
     }
-    return NO;
+    return alreadyJailbroken;
 }
 
 typedef natural_t not_natural_t;
