@@ -756,6 +756,10 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 system("echo '127.0.0.1 iphonesubmissions.apple.com' >> /etc/hosts");
                 system("echo '127.0.0.1 radarsubmissions.apple.com' >> /etc/hosts");
                 
+                //block Host for Check Update
+                system("echo '127.0.0.1 mesu.apple.com' >> /etc/hosts");
+                system("echo '127.0.0.1 appldnld.apple.com' >> /etc/hosts");
+                
                 system("/usr/bin/uicache");
                 
                 system("killall -SIGSTOP cfprefsd");
