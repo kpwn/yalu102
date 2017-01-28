@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBH-un-0mh">
-                                <rect key="frame" x="104.5" y="599" width="170.5" height="20"/>
+                                <rect key="frame" x="103" y="599" width="170.5" height="20"/>
                                 <attributedString key="attributedText">
                                     <fragment content="iPhone SE: 10.0 - 10.2">
                                         <attributes>
@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amS-KI-mMd">
-                                <rect key="frame" x="111.5" y="627" width="157" height="20"/>
+                                <rect key="frame" x="110" y="627" width="157" height="20"/>
                                 <attributedString key="attributedText">
                                     <fragment content="iPad Pro: 10.0 - 10.2">
                                         <attributes>
@@ -48,9 +48,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Bo-VD-tPM">
-                                <rect key="frame" x="104.5" y="571" width="167" height="20"/>
+                                <rect key="frame" x="103" y="571" width="170" height="20"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="iPhone 6s: 10.0 - 10.2">
+                                    <fragment content="iPhone 6S: 10.0 - 10.2">
                                         <attributes>
                                             <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <font key="NSFont" size="17" name="HelveticaNeue"/>
