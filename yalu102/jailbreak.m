@@ -492,7 +492,6 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         TTE_SET(tte, TTE_BLOCK_ATTR_UXN_MASK, 0);\
         TTE_SET(tte, TTE_BLOCK_ATTR_PXN_MASK, 0);\
         WriteAnywhere64(tte_addr, tte);\
-        NSLog(@"level %llx - %llx", tte_addr,              TTE_GET(tte, TTE_PHYS_VALUE_MASK));\
     }, level1_table, isvad ? 1 : 2);
     
 #define NewPointer(origptr) (((origptr) & PMK) | findphys_real(origptr) - gPhysBase + gVirtBase)
@@ -547,6 +546,29 @@ RemapPage_(x+PSZ);\
         copyout(NewPointer(release+whole_base), "MarijuanARM", 11); /* marijuanarm */
     }
 
+    
+    /*
+     nonceenabler
+     */
+    
+    {
+        uint64_t endf = prelink_base+prelink_size;
+        uint64_t ends = whole_size - (endf - whole_base);
+        char* sbstr = memmem(whole_dump + endf - whole_base, ends, "com.apple.System.boot-nonce", strlen("com.apple.System.boot-nonce"));
+        
+        assert(sbstr);
+        
+        for (int i = 0; i < whole_size/8; i++) {
+            if (*(uint64_t*)(whole_dump+i*8) == (sbstr - (uint64_t)whole_dump + whole_base)) {
+                NSLog(@"%x", ReadAnywhere32(whole_base+i*8+8+4));
+                
+                WriteAnywhere32(whole_base+i*8+8+4, 1);
+            }
+        }
+    }
+    
+    
+    
     uint64_t memcmp_got = find_amfi_memcmpstub();
     uint64_t ret1 = find_ret_0();
     
@@ -754,7 +776,7 @@ RemapPage_(x+PSZ);\
                 
                 chdir("/");
                 
-                posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "-xvf", [bootstrap UTF8String], NULL}, NULL);
+                posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "--no-overwrite-dir", "-xvf", [bootstrap UTF8String], NULL}, NULL);
                 NSLog(@"pid = %x", pd);
                 waitpid(pd, 0, 0);
                 
