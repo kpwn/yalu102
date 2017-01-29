@@ -92,7 +92,7 @@ void pagestuff_64(vm_address_t vmaddr, void (^pagestuff_64_callback)(vm_address_
     if (sz == 4096) {
         VMA_4K target_addr;
         target_addr.vmaddr = vmaddr;
-        NSLog(@"level %x", target_addr.vm_info.level1_index);
+
         if (level == 1) {
             target_addr.vm_info.level1_index -= 0x1c0;
         }
