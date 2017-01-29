@@ -109,7 +109,14 @@ void init_offsets() {
     else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Fri Aug  5 22:15:30 PDT 2016; root:xnu-3789.1.24~11/RELEASE_ARM64_S5L8960X") == 0) {
         allproc_offset = 0x5a4128;
         rootvnode_offset = 0x5aa0b8;
-    }//some beta ios
+    }
+    // @iKilledAppl3 and @iOSResearchr iPod touch 7,1 iOS 10.2
+    else if (strcmp(u.version, "Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:08 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_T7000") == 0) {
+        allproc_offset = 0x5b8468;
+        procoff = 0x360;
+        rootvnode_offset = 0x5be0b8;
+    }
+    //some beta ios
     else {
         printf("missing offset, prob crashing\n");
     }
