@@ -48,7 +48,7 @@ void init_offsets() {
         allproc_offset = 0x5ec478; /* @Mila432 */
         procoff = 0x360;
         rootvnode_offset = 0x5f20b8; /* @Mila432 */
-    } else if (strstr(u.machine, "AppleTV5,3") && strstr(u.version, "root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X")) { //Using Ian's condition, not having my AppleTV nearby
+    } else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 22:13:19 PDT 2016; root:xnu-3789.23.3~2/RELEASE_ARM64_T7000") == 0) {
         allproc_offset = 0x5b8168;
         procoff = 0x360; // tvOS 10.0.1 (14U71) @onchehuh (github)
         rootvnode_offset = 0x5ba0b8;
