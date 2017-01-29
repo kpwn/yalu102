@@ -84,7 +84,7 @@ void init_offsets() {
     }
     else if (strcmp(u.version, "Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:11 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X") == 0) {
         allproc_offset = 0x5a4128;
-        rootvnode_offset = 0x5aa0b8;
+        rootvnode_offset = 0x5ae0b8; /* iPhone 5s (GSM) 10.1.1 14B100 */
     }
     else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_T8010") == 0) {
         allproc_offset = 0x5ec178;
