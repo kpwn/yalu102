@@ -66,7 +66,7 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 
 | Version | Download | SHA1 |
 |---------|----------|------|
-| Alpha  | [Link](https://www.lampserv.net/yalu.php) | F6F5D88D7E7F93D861847A74F33CA7DF29493051  |
+| Alpha  | [Link](https://www.lampserv.net/yalu.php) | 6C8CBE251E93CB871F6FDE0D17398E95C37305B4  |
 
 ## Contributing
 
