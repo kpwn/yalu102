@@ -8,6 +8,8 @@ This version of yalu uses the same underlying code, however features a new ui an
 
 This fork is generally updated from [kpwn's branch](https://github.com/kpwn/yalu102) every few hours. 
 
+Compiled .ipa files are pushed every few hours/whenever a major update occurs.
+
 Please use the "Issues" tab for **code related** issues only. If you need support please search on [/r/jailbreak](https://reddit.com/r/jailbreak) before posting a question there.
 
 ## Supported Devices and iOS versions
