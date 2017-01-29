@@ -13,13 +13,6 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 | iPad Pro  | iOS 10.0.0 -> iOS 10.2 |
 | iPhone 6S  | iOS 10.0.0 -> iOS 10.2 |
 | iPhone SE  | iOS 10.0.0 -> iOS 10.2 |
-
-### Planned Support:
-
-In the near future, the jailbreak will support the following devices:
-
-| Device | Version | 
-|---------|----------|
 | iPhone 5S  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Air| iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 2| iOS 10.0.0 -> iOS 10.2 |
@@ -28,6 +21,13 @@ In the near future, the jailbreak will support the following devices:
 | iPad Mini 3| iOS 10.0.0 -> iOS 10.2 |
 | iPod touch (6G)  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 4 | iOS 10.0.0 -> iOS 10.2 |
+
+### Planned Support:
+
+In the near future, the jailbreak will support the following devices:
+
+| Device | Version | 
+|---------|----------|
 | iPhone 7  | iOS 10.0.0 -> iOS 10.1.1 |
 
 **Note, the iPhone 7 is only supported till iOS 10.1.1**
