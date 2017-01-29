@@ -13,6 +13,11 @@
 + (instancetype)offsetsForCurrentDevice {
     struct utsname u = { 0 };
     uname(&u);
+    printf("sysname: %s\n", u.sysname);
+    printf("nodename: %s\n", u.nodename);
+    printf("release: %s\n", u.release);
+    printf("version: %s\n", u.version);
+    printf("machine: %s\n", u.machine);
     return [self offsetsForKernelVersion:[NSString stringWithUTF8String:u.version]];
 }
 
