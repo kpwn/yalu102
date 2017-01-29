@@ -87,10 +87,16 @@ void pagestuff_64(vm_address_t vmaddr, void (^pagestuff_64_callback)(vm_address_
     
     vm_address_t tteaddr = 0;
     
+    
+    
     if (sz == 4096) {
         VMA_4K target_addr;
         target_addr.vmaddr = vmaddr;
-        
+        NSLog(@"level %x", target_addr.vm_info.level1_index);
+        if (level == 1) {
+            target_addr.vm_info.level1_index -= 0x1c0;
+        }
+
         switch (level) {
             case 0:
                 tteaddr = table + TTE_INDEX(target_addr, level0);
@@ -156,7 +162,7 @@ uint64_t findphys_real(uint64_t virtaddr) {
         if (addr == 3) {\
             physvar = TTE_GET(tte, TTE_PHYS_VALUE_MASK);
         }
-    }, level1_table, 2);
+    }, level1_table, isvad ? 1 : 2);
     
     return physvar;
     
