@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A70DFA9E1E3D332500769FE9 /* include in Resources */ = {isa = PBXBuildFile; fileRef = A70DFA9D1E3D332500769FE9 /* include */; };
 		A70DFAA11E3D35AC00769FE9 /* Kernels.plist in Resources */ = {isa = PBXBuildFile; fileRef = A70DFAA01E3D35AC00769FE9 /* Kernels.plist */; };
 		A70DFAAB1E3E35C200769FE9 /* YAKernelOffsets.m in Sources */ = {isa = PBXBuildFile; fileRef = A70DFAAA1E3E35C200769FE9 /* YAKernelOffsets.m */; };
 		A70DFAAF1E3E3B8900769FE9 /* YAExploitTFP0.m in Sources */ = {isa = PBXBuildFile; fileRef = A70DFAAE1E3E3B8900769FE9 /* YAExploitTFP0.m */; };
@@ -216,7 +215,6 @@
 				EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */,
 				A70DFAA11E3D35AC00769FE9 /* Kernels.plist in Resources */,
 				EA1A3BAD1E399006009CA025 /* reload in Resources */,
-				A70DFA9E1E3D332500769FE9 /* include in Resources */,
 				EA1A3BC51E39D1FF009CA025 /* Assets.xcassets in Resources */,
 				EA9900F11E1E9F060056FEBD /* Main.storyboard in Resources */,
 			);
