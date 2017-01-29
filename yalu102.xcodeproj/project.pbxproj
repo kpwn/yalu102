@@ -39,6 +39,7 @@
 		A70DFAAE1E3E3B8900769FE9 /* YAExploitTFP0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAExploitTFP0.m; sourceTree = "<group>"; };
 		A72023711E3CFBCA00FADBFF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A72023751E3CFE2E00FADBFF /* yalu102.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = yalu102.xcconfig; sourceTree = "<group>"; };
+		A766FD8B1E3E499A002A75CE /* pte_stuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pte_stuff.h; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA61E398E33009CA025 /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 				A70DFAAC1E3E389100769FE9 /* mach_vm.h */,
 				EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */,
 				EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */,
+				A766FD8B1E3E499A002A75CE /* pte_stuff.h */,
 				EA9900EC1E1E9F060056FEBD /* ViewController.h */,
 				EA9900ED1E1E9F060056FEBD /* ViewController.m */,
 				A70DFA9C1E3D314F00769FE9 /* jailbreak.h */,
