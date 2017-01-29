@@ -33,13 +33,21 @@ In the near future, the jailbreak will support the following devices:
 **Note, the iPhone 7 is only supported till iOS 10.1.1**
 If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual exploit behind this still works, but the KPP bypass does not.
 
-## Compiling:
+## Getting Started
 
 1. `git clone` the repo.
 2. Open the repo in Xcode
 3. Change the bundle ID, as shown [here](https://www.reddit.com/r/sideloaded/wiki/how-to-sideload#wiki_changing_the_bundle_identifier_and_team)
 4. Include the IOKit headers, and add them to your search path.
 5. Run the project.
+
+## Compiling
+
+1. Click 'Product' in Xcode menu bar, from the drop-down click 'Archive'
+2. Right-click on the archive in Organizer, click 'Show in Finder'
+3. Open Terminal and use the `cd` command to go to the directory the archive file is located in
+4. In Terminal, enter `xcodebuild -exportArchive -exportFormat ipa -archivePath <FILE_NAME>.xcarchive -exportPath ~/Desktop/<FILE_NAME>.ipa` replacing `<FILE_NAME>` with the name of the archive in Finder
+5. Wait for command to complete, the .ipa file should be located on your desktop
 
 ## Installing
 
