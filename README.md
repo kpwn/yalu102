@@ -13,22 +13,22 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 | iPhone 5S  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Pro  | iOS 10.0.0 -> iOS 10.2 |
 | iPhone 6  | iOS 10.0.0 -> iOS 10.2 |
+| iPad Air| iOS 10.0.0 -> iOS 10.2 |
+| iPad Mini 2| iOS 10.0.0 -> iOS 10.2 |
+| iPad Mini 3| iOS 10.0.0 -> iOS 10.2 |
+| iPad Mini 4 | iOS 10.0.0 -> iOS 10.2 |
 | iPhone 6S  | iOS 10.0.0 -> iOS 10.2 |
 | iPhone SE  | iOS 10.0.0 -> iOS 10.2 |
+| iPod touch (6G)  | iOS 10.0.0 -> iOS 10.2 |
+| iPhone 7  | iOS 10.0.0 -> iOS 10.1.1 |
 
 ### Planned Support:
 
-In the near future, the jailbreak will support the following devices:
+In the near future, the jailbreak will support the following device:
 
 | Device | Version | 
 |---------|----------|
-| iPad Air| iOS 10.0.0 -> iOS 10.2 |
-| iPad Mini 2| iOS 10.0.0 -> iOS 10.2 |
 | iPad Air 2| iOS 10.0.0 -> iOS 10.2 |
-| iPad Mini 3| iOS 10.0.0 -> iOS 10.2 |
-| iPod touch (6G)  | iOS 10.0.0 -> iOS 10.2 |
-| iPad Mini 4 | iOS 10.0.0 -> iOS 10.2 |
-| iPhone 7  | iOS 10.0.0 -> iOS 10.1.1 |
 
 **Note, the iPhone 7 is only supported till iOS 10.1.1**
 If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual exploit behind this still works, but the KPP bypass does not.
@@ -54,7 +54,7 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 | Version | Download | SHA1 |
 |---------|----------|------|
 | Alpha  | [Link](https://yalu.qwertyoruiop.com/yalu102_alpha.ipa) | 2FE14F1C1E1A0D26203BBB123F6747A978DD2B4F  |
-
+| Beta Two | [Link](https://yalu.qwertyoruiop.com/yalu102_beta.ipa)| 4fddad7cca8aa0c0a6579c1d63d00917f15efc86 |
 ## Contributing
 
 Create a fork of the repository, make your changes and then create a pull request.
