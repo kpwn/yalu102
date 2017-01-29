@@ -6,18 +6,32 @@ A "work in progress" iOS jailbreak for 64-bit devices created by [qwertyoruiopz]
 
 Please use the "Issues" tab for **code related** issues only. If you need support please search on [/r/jailbreak](https://reddit.com/r/jailbreak) before posting a question there.
 
-## Supported Devices
+## Supported Devices and iOS versions
 
-* iPhone SE
-* iPhone 6S
-* iPhone 6S+
-* iPad Pro
+| Device | Version | 
+|---------|----------|
+| iPad Pro  | iOS 10.0.0 -> iOS 10.2 |
+| iPhone 6S  | iOS 10.0.0 -> iOS 10.2 |
+| iPhone SE  | iOS 10.0.0 -> iOS 10.2 |
 
-## Supported iOS Versions
+### Planned Support:
 
-* 10.0.x
-* 10.1.x
-* 10.2
+In the near future, the jailbreak will support the following devices:
+
+| Device | Version | 
+|---------|----------|
+| iPhone 5S  | iOS 10.0.0 -> iOS 10.2 |
+| iPad Air| iOS 10.0.0 -> iOS 10.2 |
+| iPad Mini 2| iOS 10.0.0 -> iOS 10.2 |
+| iPhone 6  | iOS 10.0.0 -> iOS 10.2 |
+| iPad Air 2| iOS 10.0.0 -> iOS 10.2 |
+| iPad Mini 3| iOS 10.0.0 -> iOS 10.2 |
+| iPod touch (6G)  | iOS 10.0.0 -> iOS 10.2 |
+| iPad Mini 4 | iOS 10.0.0 -> iOS 10.2 |
+| iPhone 7  | iOS 10.0.0 -> iOS 10.1.1 |
+
+**Note, the iPhone 7 is only supported till iOS 10.1.1**
+If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual exploit behind this still works, but the KPP bypass does not.
 
 ## Compiling:
 
@@ -44,5 +58,5 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 ## Contributing
 
 Create a fork of the repository, make your changes and then create a pull request.
-Please be sure to check if the pull request has been made before, before creating a new one. Note, any pull requests adding IOKit headers will be closed. Please respect copyright laws.
+Please be sure to check if the pull request has been made before, before creating a new one. Note, any pull requests adding IOKit headers will be closed. Please respect copyright laws, and do not distribute / download IOKit headers from unofficial sources: they are bundled legally with macOS SDK
 
