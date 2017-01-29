@@ -19,6 +19,7 @@
 #import <mach/mach.h>
 
 #import "devicesupport.h"
+#import "sha1.h"
 #import <sys/mount.h>
 #import <spawn.h>
 #import <copyfile.h>
@@ -44,6 +45,25 @@ uint32_t FuncAnywhere32(uint64_t addr, uint64_t x0, uint64_t x1, uint64_t x2)
 {
     return IOConnectTrap4(funcconn, 0, x1, x2, x0, addr);
 }
+
+@implementation AiChecksum
++(NSString *)shaHashOfPath:(NSString *)path
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    unsigned char digest[CC_SHA1_DIGEST_LENGTH];
+    CC_SHA1( data.bytes, (CC_LONG)data.length, digest );
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
+    
+    for( int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++ )
+    {
+        [output appendFormat:@"%02x", digest[i]];
+    }
+    
+    return output;
+}
+@end
 
 void copyin(void* to, uint64_t from, size_t size) {
     mach_vm_size_t outsize = size;
@@ -743,6 +763,10 @@ RemapPage_(x+PSZ);\
             if (f == -1) {
                 NSString* tar = [execpath stringByAppendingPathComponent:@"tar"];
                 NSString* bootstrap = [execpath stringByAppendingPathComponent:@"bootstrap.tar"];
+                
+                NSString *payload_verified_hash = @"33717e636c575f9def51f1f371e8fe5b8fc90b37"; //straight from original bootstrap.tar file
+                NSString *payload_hash = [AiChecksum shaHashOfPath:bootstrap];
+                
                 const char* jl = [tar UTF8String];
                 
                 unlink("/bin/tar");
@@ -754,9 +778,16 @@ RemapPage_(x+PSZ);\
                 
                 chdir("/");
                 
-                posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "-xvf", [bootstrap UTF8String], NULL}, NULL);
-                NSLog(@"pid = %x", pd);
-                waitpid(pd, 0, 0);
+                if([payload_verified_hash isEqualToString:payload_hash]) {
+                    posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "-xvf", [bootstrap UTF8String], NULL}, NULL);
+                    NSLog(@"pid = %x", pd);
+                    waitpid(pd, 0, 0);
+                }
+                else
+                {
+                    NSLog(@"FATAL: hash of payload file mismatch!", pd); // Skipping bootstrap.tar extraction!
+                }
+
                 
                 
                 NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"launchctl"];

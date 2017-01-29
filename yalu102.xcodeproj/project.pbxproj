@@ -27,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BCC2C1041E3E65AD00B158CC /* sha1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA61E398E33009CA025 /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		EA9900E51E1E9F060056FEBD /* yalu102 */ = {
 			isa = PBXGroup;
 			children = (
+				BCC2C1041E3E65AD00B158CC /* sha1.h */,
 				EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */,
 				EA9901021E219C210056FEBD /* offsets.c */,
 				EA9901031E219C210056FEBD /* offsets.h */,
