@@ -38,8 +38,7 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 1. `git clone` the repo.
 2. Open the repo in Xcode
 3. Change the bundle ID, as shown [here](https://www.reddit.com/r/sideloaded/wiki/how-to-sideload#wiki_changing_the_bundle_identifier_and_team)
-4. Include the IOKit headers, and add them to your search path.
-5. Run the project.
+4. Run the project.
 
 ## Installing
 
