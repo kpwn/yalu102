@@ -483,7 +483,7 @@ void jailbreak(void)
         TTE_SET(tte, TTE_BLOCK_ATTR_UXN_MASK, 0);\
         TTE_SET(tte, TTE_BLOCK_ATTR_PXN_MASK, 0);\
         WriteAnywhere64(tte_addr, tte);\
-        NSLog(@"level %llx - %llx", tte_addr,              TTE_GET(tte, TTE_PHYS_VALUE_MASK));\
+        NSLog(@"level %llx - %llx", tte_addr, TTE_GET(tte, TTE_PHYS_VALUE_MASK));\
     }, level1_table, isvad ? 1 : 2);
 
     level1_table = physp - gPhysBase + gVirtBase;
@@ -747,7 +747,7 @@ void jailbreak(void)
             }
             {
                 NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"reload"];
-                char* jl = [jlaunchctl UTF8String];
+                const char* jl = [jlaunchctl UTF8String];
                 unlink("/usr/libexec/reload");
                 copyfile(jl, "/usr/libexec/reload", 0, COPYFILE_ALL);
                 chmod("/usr/libexec/reload", 0755);
@@ -756,7 +756,7 @@ void jailbreak(void)
             }
             {
                 NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"0.reload.plist"];
-                char* jl = [jlaunchctl UTF8String];
+                const char* jl = [jlaunchctl UTF8String];
                 unlink("/Library/LaunchDaemons/0.reload.plist");
                 copyfile(jl, "/Library/LaunchDaemons/0.reload.plist", 0, COPYFILE_ALL);
                 chmod("/Library/LaunchDaemons/0.reload.plist", 0644);
@@ -773,6 +773,7 @@ void jailbreak(void)
     chmod("/private/var/mobile/Library/Preferences", 0777);
     
     system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
+
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
 
