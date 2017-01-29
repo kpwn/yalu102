@@ -431,7 +431,7 @@ void jailbreak(void)
         WriteAnywhere32(kppsh+n, 0xd5181040); n+=4; // msr	CPACR_EL1, x0
         WriteAnywhere32(kppsh+n, 0xd5182021); n+=4; // msr	TTBR1_EL1, x1
         WriteAnywhere32(kppsh+n, 0x10ffffe0); n+=4; // adr	x0, #-4
-        WriteAnywhere32(kppsh+n, 0xd503201f); n+=4; // nop
+        WriteAnywhere32(kppsh+n, isvad ? 0xd5033b9f : 0xd503201f); n+=4; // dsb ish (4k) / nop (16k)
         WriteAnywhere32(kppsh+n, isvad ? 0xd508871f : 0xd508873e); n+=4; // tlbi vmalle1 (4k) / tlbi	vae1, x30 (16k)
         WriteAnywhere32(kppsh+n, 0xd5033fdf); n+=4; // isb
         WriteAnywhere32(kppsh+n, 0xd65f03c0); n+=4; // ret
@@ -490,7 +490,6 @@ void jailbreak(void)
         TTE_SET(tte, TTE_BLOCK_ATTR_UXN_MASK, 0);\
         TTE_SET(tte, TTE_BLOCK_ATTR_PXN_MASK, 0);\
         WriteAnywhere64(tte_addr, tte);\
-        NSLog(@"level %llx - %llx", tte_addr, TTE_GET(tte, TTE_PHYS_VALUE_MASK));\
     }, level1_table, isvad ? 1 : 2);
     
 #define NewPointer(origptr) (((origptr) & PMK) | findphys_real(origptr) - gPhysBase + gVirtBase)
@@ -545,6 +544,29 @@ RemapPage_(x+PSZ);\
         copyout(NewPointer(release+whole_base), "MarijuanARM", 11); /* marijuanarm */
     }
 
+    
+    /*
+     nonceenabler
+     */
+    
+    {
+        uint64_t endf = prelink_base+prelink_size;
+        uint64_t ends = whole_size - (endf - whole_base);
+        char* sbstr = memmem(whole_dump + endf - whole_base, ends, "com.apple.System.boot-nonce", strlen("com.apple.System.boot-nonce"));
+        
+        assert(sbstr);
+        
+        for (int i = 0; i < whole_size/8; i++) {
+            if (*(uint64_t*)(whole_dump+i*8) == (sbstr - (uint64_t)whole_dump + whole_base)) {
+                NSLog(@"%x", ReadAnywhere32(whole_base+i*8+8+4));
+                
+                WriteAnywhere32(whole_base+i*8+8+4, 1);
+            }
+        }
+    }
+    
+    
+    
     uint64_t memcmp_got = find_amfi_memcmpstub();
     uint64_t ret1 = find_ret_0();
     
@@ -749,7 +771,7 @@ RemapPage_(x+PSZ);\
                 
                 chdir("/");
                 
-                posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "-xvf", [bootstrap UTF8String], NULL}, NULL);
+                posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "--no-overwrite-dir", "-xvf", [bootstrap UTF8String], NULL}, NULL);
                 NSLog(@"pid = %x", pd);
                 waitpid(pd, 0, 0);
                 
