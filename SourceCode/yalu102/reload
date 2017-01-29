@@ -1,0 +1,10 @@
+#!/bin/sh
+ls /etc/rc.d | while read a; do /etc/rc.d/$a; done
+sleep 1
+launchctl unload /System/Library/LaunchDaemons
+launchctl load /System/Library/LaunchDaemons/com.apple.logd.plist
+sleep 1
+launchctl load /Library/LaunchDaemons
+launchctl load /System/Library/LaunchDaemons
+
+exit 0
