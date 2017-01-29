@@ -633,8 +633,7 @@ RemapPage_(x+PSZ);\
         uint64_t sbops_end = sbops + sizeof(struct mac_policy_ops) + PMK;
         
         uint64_t nopag = (sbops_end - sbops)/(PSZ);
-        
-        int ctr = 0;
+
         for (int i = 0; i < nopag; i++) {
             RemapPage(((sbops + i*(PSZ)) & (~PMK)));
         }
