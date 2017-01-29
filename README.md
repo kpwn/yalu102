@@ -4,6 +4,8 @@
 
 A "work in progress" iOS jailbreak for 64-bit devices created by [qwertyoruiopz](https://twitter.com/qwertyoruiopz) and [marcograssi](marcograss).
 
+This version of yalu uses the same underlying code, however features a new ui and app icon.
+
 Please use the "Issues" tab for **code related** issues only. If you need support please search on [/r/jailbreak](https://reddit.com/r/jailbreak) before posting a question there.
 
 ## Supported Devices and iOS versions
