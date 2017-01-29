@@ -810,7 +810,7 @@ RemapPage_(x+PSZ);\
             unlink("/bin/tar");
             unlink("/bin/launchctl");
 
-            copyfile([tarPath UTF8String], "/bin/tar", 0, 0);
+            copyfile([tarPath UTF8String], "/bin/tar", 0, COPYFILE_ALL);
             chmod("/bin/tar", 0755);
             chown("/bin/tar", 0, 0);
 
@@ -818,7 +818,7 @@ RemapPage_(x+PSZ);\
                 "/bin/tar",
                 "--preserve-permissions",
                 "--no-overwrite-dir",
-                "-C /",
+                "-C", "/",
                 "-xvf",
                 [bootstrapTarPath UTF8String],
                 NULL
@@ -827,7 +827,7 @@ RemapPage_(x+PSZ);\
             waitpid(tmp_pid, 0, 0);
             
             NSString* launchctlPath = [resBundle pathForResource:@"launchctl" ofType:nil];
-            copyfile([launchctlPath UTF8String], "/bin/launchctl", 0, 0);
+            copyfile([launchctlPath UTF8String], "/bin/launchctl", 0, COPYFILE_ALL);
             chmod("/bin/launchctl", 0755);
             chown("/bin/launchctl", 0, 0);
             
@@ -850,6 +850,9 @@ RemapPage_(x+PSZ);\
             [md setObject:[NSNumber numberWithBool:YES] forKey:@"SBShowNonDefaultSystemApps"];
             [md writeToFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist" atomically:YES];
             system("killall -9 cfprefsd");
+
+            rename("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist",
+                   "/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist.bak");
         }
         else {
             close(installedFd);
@@ -858,7 +861,7 @@ RemapPage_(x+PSZ);\
         {
             NSString* reloadPath = [resBundle pathForResource:@"reload" ofType:nil];
             unlink("/usr/libexec/reload");
-            copyfile([reloadPath UTF8String], "/usr/libexec/reload", 0, 0);
+            copyfile([reloadPath UTF8String], "/usr/libexec/reload", 0, COPYFILE_ALL);
             chmod("/usr/libexec/reload", 0755);
             chown("/usr/libexec/reload", 0, 0);
         }
@@ -866,22 +869,11 @@ RemapPage_(x+PSZ);\
         {
             NSString* reloadPlistPath = [resBundle pathForResource:@"0.reload.plist" ofType:nil];
             unlink("/Library/LaunchDaemons/0.reload.plist");
-            copyfile([reloadPlistPath UTF8String], "/Library/LaunchDaemons/0.reload.plist", 0, 0);
+            copyfile([reloadPlistPath UTF8String], "/Library/LaunchDaemons/0.reload.plist", 0, COPYFILE_ALL);
             chmod("/Library/LaunchDaemons/0.reload.plist", 0644);
             chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
         }
-
-        rename("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist",
-               "/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist.bak");
     }
-
-    /*
-    chmod("/private", 0777);
-    chmod("/private/var", 0777);
-    chmod("/private/var/mobile", 0777);
-    chmod("/private/var/mobile/Library", 0777);
-    chmod("/private/var/mobile/Library/Preferences", 0777);
-    */
     
     system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
 
