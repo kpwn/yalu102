@@ -502,7 +502,8 @@ void jailbreak(void)
             }\
         }\
         if (fail == 0) {\
-            RemapPage_(x);\
+RemapPage_(x);\
+RemapPage_(x+PSZ);\
             remappage[remapcnt++] = (x & (~PMK));\
         }\
     }
@@ -531,7 +532,11 @@ void jailbreak(void)
 
     RemapPage(kernvers+whole_base-4);
     WriteAnywhere32(NewPointer(kernvers+whole_base-4), 1);
-    copyout(NewPointer(release+whole_base), "MarijuanARM", 11); /* marijuanarm */
+    
+    RemapPage(release+whole_base);
+    if (NewPointer(release+whole_base) == (NewPointer(release+whole_base+11) - 11)) {
+        copyout(NewPointer(release+whole_base), "MarijuanARM", 11); /* marijuanarm */
+    }
 
     uint64_t memcmp_got = find_amfi_memcmpstub();
     uint64_t ret1 = find_ret_0();
