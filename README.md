@@ -55,7 +55,7 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 
 | Version | Download | SHA1 |
 |---------|----------|------|
-| Alpha  | [Link](https://yalu.qwertyoruiop.com/yalu102_alpha.ipa) | 2FE14F1C1E1A0D26203BBB123F6747A978DD2B4F  |
+| Alpha  | [Link](https://www.lampserv.net/yalu.php) | 7BE53C11CE4E72AA03C0E4E619B83CBA1FBC17B2  |
 
 ## Contributing
 
