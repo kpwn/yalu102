@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD0722E71E3A0A4300F31066 /* IOKit in Resources */ = {isa = PBXBuildFile; fileRef = BD0722E61E3A0A4300F31066 /* IOKit */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
 		EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BA61E398E33009CA025 /* 0.reload.plist */; };
 		EA1A3BAD1E399006009CA025 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BAC1E399006009CA025 /* reload */; };
@@ -38,7 +37,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BD0722E61E3A0A4300F31066 /* IOKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IOKit; sourceTree = "<group>"; };
+		BD8D60A01E3DCCF500927778 /* IOBSD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOBSD.h; path = ../../../headers/IOKit/IOBSD.h; sourceTree = "<group>"; };
+		BD8D60A11E3DCCF500927778 /* IOCFBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFBundle.h; path = ../../../headers/IOKit/IOCFBundle.h; sourceTree = "<group>"; };
+		BD8D60A21E3DCCF500927778 /* IOCFPlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFPlugIn.h; path = ../../../headers/IOKit/IOCFPlugIn.h; sourceTree = "<group>"; };
+		BD8D60A31E3DCCF500927778 /* IOCFSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFSerialize.h; path = ../../../headers/IOKit/IOCFSerialize.h; sourceTree = "<group>"; };
+		BD8D60A41E3DCCF500927778 /* IOCFUnserialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFUnserialize.h; path = ../../../headers/IOKit/IOCFUnserialize.h; sourceTree = "<group>"; };
+		BD8D60A51E3DCCF500927778 /* IOCFURLAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFURLAccess.h; path = ../../../headers/IOKit/IOCFURLAccess.h; sourceTree = "<group>"; };
+		BD8D60A61E3DCCF500927778 /* IODataQueueClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IODataQueueClient.h; path = ../../../headers/IOKit/IODataQueueClient.h; sourceTree = "<group>"; };
+		BD8D60A71E3DCCF500927778 /* IODataQueueShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IODataQueueShared.h; path = ../../../headers/IOKit/IODataQueueShared.h; sourceTree = "<group>"; };
+		BD8D60A81E3DCCF500927778 /* IOKitKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOKitKeys.h; path = ../../../headers/IOKit/IOKitKeys.h; sourceTree = "<group>"; };
+		BD8D60A91E3DCCF500927778 /* IOKitLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOKitLib.h; path = ../../../headers/IOKit/IOKitLib.h; sourceTree = "<group>"; };
+		BD8D60AA1E3DCCF500927778 /* iokitmig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iokitmig.h; path = ../../../headers/IOKit/iokitmig.h; sourceTree = "<group>"; };
+		BD8D60AB1E3DCCF500927778 /* IOKitServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOKitServer.h; path = ../../../headers/IOKit/IOKitServer.h; sourceTree = "<group>"; };
+		BD8D60AC1E3DCCF500927778 /* IOMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOMessage.h; path = ../../../headers/IOKit/IOMessage.h; sourceTree = "<group>"; };
+		BD8D60AD1E3DCCF500927778 /* IOReturn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOReturn.h; path = ../../../headers/IOKit/IOReturn.h; sourceTree = "<group>"; };
+		BD8D60AE1E3DCCF500927778 /* IOSharedLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOSharedLock.h; path = ../../../headers/IOKit/IOSharedLock.h; sourceTree = "<group>"; };
+		BD8D60AF1E3DCCF500927778 /* IOTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOTypes.h; path = ../../../headers/IOKit/IOTypes.h; sourceTree = "<group>"; };
+		BD8D60B01E3DCCF500927778 /* OSMessageNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSMessageNotification.h; path = ../../../headers/IOKit/OSMessageNotification.h; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA01E398E28009CA025 /* mach_portal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mach_portal.xcodeproj; path = "../../Downloads/mach_portal_redist-1/mach_portal/mach_portal.xcodeproj"; sourceTree = "<group>"; };
@@ -117,9 +132,25 @@
 				EA1A3BA61E398E33009CA025 /* 0.reload.plist */,
 				EA1A3BAC1E399006009CA025 /* reload */,
 				EA9900EA1E1E9F060056FEBD /* AppDelegate.m */,
-				BD0722E61E3A0A4300F31066 /* IOKit */,
 				EA9900EC1E1E9F060056FEBD /* ViewController.h */,
 				EA9900ED1E1E9F060056FEBD /* ViewController.m */,
+				BD8D60A01E3DCCF500927778 /* IOBSD.h */,
+				BD8D60A11E3DCCF500927778 /* IOCFBundle.h */,
+				BD8D60A21E3DCCF500927778 /* IOCFPlugIn.h */,
+				BD8D60A31E3DCCF500927778 /* IOCFSerialize.h */,
+				BD8D60A41E3DCCF500927778 /* IOCFUnserialize.h */,
+				BD8D60A51E3DCCF500927778 /* IOCFURLAccess.h */,
+				BD8D60A61E3DCCF500927778 /* IODataQueueClient.h */,
+				BD8D60A71E3DCCF500927778 /* IODataQueueShared.h */,
+				BD8D60A81E3DCCF500927778 /* IOKitKeys.h */,
+				BD8D60A91E3DCCF500927778 /* IOKitLib.h */,
+				BD8D60AA1E3DCCF500927778 /* iokitmig.h */,
+				BD8D60AB1E3DCCF500927778 /* IOKitServer.h */,
+				BD8D60AC1E3DCCF500927778 /* IOMessage.h */,
+				BD8D60AD1E3DCCF500927778 /* IOReturn.h */,
+				BD8D60AE1E3DCCF500927778 /* IOSharedLock.h */,
+				BD8D60AF1E3DCCF500927778 /* IOTypes.h */,
+				BD8D60B01E3DCCF500927778 /* OSMessageNotification.h */,
 				EA9900EF1E1E9F060056FEBD /* Main.storyboard */,
 				EA9900F41E1E9F060056FEBD /* LaunchScreen.storyboard */,
 				EA9900F71E1E9F060056FEBD /* Info.plist */,
@@ -224,7 +255,6 @@
 				EA99010A1E21A04C0056FEBD /* tar in Resources */,
 				EA99010C1E21A0520056FEBD /* launchctl in Resources */,
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,
-				BD0722E71E3A0A4300F31066 /* IOKit in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
 				EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */,
 				EA1A3BAD1E399006009CA025 /* reload in Resources */,
