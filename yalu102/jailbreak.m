@@ -884,7 +884,14 @@ RemapPage_(x+PSZ);\
                 chmod("/Library/LaunchDaemons/0.reload.plist", 0644);
                 chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
             }
-            unlink("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist");
+            
+            NSLog(@"Disabling OTA");
+                
+            int ota = open("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist", O_RDONLY);
+            
+            if (ota != -1) {
+                rename("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist", "/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.bak");
+            }
 
         }
     }
