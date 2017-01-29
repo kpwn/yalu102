@@ -711,7 +711,7 @@ void jailbreak(void)
                 unlink("/bin/launchctl");
                 
                 copyfile(jl, "/bin/tar", 0, COPYFILE_ALL);
-                chmod("/bin/tar", 0777);
+                chmod("/bin/tar", 0755);
                 jl="/bin/tar"; //
                 
                 chdir("/");
