@@ -177,7 +177,7 @@
 				TargetAttributes = {
 					EA9900E21E1E9F060056FEBD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = H65Y924PHT;
+						DevelopmentTeam = ERYU28827Z;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -373,14 +373,14 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				DEVELOPMENT_TEAM = H65Y924PHT;
+				DEVELOPMENT_TEAM = ERYU28827Z;
 				INFOPLIST_FILE = yalu102/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/yalu102",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lampserv.yalunew;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lampserv.yalu.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = armv7;
 			};
@@ -392,14 +392,14 @@
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				DEVELOPMENT_TEAM = H65Y924PHT;
+				DEVELOPMENT_TEAM = ERYU28827Z;
 				INFOPLIST_FILE = yalu102/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/yalu102",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lampserv.yalunew;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lampserv.yalu.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = armv7;
 			};
