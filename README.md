@@ -27,6 +27,7 @@ In the near future, the jailbreak will support the following devices:
 | iPad Air 2| iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 3| iOS 10.0.0 -> iOS 10.2 |
 | iPod touch (6G)  | iOS 10.0.0 -> iOS 10.2 |
+| iPad Mini 3 | iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 4 | iOS 10.0.0 -> iOS 10.2 |
 | iPhone 7  | iOS 10.0.0 -> iOS 10.1.1 |
 
