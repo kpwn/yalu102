@@ -53,7 +53,7 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 
 | Version | Download | SHA1 |
 |---------|----------|------|
-| Alpha  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta3.ipa) | b2e0bdd31566f876d67cba036b5d29aef7ff257d  |
+| Beta 3  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta3.ipa) | b2e0bdd31566f876d67cba036b5d29aef7ff257d  |
 
 ## Contributing
 
