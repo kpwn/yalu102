@@ -6,14 +6,12 @@
 //  Copyright © 2017 kimjongcracks. All rights reserved.
 //
 
-#import "offsets.h"
 #import "ViewController.h"
 #import <mach-o/loader.h>
 #import <sys/mman.h>
 #import <pthread.h>
-#undef __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <mach/mach.h>
-#include <sys/utsname.h>
+#import <sys/utsname.h>
 
 extern uint64_t procoff;
 
@@ -32,17 +30,16 @@ typedef struct {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     init_offsets();
+
     struct utsname u = { 0 };
     uname(&u);
-    
 
     if (strstr(u.version, "MarijuanARM")) {
         [dope setEnabled:NO];
         [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
     }
-
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 typedef natural_t not_natural_t;
@@ -305,8 +302,7 @@ gotclock:;
     uint64_t allproc = allproc_offset + kernel_base;
     
     uint64_t proc_ = allproc;
-    
-    uint64_t myproc = 0;
+
     uint64_t kernproc = 0;
     
     while (proc_) {
@@ -321,14 +317,12 @@ gotclock:;
         *(uint64_t*) (faketask + procoff) = proc;
         pid_for_task(foundport, &pd);
         
-        if (pd == getpid()) {
-            myproc = proc;
-        } else if (pd == 0){
+        if (pd == 0){
             kernproc = proc;
         }
+
         proc_ = proc;
     }
-    
     
     uint64_t kern_task = 0;
     *(uint64_t*) (faketask + procoff) = kernproc - 0x10 + 0x18;
@@ -371,8 +365,9 @@ gotclock:;
     extern uint64_t slide;
     slide = kernel_base - 0xFFFFFFF007004000;
     
-    void exploit(void*, mach_port_t, uint64_t, uint64_t);
-    exploit(sender, pt, kernel_base, allproc_offset);
+    void yalu_jailbreak(mach_port_t, uint64_t, uint64_t);
+    exploit(pt, kernel_base, allproc_offset);
+
     [dope setEnabled:NO];
     [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
 
@@ -382,6 +377,5 @@ gotclock:;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

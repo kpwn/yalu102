@@ -6,35 +6,29 @@
 //  Copyright © 2017 kimjongcracks. All rights reserved.
 //
 
+#import "jailbreak.h"
 #import <Foundation/Foundation.h>
-#undef __IPHONE_OS_VERSION_MIN_REQUIRED
-#import <mach/mach.h>
-#import "devicesupport.h"
-
 #import <IOKit/IOKitLib.h>
 #import <dlfcn.h>
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import <pthread.h>
-#import <mach/mach.h>
-
-#import "devicesupport.h"
-#import <sys/mount.h>
 #import <spawn.h>
 #import <copyfile.h>
-#import <mach-o/dyld.h>
+#import <sys/mount.h>
 #import <sys/types.h>
 #import <sys/stat.h>
 #import <sys/utsname.h>
-
+#import <mach/mach.h>
+#import <mach/arm/vm_types.h>
+#import <mach-o/dyld.h>
+#import "mac_policy.h"
 #import "patchfinder64.h"
-
-#define vm_address_t mach_vm_address_t
+#import "csflags.h"
 
 mach_port_t tfp0=0;
 uint64_t slide=0;
 io_connect_t funcconn=0;
-// #define NSLog(...)
+
 kern_return_t mach_vm_read_overwrite(vm_map_t target_task, mach_vm_address_t address, mach_vm_size_t size, mach_vm_address_t data, mach_vm_size_t *outsize);
 kern_return_t mach_vm_write(vm_map_t target_task, mach_vm_address_t address, vm_offset_t data, mach_msg_type_number_t dataCnt);
 kern_return_t mach_vm_protect(vm_map_t target_task, mach_vm_address_t address, mach_vm_size_t size, boolean_t set_maximum, vm_prot_t new_protection);
@@ -95,7 +89,7 @@ uint64_t WriteAnywhere32(uint64_t addr, uint32_t val) {
 
 #import "pte_stuff.h"
 
-void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
+void exploit(mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
 {
     io_iterator_t iterator;
     IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IOSurfaceRoot"), &iterator);
@@ -558,8 +552,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
         uint64_t sbops_end = sbops + sizeof(struct mac_policy_ops);
         
         uint64_t nopag = sbops_end - sbops;
-        
-        int ctr = 0;
+
         for (int i = 0; i < nopag; i+= PSZ) {
             RemapPage(((sbops + i) & (~PMK)));
         }
@@ -616,7 +609,6 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
 
         uint64_t nopag = sbops_end - sbops;
 
-        int ctr = 0;
         for (int i = 0; i < nopag; i+= PSZ) {
             RemapPage(((sbops + i) & (~PMK)));
         }
@@ -784,8 +776,8 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 chmod("/Library/LaunchDaemons/0.reload.plist", 0644);
                 chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
             }
-            unlink("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist");
 
+            //unlink("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist");
         }
     }
     chmod("/private", 0777);

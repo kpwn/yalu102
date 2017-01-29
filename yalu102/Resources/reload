@@ -6,5 +6,4 @@ launchctl load /System/Library/LaunchDaemons/com.apple.logd.plist
 sleep 1
 launchctl load /Library/LaunchDaemons
 launchctl load /System/Library/LaunchDaemons
-
 exit 0

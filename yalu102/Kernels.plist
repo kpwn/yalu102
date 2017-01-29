@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_T8010</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5EC178</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5F20B8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_T7001</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5B0228</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5B60B8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:55 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_T7000</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5b0168</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5b60b8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_S8000</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5a4148</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5aa0b8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.0.0: Sun Aug 28 20:36:55 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_S5L8960X</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5a4128</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5aa0b8</string>
+	</dict>
+
+	<!--
+		Version: ?
+		Devices: ?
+		Credits: ?
+	-->
+	<key>Darwin Kernel Version 16.0.0: Fri Aug  5 22:15:30 PDT 2016; root:xnu-3789.1.24~11/RELEASE_ARM64_S5L8960X</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5a4128</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5aa0b8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: ?
+	-->
+	<key>Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:12 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S8000</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5A4148</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5AA0B8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: ?
+	-->
+	<key>Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:09 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_S8000</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5A8438</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5AE0B8</string>
+	</dict>
+
+	<!--
+		Version: iOS 10.2
+		Devices: iPhone 6S
+		Credits: @Andywiik
+	-->
+	<key>Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:08 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_T7000</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5B8468</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5BE0b8</string>
+	</dict>
+
+	<!--
+		Version: iOS 10.2
+		Devices: iPhone 5S, iPad Air 1
+		Credits: jtv7 (GitHub)
+	-->
+	<key>Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:09 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_S5L8960X</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5AC418</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5B20B8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:08 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_T8010</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5EC478</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5F20B8</string>
+	</dict>
+
+	<!--
+		Version: tvOS 10.0.1 (14U71)
+		Devices: Apple TV 4th Generation
+		Credits: onchehuh (github)
+	-->
+	<key>Darwin Kernel Version 16.1.0: Thu Sep 29 22:13:19 PDT 2016; root:xnu-3789.23.3~2/RELEASE_ARM64_T7000</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5B8168</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5BA0B8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:10 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_T8010</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5EC178</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5F20B8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:12 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_T7001</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5B4228</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5BA0B8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:11 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_T7000</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5B4168</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5BA0B8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:12 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S8000</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5A4148</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5AA0B8</string>
+	</dict>
+
+	<!--
+		Version: iOS ?
+		Devices: ?
+		Credits: @Mila432
+	-->
+	<key>Darwin Kernel Version 16.1.0: Thu Sep 29 21:56:11 PDT 2016; root:xnu-3789.22.3~1/RELEASE_ARM64_S5L8960X</key>
+	<dict>
+		<key>allproc</key>
+		<string>0x5A4128</string>
+		<key>proc</key>
+		<string>0x360</string>
+		<key>rootvnode</key>
+		<string>0x5AA0B8</string>
+	</dict>
+</dict>
+</plist>
