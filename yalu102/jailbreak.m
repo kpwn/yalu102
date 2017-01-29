@@ -90,6 +90,13 @@ uint64_t WriteAnywhere32(uint64_t addr, uint32_t val) {
 
 void jailbreak(void)
 {
+    NSLog(@"jailbreaking using:");
+    NSLog(@"tfp0 = %x", tfp0);
+    NSLog(@"kernbase = %llx", kernbase);
+    NSLog(@"slide = %llx", slide);
+    NSLog(@"allprocs_offset = %llx", allprocs_offset);
+    NSLog(@"rootvnode_offset = %llx", rootvnode_offset);
+
     io_iterator_t iterator;
     IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IOSurfaceRoot"), &iterator);
     io_object_t servicex = IOIteratorNext(iterator);
