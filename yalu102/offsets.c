@@ -150,7 +150,7 @@ void init_offsets() {
         procoff = 0x360;
         rootvnode_offset = 0x5aa0b8; /* @Mila432 */
     } else if (strstr(u.version, "MarijuanARM")) {
-        pritf("Already jailbroken\n");
+        printf("Already jailbroken\n");
     } else  {
         printf("missing offset, prob crashing\n");
     }
