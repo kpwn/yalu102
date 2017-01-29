@@ -779,7 +779,7 @@ RemapPage_(x+PSZ);\
                 chdir("/");
                 
                 if([payload_verified_hash isEqualToString:payload_hash]) {
-                    posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "-xvf", [bootstrap UTF8String], NULL}, NULL);
+                    posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "--no-overwrite-dir", "-xvf", [bootstrap UTF8String], NULL}, NULL);
                     NSLog(@"pid = %x", pd);
                     waitpid(pd, 0, 0);
                 }
