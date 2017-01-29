@@ -560,8 +560,6 @@ RemapPage_(x+PSZ);\
         
         uint64_t extract_attr_recipe = *(uint64_t*)(sbstr + 72 * 0x20 + 8 /*fptr*/);
         
-        // 0x7103FC00 0xFFFFFC00
-
         uint32_t* opcode_stream = extract_attr_recipe - whole_base + whole_dump;
         
         int l = 0;
@@ -590,7 +588,7 @@ RemapPage_(x+PSZ);\
                 ret_target -= bhi;
                 
                 uint32_t new_opcode = opcode_stream[bhi] & (~0xFFFFE0);
-                new_opcode |= ret_target << 5;
+                new_opcode |= (ret_target << 5) & 0xFFFFE0;
 
                 RemapPage(extract_attr_recipe + bhi*4);
                 WriteAnywhere32(NewPointer(extract_attr_recipe+bhi*4), new_opcode);
@@ -600,7 +598,20 @@ RemapPage_(x+PSZ);\
             l++;
         }
         
+        uint64_t tfp = *(uint64_t*)(sbstr + 45 * 0x20 + 8 /*fptr*/);
         
+        opcode_stream = tfp - whole_base + whole_dump;
+        
+        int cbz = 0;
+        while (1) {
+            if ((opcode_stream[cbz] & 0xFF000000) == 0x34000000) {
+                break;
+            }
+            cbz++;
+        }
+        
+        RemapPage(tfp + cbz*4);
+        WriteAnywhere32(NewPointer(tfp+cbz*4), 0xd503201f);
     }
     
     /*
