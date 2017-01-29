@@ -796,7 +796,8 @@ RemapPage_(x+PSZ);\
                 chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
             }
 
-            //unlink("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist");
+            rename("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist",
+                   "/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist.bak");
         }
     }
     chmod("/private", 0777);
