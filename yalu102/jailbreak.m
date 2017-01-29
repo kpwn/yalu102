@@ -31,13 +31,6 @@ uint64_t kernbase;
 uint64_t allprocs_offset;
 uint64_t rootvnode_offset;
 
-io_connect_t funcconn=0;
-
-uint32_t FuncAnywhere32(uint64_t addr, uint64_t x0, uint64_t x1, uint64_t x2)
-{
-    return IOConnectTrap4(funcconn, 0, x1, x2, x0, addr);
-}
-
 void copyin(void* to, uint64_t from, size_t size) {
     mach_vm_size_t outsize = size;
     size_t szt = size;
@@ -56,7 +49,6 @@ void copyin(void* to, uint64_t from, size_t size) {
         if (size > 0x1000) {
             size = 0x1000;
         }
-
     }
 }
 
@@ -88,21 +80,13 @@ uint64_t WriteAnywhere32(uint64_t addr, uint32_t val) {
 
 #import "pte_stuff.h"
 
-void jailbreak(void)
-{
+void jailbreak(void) {
     NSLog(@"jailbreaking using:");
     NSLog(@"tfp0 = %x", tfp0);
     NSLog(@"kernbase = %llx", kernbase);
     NSLog(@"slide = %llx", slide);
     NSLog(@"allprocs_offset = %llx", allprocs_offset);
     NSLog(@"rootvnode_offset = %llx", rootvnode_offset);
-
-    io_iterator_t iterator;
-    IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IOSurfaceRoot"), &iterator);
-    io_object_t servicex = IOIteratorNext(iterator);
-    funcconn = 0;
-    IOServiceOpen(servicex, mach_task_self(), 0, &funcconn);
-    assert(funcconn);
 
     uint64_t bsd_task=0;
     uint64_t launchd_task = 0;
@@ -146,41 +130,42 @@ void jailbreak(void)
     
     checkvad();
 
-    vm_address_t vmd = 0;
+    mach_vm_offset_t vmd = 0;
     _kernelrpc_mach_vm_allocate_trap(mach_task_self(), &vmd, 0x4000, VM_FLAGS_ANYWHERE);
     
     copyin((void*)vmd, kernbase, 0x4000);
     
-    struct mach_header_64* vmk = vmd;
+    struct mach_header_64* vmk = (struct mach_header_64*)vmd;
     uint64_t max = 0;
     uint64_t min = -1;
     
-    struct load_command* lc = vmk+1;
+    struct load_command* lc = (struct load_command*)(vmk + 1);
     for (int k=0; k < vmk->ncmds; k++) {
-        
         if (lc->cmd == LC_SEGMENT_64) {
-            struct segment_command_64* sg = lc;
+            struct segment_command_64* sg = (struct segment_command_64*)lc;
             NSLog(@"seg: %s", sg->segname);
             if (sg->vmaddr < min) {
                 min = sg->vmaddr;
             }
             if (sg->vmaddr + sg->vmsize > max) {
-                max = sg->vmaddr+sg->vmsize;
+                max = sg->vmaddr + sg->vmsize;
             }
         }
         
-        lc = ((char*)lc) + lc->cmdsize;
+        lc = (struct load_command*)(((char*)lc) + lc->cmdsize);
     }
-    
-    NSLog(@"%llx - %llx", min, max);
-    
-    char* kdump = malloc(max-min);
 
-    for (int k=0; k < (max-min)/0x4000; k++) {
+    size_t kernsize = (size_t)(max - min);
+    
+    NSLog(@"%llx - %llx = %zx", min, max, kernsize);
+    
+    char* kdump = malloc(kernsize);
+
+    for (int k=0; k < kernsize/0x4000; k++) {
         copyin(kdump+k*0x4000, min+k*0x4000, 0x4000);
     }
     
-    NSLog(@"%llx", kdump);
+    NSLog(@"%zx", (uintptr_t)kdump);
     uint64_t kerndumpsize = 0;
     uint64_t gadget_base = 0;
     uint64_t gadget_size = 0;
@@ -215,10 +200,10 @@ void jailbreak(void)
             kerndumpsize += seg->vmsize;
         } else if (load_cmd->cmd == LC_UNIXTHREAD) {
             struct {
-                unsigned long	cmd;		/* LC_THREAD or  LC_UNIXTHREAD */
-                unsigned long	cmdsize;	/* total size of this command */
+                unsigned long cmd;          /* LC_THREAD or LC_UNIXTHREAD */
+                unsigned long cmdsize;      /* total size of this command */
                 unsigned long flavor;       /* flavor of thread state */
-                unsigned long count;		   /* count of longs in thread state */
+                unsigned long count;        /* count of longs in thread state */
                 struct {
                     __uint64_t    __x[29];  /* General purpose registers x0-x28 */
                     __uint64_t    __fp;     /* Frame pointer x29 */
@@ -228,7 +213,7 @@ void jailbreak(void)
                     __uint32_t    __cpsr;   /* Current program status register */
                     __uint32_t    __pad;    /* Same size for 32-bit or 64-bit clients */
                 } state;
-            } * thr = load_cmd;
+            } * thr = (void*)load_cmd;
             entryp = thr->state.__pc;
         }
         
@@ -246,9 +231,15 @@ void jailbreak(void)
     entryp += slide;
     uint64_t rvbar = entryp & (~0xFFF);
     
-    uint64_t cpul = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec), rvbar-gadget_base+0x40, text_exec_base, 1);
+    uint64_t cpul = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec),
+                                        rvbar - gadget_base + 0x40,
+                                        text_exec_base,
+                                        1);
     
-    uint64_t optr = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec), rvbar-gadget_base+0x50, text_exec_base, 20);
+    uint64_t optr = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec),
+                                        rvbar - gadget_base + 0x50,
+                                        text_exec_base,
+                                        20);
     if (uref) {
         optr = ReadAnywhere64(optr) - gPhysBase + gVirtBase;
     }
@@ -261,9 +252,8 @@ void jailbreak(void)
     NSLog(@"pmap: %llx", pmap_store);
     level1_table = ReadAnywhere64(ReadAnywhere64(pmap_store));
 
-    
-    
-    
+
+
     uint64_t shellcode = physalloc(0x4000);
     
     /*
@@ -455,7 +445,7 @@ void jailbreak(void)
      */
     
     int cpacr_idx = 0;
-    uint32_t* opps = gadget_base - min + kdump;
+    uint32_t* opps = (uint32_t*)(gadget_base - min + kdump);
     
     while (1) {
         if (opps[cpacr_idx] == 0xd5181040) {
@@ -745,82 +735,82 @@ RemapPage_(x+PSZ);\
     }
 
     {
-        char path[256];
-        uint32_t size = sizeof(path);
-        _NSGetExecutablePath(path, &size);
-        char* pt = realpath(path, 0);
-        
-        {
-            __block pid_t pd = 0;
-            NSString* execpath = [[NSString stringWithUTF8String:pt]  stringByDeletingLastPathComponent];
+        NSBundle *resBundle = [NSBundle mainBundle];
+        pid_t tmp_pid;
+        const char** tmp_args;
+
+        int installedFd = open("/.installed_yaluX", O_RDONLY);
+
+        if (installedFd == -1) {
+            NSString* tarPath = [resBundle pathForResource:@"tar" ofType:nil];
+            NSString* bootstrapTarPath = [resBundle pathForResource:@"bootstrap.tar" ofType:nil];
+
+            unlink("/bin/tar");
+            unlink("/bin/launchctl");
+
+            copyfile([tarPath UTF8String], "/bin/tar", 0, 0);
+            chmod("/bin/tar", 0755);
+            chown("/bin/tar", 0, 0);
+
+            tmp_args = (const char*[]){
+                "/bin/tar",
+                "--preserve-permissions",
+                "--no-overwrite-dir",
+                "-C /",
+                "-xvf",
+                [bootstrapTarPath UTF8String],
+                NULL
+            };
+            posix_spawn(&tmp_pid, "/bin/tar", NULL, NULL, (char**)tmp_args, NULL);
+            waitpid(tmp_pid, 0, 0);
             
+            NSString* launchctlPath = [resBundle pathForResource:@"launchctl" ofType:nil];
+            copyfile([launchctlPath UTF8String], "/bin/launchctl", 0, 0);
+            chmod("/bin/launchctl", 0755);
+            chown("/bin/launchctl", 0, 0);
             
-            int f = open("/.installed_yaluX", O_RDONLY);
-            
-            if (f == -1) {
-                NSString* tar = [execpath stringByAppendingPathComponent:@"tar"];
-                NSString* bootstrap = [execpath stringByAppendingPathComponent:@"bootstrap.tar"];
-                const char* jl = [tar UTF8String];
-                
-                unlink("/bin/tar");
-                unlink("/bin/launchctl");
-                
-                copyfile(jl, "/bin/tar", 0, COPYFILE_ALL);
-                chmod("/bin/tar", 0755);
-                jl="/bin/tar"; //
-                
-                chdir("/");
-                
-                posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "--no-overwrite-dir", "-xvf", [bootstrap UTF8String], NULL}, NULL);
-                NSLog(@"pid = %x", pd);
-                waitpid(pd, 0, 0);
-                
-                
-                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"launchctl"];
-                jl = [jlaunchctl UTF8String];
-                
-                copyfile(jl, "/bin/launchctl", 0, COPYFILE_ALL);
-                chmod("/bin/launchctl", 0755);
-                
-                open("/.installed_yaluX", O_RDWR|O_CREAT);
-                open("/.cydia_no_stash",O_RDWR|O_CREAT);
-                
-                
-                system("echo '127.0.0.1 iphonesubmissions.apple.com' >> /etc/hosts");
-                system("echo '127.0.0.1 radarsubmissions.apple.com' >> /etc/hosts");
-                
-                system("/usr/bin/uicache");
-                
-                system("killall -SIGSTOP cfprefsd");
-                NSMutableDictionary* md = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist"];
-                
-                [md setObject:[NSNumber numberWithBool:YES] forKey:@"SBShowNonDefaultSystemApps"];
-                
-                [md writeToFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist" atomically:YES];
-                system("killall -9 cfprefsd");
-                
-            }
-            {
-                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"reload"];
-                const char* jl = [jlaunchctl UTF8String];
-                unlink("/usr/libexec/reload");
-                copyfile(jl, "/usr/libexec/reload", 0, COPYFILE_ALL);
-                chmod("/usr/libexec/reload", 0755);
-                chown("/usr/libexec/reload", 0, 0);
-                
-            }
-            {
-                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"0.reload.plist"];
-                const char* jl = [jlaunchctl UTF8String];
-                unlink("/Library/LaunchDaemons/0.reload.plist");
-                copyfile(jl, "/Library/LaunchDaemons/0.reload.plist", 0, COPYFILE_ALL);
-                chmod("/Library/LaunchDaemons/0.reload.plist", 0644);
-                chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
+            close(open("/.installed_yaluX", O_RDWR|O_CREAT));
+            close(open("/.cydia_no_stash", O_RDWR|O_CREAT));
+
+            int hostsFd = open("/etc/hosts", O_RDWR|O_APPEND);
+            if (hostsFd != -1) {
+                const char *s;
+                s = "127.0.0.1 iphonesubmissions.apple.com\n"
+                    "127.0.0.1 radarsubmissions.apple.com\n";
+                write(hostsFd, s, strlen(s));
+                close(hostsFd);
             }
 
-            rename("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist",
-                   "/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist.bak");
+            system("/usr/bin/uicache");
+            
+            system("killall -SIGSTOP cfprefsd");
+            NSMutableDictionary* md = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist"];
+            [md setObject:[NSNumber numberWithBool:YES] forKey:@"SBShowNonDefaultSystemApps"];
+            [md writeToFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist" atomically:YES];
+            system("killall -9 cfprefsd");
         }
+        else {
+            close(installedFd);
+        }
+
+        {
+            NSString* reloadPath = [resBundle pathForResource:@"reload" ofType:nil];
+            unlink("/usr/libexec/reload");
+            copyfile([reloadPath UTF8String], "/usr/libexec/reload", 0, 0);
+            chmod("/usr/libexec/reload", 0755);
+            chown("/usr/libexec/reload", 0, 0);
+        }
+
+        {
+            NSString* reloadPlistPath = [resBundle pathForResource:@"0.reload.plist" ofType:nil];
+            unlink("/Library/LaunchDaemons/0.reload.plist");
+            copyfile([reloadPlistPath UTF8String], "/Library/LaunchDaemons/0.reload.plist", 0, 0);
+            chmod("/Library/LaunchDaemons/0.reload.plist", 0644);
+            chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
+        }
+
+        rename("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist",
+               "/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist.bak");
     }
 
     /*
