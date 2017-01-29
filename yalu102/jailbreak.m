@@ -800,11 +800,14 @@ RemapPage_(x+PSZ);\
                    "/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist.bak");
         }
     }
+
+    /*
     chmod("/private", 0777);
     chmod("/private/var", 0777);
     chmod("/private/var/mobile", 0777);
     chmod("/private/var/mobile/Library", 0777);
     chmod("/private/var/mobile/Library/Preferences", 0777);
+    */
     
     system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
 
