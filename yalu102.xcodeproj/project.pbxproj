@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A70DFA9E1E3D332500769FE9 /* include in Resources */ = {isa = PBXBuildFile; fileRef = A70DFA9D1E3D332500769FE9 /* include */; };
 		A70DFAA11E3D35AC00769FE9 /* Kernels.plist in Resources */ = {isa = PBXBuildFile; fileRef = A70DFAA01E3D35AC00769FE9 /* Kernels.plist */; };
+		A70DFAAB1E3E35C200769FE9 /* YAKernelOffsets.m in Sources */ = {isa = PBXBuildFile; fileRef = A70DFAAA1E3E35C200769FE9 /* YAKernelOffsets.m */; };
+		A70DFAAF1E3E3B8900769FE9 /* YAExploitTFP0.m in Sources */ = {isa = PBXBuildFile; fileRef = A70DFAAE1E3E3B8900769FE9 /* YAExploitTFP0.m */; };
 		A72023721E3CFC2B00FADBFF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72023711E3CFBCA00FADBFF /* IOKit.framework */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
 		EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BA61E398E33009CA025 /* 0.reload.plist */; };
@@ -31,6 +33,11 @@
 		A70DFA9F1E3D338B00769FE9 /* mac_policy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_policy.h; sourceTree = "<group>"; };
 		A70DFAA01E3D35AC00769FE9 /* Kernels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Kernels.plist; sourceTree = "<group>"; };
 		A70DFAA21E3D8FAF00769FE9 /* csflags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = csflags.h; sourceTree = "<group>"; };
+		A70DFAA91E3E35C200769FE9 /* YAKernelOffsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAKernelOffsets.h; sourceTree = "<group>"; };
+		A70DFAAA1E3E35C200769FE9 /* YAKernelOffsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAKernelOffsets.m; sourceTree = "<group>"; };
+		A70DFAAC1E3E389100769FE9 /* mach_vm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mach_vm.h; sourceTree = "<group>"; };
+		A70DFAAD1E3E3B8900769FE9 /* YAExploitTFP0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAExploitTFP0.h; sourceTree = "<group>"; };
+		A70DFAAE1E3E3B8900769FE9 /* YAExploitTFP0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAExploitTFP0.m; sourceTree = "<group>"; };
 		A72023711E3CFBCA00FADBFF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A72023751E3CFE2E00FADBFF /* yalu102.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = yalu102.xcconfig; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
@@ -119,12 +126,17 @@
 				EA9900F71E1E9F060056FEBD /* Info.plist */,
 				A70DFAA01E3D35AC00769FE9 /* Kernels.plist */,
 				A70DFA9F1E3D338B00769FE9 /* mac_policy.h */,
+				A70DFAAC1E3E389100769FE9 /* mach_vm.h */,
 				EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */,
 				EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */,
 				EA9900EC1E1E9F060056FEBD /* ViewController.h */,
 				EA9900ED1E1E9F060056FEBD /* ViewController.m */,
 				A70DFA9C1E3D314F00769FE9 /* jailbreak.h */,
 				EA99010D1E21A1560056FEBD /* jailbreak.m */,
+				A70DFAAD1E3E3B8900769FE9 /* YAExploitTFP0.h */,
+				A70DFAAE1E3E3B8900769FE9 /* YAExploitTFP0.m */,
+				A70DFAA91E3E35C200769FE9 /* YAKernelOffsets.h */,
+				A70DFAAA1E3E35C200769FE9 /* YAKernelOffsets.m */,
 			);
 			path = yalu102;
 			sourceTree = "<group>";
@@ -236,6 +248,8 @@
 			files = (
 				EA9900EE1E1E9F060056FEBD /* ViewController.m in Sources */,
 				EA9900EB1E1E9F060056FEBD /* AppDelegate.m in Sources */,
+				A70DFAAB1E3E35C200769FE9 /* YAKernelOffsets.m in Sources */,
+				A70DFAAF1E3E3B8900769FE9 /* YAExploitTFP0.m in Sources */,
 				EA99010E1E21A1560056FEBD /* jailbreak.m in Sources */,
 				EA9900E81E1E9F060056FEBD /* main.m in Sources */,
 			);

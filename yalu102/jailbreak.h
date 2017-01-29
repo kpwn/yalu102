@@ -4,4 +4,10 @@
 #import <stdint.h>
 #import <mach/mach.h>
 
-void exploit(mach_port_t pt, uint64_t kernbase, uint64_t allprocs);
+extern mach_port_t tfp0;
+extern uint64_t kernbase;
+extern uint64_t slide;
+extern uint64_t allprocs_offset;
+extern uint64_t rootvnode_offset;
+
+void jailbreak(void);

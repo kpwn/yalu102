@@ -10,7 +10,6 @@
 #import <Foundation/Foundation.h>
 #import <IOKit/IOKitLib.h>
 #import <dlfcn.h>
-#import <Foundation/Foundation.h>
 #import <pthread.h>
 #import <spawn.h>
 #import <copyfile.h>
@@ -24,15 +23,15 @@
 #import "mac_policy.h"
 #import "patchfinder64.h"
 #import "csflags.h"
+#import "mach_vm.h"
 
-mach_port_t tfp0=0;
-uint64_t slide=0;
+uint64_t slide;
+mach_port_t tfp0;
+uint64_t kernbase;
+uint64_t allprocs_offset;
+uint64_t rootvnode_offset;
+
 io_connect_t funcconn=0;
-
-kern_return_t mach_vm_read_overwrite(vm_map_t target_task, mach_vm_address_t address, mach_vm_size_t size, mach_vm_address_t data, mach_vm_size_t *outsize);
-kern_return_t mach_vm_write(vm_map_t target_task, mach_vm_address_t address, vm_offset_t data, mach_msg_type_number_t dataCnt);
-kern_return_t mach_vm_protect(vm_map_t target_task, mach_vm_address_t address, mach_vm_size_t size, boolean_t set_maximum, vm_prot_t new_protection);
-kern_return_t mach_vm_allocate(vm_map_t target, mach_vm_address_t *address, mach_vm_size_t size, int flags);
 
 uint32_t FuncAnywhere32(uint64_t addr, uint64_t x0, uint64_t x1, uint64_t x2)
 {
@@ -89,7 +88,7 @@ uint64_t WriteAnywhere32(uint64_t addr, uint32_t val) {
 
 #import "pte_stuff.h"
 
-void exploit(mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
+void jailbreak(void)
 {
     io_iterator_t iterator;
     IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IOSurfaceRoot"), &iterator);
@@ -97,13 +96,11 @@ void exploit(mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     funcconn = 0;
     IOServiceOpen(servicex, mach_task_self(), 0, &funcconn);
     assert(funcconn);
-    
-    tfp0 = pt;
-    
+
     uint64_t bsd_task=0;
     uint64_t launchd_task = 0;
     {
-        uint64_t proc = ReadAnywhere64(allprocs+kernbase);
+        uint64_t proc = ReadAnywhere64(allprocs_offset+kernbase);
         NSLog(@"found procs at %llx", proc);
         while (proc) {
             uint32_t pid = ReadAnywhere32(proc+0x10);
@@ -667,7 +664,6 @@ void exploit(mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     
     {
         // mount patch
-        extern uint64_t rootvnode_offset;
         uint64_t rootfs_vnode = ReadAnywhere64(rootvnode_offset + kernbase);
         
         struct utsname uts;
