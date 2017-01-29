@@ -25,9 +25,17 @@
     NSString *urlParameter = [url host];
     if ([urlParameter isEqual:@"break"]) {
         // URL scheme to jailbreak is being handled
-        NSLog(@"We're breaking out of jail bois!");
-        _shouldJailbreak = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReevaluateShouldJailbreak" object:nil userInfo:nil];
+        UIAlertController *alertvc = [UIAlertController alertControllerWithTitle:@"Do you really want to jailbreak?" message:@"You used a URI scheme to break out of jail." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"I want to jailbreak!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"We're breaking out of jail bois!");
+            _shouldJailbreak = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ReevaluateShouldJailbreak" object:nil userInfo:nil];
+        }];
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil];
+        [alertvc addAction:actionOk];
+        [alertvc addAction:cancelAction];
+        UIViewController *vc = self.window.rootViewController;
+        [vc presentViewController:alertvc animated:YES completion:nil];
     }
     return YES;
 }
