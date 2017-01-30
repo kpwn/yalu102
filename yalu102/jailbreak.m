@@ -923,13 +923,20 @@ remappage[remapcnt++] = (x & (~PMK));\
             
         }
     }
+    
+    //Setting private and sub directories permissions to read-write-execute (rxw)
     chmod("/private", 0777);
     chmod("/private/var", 0777);
     chmod("/private/var/mobile", 0777);
     chmod("/private/var/mobile/Library", 0777);
     chmod("/private/var/mobile/Library/Preferences", 0777);
+    
+    //Disabling OTA for good
     system("rm -rf /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; touch /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chmod 000 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chown 0:0 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate");
+    
+    //Printing confirmation message that device is jailbroken
     system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
+
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
     
