@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,7 +23,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
+
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JailbreakIcon" translatesAutoresizingMaskIntoConstraints="NO" id="2Ws-e1-UVw">
                                 <rect key="frame" x="115" y="261" width="144" height="144"/>
                             </imageView>
@@ -31,18 +33,21 @@
                                     <constraint firstAttribute="height" constant="21" id="KOK-9T-kpK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
+
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+
                             <constraint firstItem="2Ws-e1-UVw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CL8-aA-aPb"/>
                             <constraint firstItem="2Ws-e1-UVw" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="99" id="Ffy-7Y-K36"/>
                             <constraint firstItem="2Ws-e1-UVw" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="QGQ-DL-FGe"/>
                             <constraint firstItem="2Ws-e1-UVw" firstAttribute="centerX" secondItem="van-Il-LX4" secondAttribute="centerX" id="Rii-ZQ-70o"/>
                             <constraint firstItem="2Ws-e1-UVw" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="241" id="WBz-5U-iqm"/>
                             <constraint firstAttribute="bottom" secondItem="van-Il-LX4" secondAttribute="bottom" constant="20" symbolic="YES" id="jO5-yx-onM"/>
+
                         </constraints>
                     </view>
                 </viewController>
@@ -52,6 +57,8 @@
         </scene>
     </scenes>
     <resources>
+
         <image name="JailbreakIcon" width="180" height="180"/>
+
     </resources>
 </document>

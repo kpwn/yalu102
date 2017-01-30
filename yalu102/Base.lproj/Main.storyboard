@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RT0-ux-ljy">
+
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,6 +30,7 @@
                                     <action selector="yolo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OEX-ZS-X4Q"/>
                                 </connections>
                             </button>
+
                         </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -463,9 +465,11 @@
                                     <constraint firstAttribute="height" constant="65" id="phI-Ts-Rkk"/>
                                 </constraints>
                             </imageView>
+
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+
                             <constraint firstItem="gOx-xh-mld" firstAttribute="centerY" secondItem="UIn-l9-3fM" secondAttribute="centerY" id="ORd-Bi-NmP"/>
                             <constraint firstItem="gOx-xh-mld" firstAttribute="centerX" secondItem="UIn-l9-3fM" secondAttribute="centerX" id="eFi-oQ-KZW"/>
                             <constraint firstItem="gOx-xh-mld" firstAttribute="centerX" secondItem="aG3-ws-mBA" secondAttribute="centerX" id="pFh-p8-OQG"/>
@@ -485,13 +489,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Nrh-lf-Zad"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HkD-mc-B4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="-271" y="215"/>
+
         </scene>
     </scenes>
     <resources>
