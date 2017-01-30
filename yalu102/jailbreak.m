@@ -698,7 +698,6 @@ remappage[remapcnt++] = (x & (~PMK));\
         
         uint64_t nopag = sbops_end - sbops;
         
-        int ctr = 0;
         for (int i = 0; i < nopag; i+= PSZ) {
             RemapPage(((sbops + i) & (~PMK)));
         }
@@ -750,7 +749,6 @@ remappage[remapcnt++] = (x & (~PMK));\
         
         uint64_t nopag = (sbops_end - sbops)/(PSZ);
         
-        int ctr = 0;
         for (int i = 0; i < nopag; i++) {
             RemapPage(((sbops + i*(PSZ)) & (~PMK)));
         }
