@@ -15,6 +15,7 @@
 @interface ViewController ()
 
 @property (nonatomic, strong) YAKernelOffsets *offsets;
+@property (nonatomic, weak) IBOutlet UIButton *dope;
 
 @end
 
@@ -26,15 +27,15 @@
     struct utsname u = { 0 };
     uname(&u);
     if (strstr(u.version, "MarijuanARM")) {
-        [dope setEnabled:NO];
-        [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+        [self.dope setEnabled:NO];
+        [self.dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
         return;
     }
 
     self.offsets = [YAKernelOffsets offsetsForCurrentDevice];
     if (!self.offsets) {
-        [dope setEnabled:NO];
-        [dope setTitle:@"kernel unsupported" forState:UIControlStateDisabled];
+        [self.dope setEnabled:NO];
+        [self.dope setTitle:@"kernel unsupported" forState:UIControlStateDisabled];
         return;
     }
 }
@@ -54,11 +55,11 @@
         rootvnode_offset = self.offsets->rootvnode_offset;
         jailbreak();
 
-        [dope setEnabled:NO];
-        [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+        [self.dope setEnabled:NO];
+        [self.dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
     }
     else {
-        [dope setTitle:@"failed, retry?" forState:UIControlStateNormal];
+        [self.dope setTitle:@"failed, retry?" forState:UIControlStateNormal];
     }
 }
 
