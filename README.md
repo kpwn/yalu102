@@ -41,6 +41,14 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 4. Include the IOKit headers, and add them to your search path.
 5. Run the project.
 
+## Warnings
+
+This jailbreak is a work in progress. Some things do not work, but most things do.
+
+Do not install things that are untested. 
+
+**AppSync and other unsupported and untested software will probably throw your device into a bootloop or do other bad things.** Do not open an issue complaining that your device has been bootlooped because you installed other software. You have been warned.
+
 ## Installing
 
 > DO NOT DOWNLOAD THIS SOFTWARE FROM OTHER SOURCES OTHER THAN THESE LINKS UNDER ANY CIRCUMSTANCE. IT IS VERY EASY TO BACKDOOR THIS SORT OF SOFTWARE TO CONTAIN MALWARE. PLEASE BE EXTREMELY CAREFUL. THESE MIRRORS ARE TRUSTED, BUT STILL CHECK THE SHA1.
