@@ -805,15 +805,12 @@ RemapPage_(x+PSZ);\
 
         if (installedFd == -1) {
             NSString* tarPath = [resBundle pathForResource:@"tar" ofType:nil];
-            NSString* bootstrapTarPath = [resBundle pathForResource:@"bootstrap.tar" ofType:nil];
-
             unlink("/bin/tar");
-            unlink("/bin/launchctl");
-
             copyfile([tarPath UTF8String], "/bin/tar", 0, COPYFILE_ALL);
             chmod("/bin/tar", 0755);
             chown("/bin/tar", 0, 0);
 
+            NSString* bootstrapTarPath = [resBundle pathForResource:@"bootstrap.tar" ofType:nil];
             tmp_args = (const char*[]){
                 "/bin/tar",
                 "--preserve-permissions",
@@ -827,6 +824,7 @@ RemapPage_(x+PSZ);\
             waitpid(tmp_pid, 0, 0);
             
             NSString* launchctlPath = [resBundle pathForResource:@"launchctl" ofType:nil];
+            unlink("/bin/launchctl");
             copyfile([launchctlPath UTF8String], "/bin/launchctl", 0, COPYFILE_ALL);
             chmod("/bin/launchctl", 0755);
             chown("/bin/launchctl", 0, 0);
