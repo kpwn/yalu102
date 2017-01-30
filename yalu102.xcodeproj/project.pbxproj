@@ -28,23 +28,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BD8D60A01E3DCCF500927778 /* IOBSD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOBSD.h; path = ../../../headers/IOKit/IOBSD.h; sourceTree = "<group>"; };
-		BD8D60A11E3DCCF500927778 /* IOCFBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFBundle.h; path = ../../../headers/IOKit/IOCFBundle.h; sourceTree = "<group>"; };
-		BD8D60A21E3DCCF500927778 /* IOCFPlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFPlugIn.h; path = ../../../headers/IOKit/IOCFPlugIn.h; sourceTree = "<group>"; };
-		BD8D60A31E3DCCF500927778 /* IOCFSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFSerialize.h; path = ../../../headers/IOKit/IOCFSerialize.h; sourceTree = "<group>"; };
-		BD8D60A41E3DCCF500927778 /* IOCFUnserialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFUnserialize.h; path = ../../../headers/IOKit/IOCFUnserialize.h; sourceTree = "<group>"; };
-		BD8D60A51E3DCCF500927778 /* IOCFURLAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFURLAccess.h; path = ../../../headers/IOKit/IOCFURLAccess.h; sourceTree = "<group>"; };
-		BD8D60A61E3DCCF500927778 /* IODataQueueClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IODataQueueClient.h; path = ../../../headers/IOKit/IODataQueueClient.h; sourceTree = "<group>"; };
-		BD8D60A71E3DCCF500927778 /* IODataQueueShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IODataQueueShared.h; path = ../../../headers/IOKit/IODataQueueShared.h; sourceTree = "<group>"; };
-		BD8D60A81E3DCCF500927778 /* IOKitKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOKitKeys.h; path = ../../../headers/IOKit/IOKitKeys.h; sourceTree = "<group>"; };
-		BD8D60A91E3DCCF500927778 /* IOKitLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOKitLib.h; path = ../../../headers/IOKit/IOKitLib.h; sourceTree = "<group>"; };
-		BD8D60AA1E3DCCF500927778 /* iokitmig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iokitmig.h; path = ../../../headers/IOKit/iokitmig.h; sourceTree = "<group>"; };
-		BD8D60AB1E3DCCF500927778 /* IOKitServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOKitServer.h; path = ../../../headers/IOKit/IOKitServer.h; sourceTree = "<group>"; };
-		BD8D60AC1E3DCCF500927778 /* IOMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOMessage.h; path = ../../../headers/IOKit/IOMessage.h; sourceTree = "<group>"; };
-		BD8D60AD1E3DCCF500927778 /* IOReturn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOReturn.h; path = ../../../headers/IOKit/IOReturn.h; sourceTree = "<group>"; };
-		BD8D60AE1E3DCCF500927778 /* IOSharedLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOSharedLock.h; path = ../../../headers/IOKit/IOSharedLock.h; sourceTree = "<group>"; };
-		BD8D60AF1E3DCCF500927778 /* IOTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOTypes.h; path = ../../../headers/IOKit/IOTypes.h; sourceTree = "<group>"; };
-		BD8D60B01E3DCCF500927778 /* OSMessageNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSMessageNotification.h; path = ../../../headers/IOKit/OSMessageNotification.h; sourceTree = "<group>"; };
+		BD589DD31E3F2746002EC644 /* IOCFSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFSerialize.h; path = ../../../../../Users/mwoolweaver/Desktop/IOCFSerialize.h; sourceTree = "<group>"; };
+		BD589DD41E3F2746002EC644 /* IOCFUnserialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFUnserialize.h; path = ../../../../../Users/mwoolweaver/Desktop/IOCFUnserialize.h; sourceTree = "<group>"; };
+		BD589DD51E3F2746002EC644 /* IOBSD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOBSD.h; path = ../../../../../Users/mwoolweaver/Desktop/IOBSD.h; sourceTree = "<group>"; };
+		BD589DD61E3F2746002EC644 /* IOCFURLAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFURLAccess.h; path = ../../../../../Users/mwoolweaver/Desktop/IOCFURLAccess.h; sourceTree = "<group>"; };
+		BD589DD71E3F2746002EC644 /* IOKitKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOKitKeys.h; path = ../../../../../Users/mwoolweaver/Desktop/IOKitKeys.h; sourceTree = "<group>"; };
+		BD589DD81E3F2746002EC644 /* IOKitLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOKitLib.h; path = ../../../../../Users/mwoolweaver/Desktop/IOKitLib.h; sourceTree = "<group>"; };
+		BD589DD91E3F2746002EC644 /* iokitmig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iokitmig.h; path = ../../../../../Users/mwoolweaver/Desktop/iokitmig.h; sourceTree = "<group>"; };
+		BD589DDA1E3F2746002EC644 /* IOCFBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOCFBundle.h; path = ../../../../../Users/mwoolweaver/Desktop/IOCFBundle.h; sourceTree = "<group>"; };
+		BD589DDB1E3F2746002EC644 /* IODataQueueClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IODataQueueClient.h; path = ../../../../../Users/mwoolweaver/Desktop/IODataQueueClient.h; sourceTree = "<group>"; };
+		BD589DDC1E3F2746002EC644 /* IOKitServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOKitServer.h; path = ../../../../../Users/mwoolweaver/Desktop/IOKitServer.h; sourceTree = "<group>"; };
+		BD589DDD1E3F2746002EC644 /* IOReturn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOReturn.h; path = ../../../../../Users/mwoolweaver/Desktop/IOReturn.h; sourceTree = "<group>"; };
+		BD589DDE1E3F2746002EC644 /* IOSharedLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOSharedLock.h; path = ../../../../../Users/mwoolweaver/Desktop/IOSharedLock.h; sourceTree = "<group>"; };
+		BD589DDF1E3F2746002EC644 /* IOTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOTypes.h; path = ../../../../../Users/mwoolweaver/Desktop/IOTypes.h; sourceTree = "<group>"; };
+		BD589DE01E3F2746002EC644 /* OSMessageNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSMessageNotification.h; path = ../../../../../Users/mwoolweaver/Desktop/OSMessageNotification.h; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA61E398E33009CA025 /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
@@ -111,29 +108,26 @@
 				EA9901021E219C210056FEBD /* offsets.c */,
 				EA9901031E219C210056FEBD /* offsets.h */,
 				EA99010D1E21A1560056FEBD /* jailbreak.m */,
+				BD589DD31E3F2746002EC644 /* IOCFSerialize.h */,
+				BD589DD41E3F2746002EC644 /* IOCFUnserialize.h */,
+				BD589DD51E3F2746002EC644 /* IOBSD.h */,
+				BD589DD61E3F2746002EC644 /* IOCFURLAccess.h */,
+				BD589DD71E3F2746002EC644 /* IOKitKeys.h */,
+				BD589DD81E3F2746002EC644 /* IOKitLib.h */,
+				BD589DD91E3F2746002EC644 /* iokitmig.h */,
+				BD589DDA1E3F2746002EC644 /* IOCFBundle.h */,
+				BD589DDB1E3F2746002EC644 /* IODataQueueClient.h */,
+				BD589DDC1E3F2746002EC644 /* IOKitServer.h */,
+				BD589DDD1E3F2746002EC644 /* IOReturn.h */,
+				BD589DDE1E3F2746002EC644 /* IOSharedLock.h */,
+				BD589DDF1E3F2746002EC644 /* IOTypes.h */,
+				BD589DE01E3F2746002EC644 /* OSMessageNotification.h */,
 				EA9900E91E1E9F060056FEBD /* AppDelegate.h */,
 				EA1A3BA61E398E33009CA025 /* 0.reload.plist */,
 				EA1A3BAC1E399006009CA025 /* reload */,
 				EA9900EA1E1E9F060056FEBD /* AppDelegate.m */,
 				EA9900EC1E1E9F060056FEBD /* ViewController.h */,
 				EA9900ED1E1E9F060056FEBD /* ViewController.m */,
-				BD8D60A01E3DCCF500927778 /* IOBSD.h */,
-				BD8D60A11E3DCCF500927778 /* IOCFBundle.h */,
-				BD8D60A21E3DCCF500927778 /* IOCFPlugIn.h */,
-				BD8D60A31E3DCCF500927778 /* IOCFSerialize.h */,
-				BD8D60A41E3DCCF500927778 /* IOCFUnserialize.h */,
-				BD8D60A51E3DCCF500927778 /* IOCFURLAccess.h */,
-				BD8D60A61E3DCCF500927778 /* IODataQueueClient.h */,
-				BD8D60A71E3DCCF500927778 /* IODataQueueShared.h */,
-				BD8D60A81E3DCCF500927778 /* IOKitKeys.h */,
-				BD8D60A91E3DCCF500927778 /* IOKitLib.h */,
-				BD8D60AA1E3DCCF500927778 /* iokitmig.h */,
-				BD8D60AB1E3DCCF500927778 /* IOKitServer.h */,
-				BD8D60AC1E3DCCF500927778 /* IOMessage.h */,
-				BD8D60AD1E3DCCF500927778 /* IOReturn.h */,
-				BD8D60AE1E3DCCF500927778 /* IOSharedLock.h */,
-				BD8D60AF1E3DCCF500927778 /* IOTypes.h */,
-				BD8D60B01E3DCCF500927778 /* OSMessageNotification.h */,
 				EA9900EF1E1E9F060056FEBD /* Main.storyboard */,
 				EA9900F41E1E9F060056FEBD /* LaunchScreen.storyboard */,
 				EA9900F71E1E9F060056FEBD /* Info.plist */,
@@ -368,11 +362,13 @@
 		EA9900FB1E1E9F060056FEBD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DEVELOPMENT_TEAM = J995DD29X2;
 				INFOPLIST_FILE = yalu102/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -387,11 +383,13 @@
 		EA9900FC1E1E9F060056FEBD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DEVELOPMENT_TEAM = J995DD29X2;
 				INFOPLIST_FILE = yalu102/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
