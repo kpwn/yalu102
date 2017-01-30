@@ -552,26 +552,41 @@ remappage[remapcnt++] = (x & (~PMK));\
     {
         uint64_t endf = prelink_base+prelink_size;
         uint64_t ends = whole_size - (endf - whole_base);
-        char* sbstr = memmem(whole_dump + endf - whole_base, ends, "\xc0\x03\x5f\xd6\x08\x10\x40\xb9\x08\x0c\x00\xf9\x08\x04\x40\xf9", 0x10); // munge
-        
-        if (sbstr) {
-            
-            uint64_t munger = sbstr - (char*)whole_dump + 4  + whole_base;
-            
-            
-            uint64_t* ptr_stream = whole_dump + endf - whole_base;
-            
-            uint64_t munger_off = 0;
-            while (1) {
-                if (ptr_stream[munger_off] == munger) {
-                    break;
-                }
-                munger_off++;
-            }
-            
-            sbstr = munger_off*8 + ((char*) ptr_stream) - 0x10;
-            sbstr -= 0x20 * 10; // go from vm_allocate_trap to beginning of array
+        uint32_t* opps_stream = whole_dump + endf - whole_base;
+        uint64_t* ptr_stream = whole_dump + endf - whole_base;
 
+        uint64_t lastk = 0;
+        int streak = 0;
+        
+        for (int i = 0; i < ends/8; i++) {
+            uint64_t offp = ptr_stream[i];
+            if (endf < offp && offp < endf+ends) {
+                offp -= endf;
+                offp /= 4;
+                if (ptr_stream[i+1] == 0 && ptr_stream[i+2] == 0) {
+                    if (opps_stream[offp] == 0x321e03e0 && opps_stream[offp+1] == 0xd65f03c0) {
+                        if (lastk+streak*0x20 == i*8 - 0x20) {
+                            streak++;
+                            NSLog(@"streak %x lastk %llx", streak, lastk);
+                            if (streak == 9) {
+                                NSLog(@"i think this is it");
+                                break;
+                            }
+                        } else {
+                            streak=0;
+                            lastk = i*8;
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        if (streak == 9) {
+
+            
+            char* sbstr = whole_dump + lastk + endf - whole_base - 8;
+            
             uint64_t extract_attr_recipe = *(uint64_t*)(sbstr + 72 * 0x20 + 8 /*fptr*/);
             
             uint32_t* opcode_stream = extract_attr_recipe - whole_base + whole_dump;
@@ -627,6 +642,7 @@ remappage[remapcnt++] = (x & (~PMK));\
             RemapPage(tfp + cbz*4);
             WriteAnywhere32(NewPointer(tfp+cbz*4), 0xd503201f);
         }
+        
     }
     /*
      nonceenabler
