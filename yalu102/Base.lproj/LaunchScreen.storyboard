@@ -23,7 +23,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-
+                        <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JailbreakIcon" translatesAutoresizingMaskIntoConstraints="NO" id="2Ws-e1-UVw">
                                 <rect key="frame" x="115" y="261" width="144" height="144"/>
                             </imageView>
