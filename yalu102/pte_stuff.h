@@ -57,8 +57,12 @@ char isvad = 0;
 vm_size_t sz = 0;
 
 void checkvad() {
+    struct utsname u = { 0 };
+    uname(&u);
     if (!sz) {
-        host_page_size(mach_host_self(), &sz);
+        if ((strcmp(u.machine, "iPad5,1") != 0) || (strcmp(u.machine, "iPad5,2") != 0 ) || (strcmp(u.machine, "iPad5,3") != 0 ) || (strcmp(u.machine, "iPad5,4") != 0 )) {
+            host_page_size(mach_host_self(), &sz);
+        }
         assert(sz);
         if (sz == 4096) {
             isvad = 1;
