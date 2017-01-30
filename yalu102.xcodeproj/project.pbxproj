@@ -11,6 +11,7 @@
 		A70DFAAB1E3E35C200769FE9 /* YAKernelOffsets.m in Sources */ = {isa = PBXBuildFile; fileRef = A70DFAAA1E3E35C200769FE9 /* YAKernelOffsets.m */; };
 		A70DFAAF1E3E3B8900769FE9 /* YAExploitTFP0.m in Sources */ = {isa = PBXBuildFile; fileRef = A70DFAAE1E3E3B8900769FE9 /* YAExploitTFP0.m */; };
 		A72023721E3CFC2B00FADBFF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72023711E3CFBCA00FADBFF /* IOKit.framework */; };
+		A74FB7BC1E3F4DE4004651CA /* dropbear.plist in Resources */ = {isa = PBXBuildFile; fileRef = A74FB7BB1E3F4DE4004651CA /* dropbear.plist */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
 		EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BA61E398E33009CA025 /* 0.reload.plist */; };
 		EA1A3BAD1E399006009CA025 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BAC1E399006009CA025 /* reload */; };
@@ -39,6 +40,7 @@
 		A70DFAAE1E3E3B8900769FE9 /* YAExploitTFP0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAExploitTFP0.m; sourceTree = "<group>"; };
 		A72023711E3CFBCA00FADBFF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A72023751E3CFE2E00FADBFF /* yalu102.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = yalu102.xcconfig; sourceTree = "<group>"; };
+		A74FB7BB1E3F4DE4004651CA /* dropbear.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dropbear.plist; sourceTree = "<group>"; };
 		A766FD8B1E3E499A002A75CE /* pte_stuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pte_stuff.h; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			children = (
 				EA1A3BA61E398E33009CA025 /* 0.reload.plist */,
 				EA9901051E219FF10056FEBD /* bootstrap.tar */,
+				A74FB7BB1E3F4DE4004651CA /* dropbear.plist */,
 				EA99010B1E21A0520056FEBD /* launchctl */,
 				EA1A3BAC1E399006009CA025 /* reload */,
 				EA9901091E21A04C0056FEBD /* tar */,
@@ -217,6 +220,7 @@
 				EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */,
 				A70DFAA11E3D35AC00769FE9 /* Kernels.plist in Resources */,
 				EA1A3BAD1E399006009CA025 /* reload in Resources */,
+				A74FB7BC1E3F4DE4004651CA /* dropbear.plist in Resources */,
 				EA1A3BC51E39D1FF009CA025 /* Assets.xcassets in Resources */,
 				EA9900F11E1E9F060056FEBD /* Main.storyboard in Resources */,
 			);
