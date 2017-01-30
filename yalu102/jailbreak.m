@@ -567,7 +567,9 @@ remappage[remapcnt++] = (x & (~PMK));\
                     if (opps_stream[offp] == 0x321e03e0 && opps_stream[offp+1] == 0xd65f03c0) {
                         if (lastk+streak*0x20 == i*8 - 0x20) {
                             streak++;
+                            NSLog(@"streak %x lastk %llx", streak, lastk);
                             if (streak == 9) {
+                                NSLog(@"i think this is it");
                                 break;
                             }
                         } else {
