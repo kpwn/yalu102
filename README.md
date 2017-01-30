@@ -18,7 +18,11 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 | iPad Mini 2| iOS 10.0.0 -> iOS 10.2 |
 | iPhone 6  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 3| iOS 10.0.0 -> iOS 10.2 |
+| iPad Air 2| iOS 10.0.0 -> iOS 10.2 |
+| iPad Mini 4 | iOS 10.0.0 -> iOS 10.2 |
 | iPod touch (6G)  | iOS 10.0.0 -> iOS 10.2 |
+
+Please note, jailbreaking on the Air 2 and Mini 4 may take many attempts. 
 
 ### Planned Support:
 
@@ -26,8 +30,6 @@ In the near future, the jailbreak will support the following devices:
 
 | Device | Version |
 |---------|----------|
-| iPad Air 2| iOS 10.0.0 -> iOS 10.2 |
-| iPad Mini 4 | iOS 10.0.0 -> iOS 10.2 |
 | iPhone 7  | iOS 10.0.0 -> iOS 10.1.1 |
 
 **Note, the iPhone 7 is only supported till iOS 10.1.1**
