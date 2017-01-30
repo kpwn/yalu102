@@ -47,7 +47,7 @@ This jailbreak is a work in progress. Some things do not work, but most things d
 
 Do not install things that are untested. 
 
-**AppSync and other unsupported and untested software will probably throw your device into a bootloop or do other bad things. ** Do not open an issue complaining that your device has been bootlooped because you installed other software. You have been warned.
+**AppSync and other unsupported and untested software will probably throw your device into a bootloop or do other bad things.** Do not open an issue complaining that your device has been bootlooped because you installed other software. You have been warned.
 
 ## Installing
 
