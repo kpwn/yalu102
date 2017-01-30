@@ -808,6 +808,22 @@ RemapPage_(x+PSZ);\
         
         WriteAnywhere32(v_mount + 0x71, v_flag);
     }
+    
+        { //Prevents OTA Daemons from launching
+        
+        int f1 = open("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.bak", O_RDONLY);
+        int f2 = open("/System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.bak", O_RDONLY);
+        
+        if ( (f1 == -1) || (f2 == -1) )  {
+            NSLog(@"Killing OTA Updates...");
+            system("mv -f /System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist /System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.bak");
+            system("mv -f /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.bak");
+            NSMutableDictionary* prefDict = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.Preferences.plist"];
+            [prefDict setObject:[NSNumber numberWithBool:NO] forKey:@"kBadgedForSoftwareUpdateKey"];
+            [prefDict setObject:[NSNumber numberWithBool:NO] forKey:@"kBadgedForSoftwareUpdateJumpOnceKey"];
+            [prefDict writeToFile:@"/var/mobile/Library/Preferences/com.apple.Preferences.plist" atomically:YES];
+        }
+    }
 
     {
         char path[256];
