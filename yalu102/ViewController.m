@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) YAKernelOffsets *offsets;
 @property (nonatomic, weak) IBOutlet UIButton *dope;
+@property (nonatomic, weak) IBOutlet UIView *sshView;
+@property (nonatomic, weak) IBOutlet UISwitch *sshSwitch;
 
 @end
 
@@ -38,6 +40,13 @@
         [self.dope setTitle:@"kernel unsupported" forState:UIControlStateDisabled];
         return;
     }
+
+    // load settings
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [self.sshSwitch setOn:[defaults boolForKey:@"YAEnableRemoteSSH"]];
+        [self.sshView setHidden:NO];
+    }
 }
 
 - (IBAction)yolo:(UIButton*)sender {
@@ -47,25 +56,29 @@
                                         taskPortResult:&_tfp0
                                       kernelBaseResult:&_kernbase];
     if (ok) {
+        // store settings
+        {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setBool:self.sshSwitch.on forKey:@"YAEnableRemoteSSH"];
+            [defaults synchronize];
+        }
+
         // via jailbreak.h
         tfp0 = _tfp0;
         kernbase = _kernbase;
         slide = kernbase - 0xFFFFFFF007004000;
         allprocs_offset = self.offsets->allproc_offset;
         rootvnode_offset = self.offsets->rootvnode_offset;
+        cfg_enable_remote_ssh = self.sshSwitch.on;
         jailbreak();
 
         [self.dope setEnabled:NO];
         [self.dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+        [self.sshView setHidden:YES];
     }
     else {
         [self.dope setTitle:@"failed, retry?" forState:UIControlStateNormal];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

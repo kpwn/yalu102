@@ -30,6 +30,7 @@ mach_port_t tfp0;
 uint64_t kernbase;
 uint64_t allprocs_offset;
 uint64_t rootvnode_offset;
+bool cfg_enable_remote_ssh;
 
 void copyin(void* to, uint64_t from, size_t size) {
     mach_vm_size_t outsize = size;
@@ -901,6 +902,14 @@ remappage[remapcnt++] = (x & (~PMK));\
             copyfile([dropbearPlistPath UTF8String], "/Library/LaunchDaemons/dropbear.plist", 0, COPYFILE_ALL);
             chmod("/Library/LaunchDaemons/dropbear.plist", 0644);
             chown("/Library/LaunchDaemons/dropbear.plist", 0, 0);
+            if (cfg_enable_remote_ssh) {
+                NSLog(@"enabling SSH remote access");
+                NSMutableDictionary* md = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/Library/LaunchDaemons/dropbear.plist"];
+                NSMutableArray *a = [NSMutableArray arrayWithArray:[md valueForKey:@"ProgramArguments"]];
+                a[4] = @"22";
+                [md setValue:a forKey:@"ProgramArguments"];
+                [md writeToFile:@"/Library/LaunchDaemons/dropbear.plist" atomically:YES];
+            }
         }
     }
 
