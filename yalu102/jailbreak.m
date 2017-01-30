@@ -552,12 +552,26 @@ remappage[remapcnt++] = (x & (~PMK));\
     {
         uint64_t endf = prelink_base+prelink_size;
         uint64_t ends = whole_size - (endf - whole_base);
-        char* sbstr = memmem(whole_dump + endf - whole_base, ends, "\x05\x00\x00\x00\x00\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00", 0x10) - 0x18; // vm_allocate_trap
+        char* sbstr = memmem(whole_dump + endf - whole_base, ends, "\xc0\x03\x5f\xd6\x08\x10\x40\xb9\x08\x0c\x00\xf9\x08\x04\x40\xf9", 0x10); // munge
         
         if (sbstr) {
+            
+            uint64_t munger = sbstr - (char*)whole_dump + 4  + whole_base;
+            
+            
+            uint64_t* ptr_stream = whole_dump + endf - whole_base;
+            
+            uint64_t munger_off = 0;
+            while (1) {
+                if (ptr_stream[munger_off] == munger) {
+                    break;
+                }
+                munger_off++;
+            }
+            
+            sbstr = munger_off*8 + ((char*) ptr_stream) - 0x10;
             sbstr -= 0x20 * 10; // go from vm_allocate_trap to beginning of array
-            
-            
+
             uint64_t extract_attr_recipe = *(uint64_t*)(sbstr + 72 * 0x20 + 8 /*fptr*/);
             
             uint32_t* opcode_stream = extract_attr_recipe - whole_base + whole_dump;
