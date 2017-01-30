@@ -98,7 +98,8 @@
 				EA9900E31E1E9F060056FEBD /* yalu102.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
+			path = "/Volumes/Stuuf/ios-tools/yalu102";
+			sourceTree = "<absolute>";
 		};
 		EA9900E51E1E9F060056FEBD /* yalu102 */ = {
 			isa = PBXGroup;
