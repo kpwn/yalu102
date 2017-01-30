@@ -68,7 +68,11 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 
 | Version | Download | SHA1 |
 |---------|----------|------|
-| Alpha  | [Link](https://www.lampserv.net/yalu.php) | 6C8CBE251E93CB871F6FDE0D17398E95C37305B4  |
+
+| Beta 3  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta3.ipa) | b2e0bdd31566f876d67cba036b5d29aef7ff257d  |
+| Beta 2  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta.ipa) | 4fddad7cca8aa0c0a6579c1d63d00917f15efc86  |
+| Beta 1  | [Link](https://yalu.qwertyoruiop.com/yalu102_alpha.ipa) | 2fe14f1c1e1a0d26203bbb123f6747a978dd2b4f  |
+
 
 ## Contributing
 
