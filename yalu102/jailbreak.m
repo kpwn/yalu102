@@ -699,7 +699,11 @@ remappage[remapcnt++] = (x & (~PMK));\
         uint64_t sbops_end = sbops + sizeof(struct mac_policy_ops);
 
         uint64_t nopag = sbops_end - sbops;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> kpwn/master
         for (int i = 0; i < nopag; i+= PSZ) {
             RemapPage(((sbops + i) & (~PMK)));
         }
@@ -750,7 +754,11 @@ remappage[remapcnt++] = (x & (~PMK));\
         uint64_t sbops_end = sbops + sizeof(struct mac_policy_ops) + PMK;
 
         uint64_t nopag = (sbops_end - sbops)/(PSZ);
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> kpwn/master
         for (int i = 0; i < nopag; i++) {
             RemapPage(((sbops + i*(PSZ)) & (~PMK)));
         }
