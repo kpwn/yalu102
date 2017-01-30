@@ -73,7 +73,7 @@ Do not install things that are untested.
 
 | Version | Download | SHA1 |
 |---------|----------|------|
-| Beta   | [Link](https://lampserv.net/yalu.php) | SHA1 Coming Soon  |
+| Beta 7  | [Link](https://lampserv.net/yalu.php) | 77057857E3AF6D3A920656432EC63299F0BC727A  |
 
 
 
