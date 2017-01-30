@@ -160,8 +160,9 @@ char dt[128];
      we out here!
      
      */
-    [dope setEnabled:NO];
-    [dope setTitle:@"jailbreaking" forState:UIControlStateDisabled];
+    //[dope setEnabled:NO];
+    //[dope setTitle:@"jailbreaking" forState:UIControlStateDisabled];
+    // Breaks something
     
     mach_port_t vch = 0;
     
