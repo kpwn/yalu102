@@ -70,3 +70,23 @@ Do not install things that are untested.
 Create a fork of the repository, make your changes and then create a pull request.
 Please be sure to check if the pull request has been made before, before creating a new one. Note, any pull requests adding IOKit headers will be closed. Please respect copyright laws, and do not distribute / download IOKit headers from unofficial sources: they are bundled legally with macOS SDK
 
+
+## Connecting via ssh over USB using included dropbear:
+Enough people have been asking often about how to correctly use dropbear to ssh over USB so here's how it can be done:
+
+On OS X/Linux:
+
+    1) Install libimobiledevice
+        $ brew install libimobiledevice
+
+    2) Run iproxy (here the source port is 2222 targeting 22 on the iDevice)
+        $ iproxy 2222 22
+
+    3) Connect via ssh
+        $ ssh root@localhost -p 2222
+            #Enter root password (if not set default is "alpine" without the quotations
+
+        You should see:
+
+        <iphone Name>:~ root# 
+
