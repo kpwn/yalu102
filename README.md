@@ -41,14 +41,6 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 4. Include the IOKit headers, and add them to your search path.
 5. Run the project.
 
-## Warnings
-
-This jailbreak is a work in progress. Some things do not work, but most things do.
-
-Do not install things that are untested. 
-
-**AppSync and other unsupported and untested software will probably throw your device into a bootloop or do other bad things.** Do not open an issue complaining that your device has been bootlooped because you installed other software. You have been warned.
-
 ## Installing
 
 > DO NOT DOWNLOAD THIS SOFTWARE FROM OTHER SOURCES OTHER THAN THESE LINKS UNDER ANY CIRCUMSTANCE. IT IS VERY EASY TO BACKDOOR THIS SORT OF SOFTWARE TO CONTAIN MALWARE. PLEASE BE EXTREMELY CAREFUL. THESE MIRRORS ARE TRUSTED, BUT STILL CHECK THE SHA1.
@@ -61,6 +53,9 @@ Do not install things that are untested.
 
 | Version | Download | SHA1 |
 |---------|----------|------|
+| Beta 6  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta6.ipa) | 0130ebe60c97e2013a4b849b7d9bc321d749f304  |
+| Beta 5  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta5.ipa) | Need Sha  |
+| Beta 4  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta4.ipa) | f8270e59d7d7267613ffa63217b91fea425eec36  |
 | Beta 3  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta3.ipa) | b2e0bdd31566f876d67cba036b5d29aef7ff257d  |
 | Beta 2  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta.ipa) | 4fddad7cca8aa0c0a6579c1d63d00917f15efc86  |
 | Beta 1  | [Link](https://yalu.qwertyoruiop.com/yalu102_alpha.ipa) | 2fe14f1c1e1a0d26203bbb123f6747a978dd2b4f  |
