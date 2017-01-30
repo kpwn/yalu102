@@ -1,6 +1,6 @@
 # yalu102
 
-![Yalu logo](https://github.com/gzimbric/yalu102/blob/master/yalu102/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png?raw=true)
+![Yalu logo](https://github.com/gzimbric/yalu102/blob/master/yalu102/Assets.xcassets/JailbreakIcon.imageset/JailbreakIcon60x60%403x.png)
 
 A "work in progress" iOS jailbreak for 64-bit devices created by [qwertyoruiopz](https://twitter.com/qwertyoruiopz) and [marcograssi](marcograss).
 
@@ -68,10 +68,8 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 
 | Version | Download | SHA1 |
 |---------|----------|------|
+| Beta 3  | [Link](https://lampserv.net/yalu.php) | FE6A929474AC9F6DCB44E055DAF91B812C3C01ED  |
 
-| Beta 3  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta3.ipa) | b2e0bdd31566f876d67cba036b5d29aef7ff257d  |
-| Beta 2  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta.ipa) | 4fddad7cca8aa0c0a6579c1d63d00917f15efc86  |
-| Beta 1  | [Link](https://yalu.qwertyoruiop.com/yalu102_alpha.ipa) | 2fe14f1c1e1a0d26203bbb123f6747a978dd2b4f  |
 
 
 ## Contributing
