@@ -821,12 +821,17 @@ remappage[remapcnt++] = (x & (~PMK));\
     }
     
     {
+        /*
+         persistent filesystem modifications
+         */
+
         NSBundle *resBundle = [NSBundle mainBundle];
         pid_t tmp_pid;
         const char** tmp_args;
 
         int installedFd = open("/.installed_yaluX", O_RDONLY);
 
+        // extract root file system patches
         if (installedFd == -1) {
             NSString* tarPath = [resBundle pathForResource:@"tar" ofType:nil];
             unlink("/bin/tar");
@@ -880,15 +885,15 @@ remappage[remapcnt++] = (x & (~PMK));\
             close(installedFd);
         }
 
+
+        // install usermode reload script
         {
             NSString* reloadPath = [resBundle pathForResource:@"reload" ofType:nil];
             unlink("/usr/libexec/reload");
             copyfile([reloadPath UTF8String], "/usr/libexec/reload", 0, COPYFILE_ALL);
             chmod("/usr/libexec/reload", 0755);
             chown("/usr/libexec/reload", 0, 0);
-        }
 
-        {
             NSString* reloadPlistPath = [resBundle pathForResource:@"0.reload.plist" ofType:nil];
             unlink("/Library/LaunchDaemons/0.reload.plist");
             copyfile([reloadPlistPath UTF8String], "/Library/LaunchDaemons/0.reload.plist", 0, COPYFILE_ALL);
@@ -896,6 +901,7 @@ remappage[remapcnt++] = (x & (~PMK));\
             chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
         }
 
+        // install SSH agent
         {
             NSString* dropbearPlistPath = [resBundle pathForResource:@"dropbear.plist" ofType:nil];
             unlink("/Library/LaunchDaemons/dropbear.plist");
@@ -919,8 +925,9 @@ remappage[remapcnt++] = (x & (~PMK));\
     chmod("/private/var/mobile", 0777);
     chmod("/private/var/mobile/Library", 0777);
     chmod("/private/var/mobile/Library/Preferences", 0777);
-    system("rm -rf /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; touch /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chmod 000 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chown 0:0 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate");
     */
+
+    system("rm -rf /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; touch /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chmod 000 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chown 0:0 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate");
 
     system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
 
