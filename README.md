@@ -1,6 +1,6 @@
 # yalu102
 
-![Yalu logo](https://github.com/gzimbric/yalu102/blob/master/yalu102/Assets.xcassets/JailbreakIcon.imageset/JailbreakIcon60x60%403x.png)
+![Yalu logo](https://github.com/gzimbric/yalu102/blob/master/yalu102/images/yalugithub.png)
 
 A "work in progress" iOS jailbreak for 64-bit devices created by [qwertyoruiopz](https://twitter.com/qwertyoruiopz) and [marcograssi](marcograss).
 
