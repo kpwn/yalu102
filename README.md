@@ -90,3 +90,5 @@ On OS X/Linux:
 
         <iphone Name>:~ root# 
 
+For more details, refer to this link: http://iphonedevwiki.net/index.php/SSH_Over_USB
+
