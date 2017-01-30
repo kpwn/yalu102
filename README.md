@@ -54,7 +54,12 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 3. Open Terminal and use the `cd` command to go to the directory the .archive file is located in
 4. In Terminal, enter `xcodebuild -exportArchive -exportFormat ipa -archivePath <FILE_NAME>.xcarchive -exportPath ~/Desktop/<FILE_NAME>.ipa` replacing `<FILE_NAME>` with the archive name in Finder
 5. Wait for command to complete, the .ipa file should be located on your desktop
- 
+
+## Warnings
+
+This jailbreak is a work in progress. Some things do not work, but most things do.
+Do not install things that are untested. 
+**AppSync and other unsupported and untested software will probably throw your device into a bootloop or do other bad things.** Do not open an issue complaining that your device has been bootlooped because you installed other software. You have been warned.
 
 ## Installing
 
