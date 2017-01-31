@@ -8,13 +8,15 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 
 ## Supported Devices and iOS versions
 
-| Device | Version | 
+| Device | Version |
 |---------|----------|
 | iPhone 5S  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Air| iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 2| iOS 10.0.0 -> iOS 10.2 |
 | iPhone 6  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 3| iOS 10.0.0 -> iOS 10.2 |
+| iPad Air 2| iOS 10.0.0 -> iOS 10.2 |
+| iPad Mini 4 | iOS 10.0.0 -> iOS 10.2 |
 | iPod touch (6G)  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Pro  | iOS 10.0.0 -> iOS 10.2 |
 | iPhone 6S  | iOS 10.0.0 -> iOS 10.2 |
@@ -24,9 +26,8 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 
 In the near future, the jailbreak will support the following device:
 
-| Device | Version | 
+| Device | Version |
 |---------|----------|
-| iPad Air 2| iOS 10.0.0 -> iOS 10.2 |
 | iPhone 7  | iOS 10.0.0 -> iOS 10.1.1 |
 
 
@@ -45,7 +46,7 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 
 This jailbreak is a work in progress. Some things do not work, but most things do.
 
-Do not install things that are untested. 
+Do not install things that are untested.
 
 **AppSync and other unsupported and untested software will probably throw your device into a bootloop or do other bad things.** Do not open an issue complaining that your device has been bootlooped because you installed other software. You have been warned.
 
@@ -57,10 +58,13 @@ Do not install things that are untested.
 * [Check the SHA1 hash](http://onlinemd5.com) of the downloaded file (optional but recommended).
 * Install using [Cydia Impactor](http://www.cydiaimpactor.com/).
 * Open the application and follow instructions.
-    
+
 
 | Version | Download | SHA1 |
 |---------|----------|------|
+| Beta 6  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta6.ipa) | 0130ebe60c97e2013a4b849b7d9bc321d749f304  |
+| Beta 5  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta5.ipa) | f8eb6cd37054a9d25b818e3bddd13bfedbf72df1  |
+| Beta 4  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta4.ipa) | f8270e59d7d7267613ffa63217b91fea425eec36  |
 | Beta 3  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta3.ipa) | b2e0bdd31566f876d67cba036b5d29aef7ff257d  |
 | Beta 2  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta.ipa) | 4fddad7cca8aa0c0a6579c1d63d00917f15efc86  |
 | Beta 1  | [Link](https://yalu.qwertyoruiop.com/yalu102_alpha.ipa) | 2fe14f1c1e1a0d26203bbb123f6747a978dd2b4f  |
