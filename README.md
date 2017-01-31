@@ -61,6 +61,7 @@ Do not install things that are untested.
 
 | Version | Download | SHA1 |
 |---------|----------|------|
+| Beta 7  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta7.ipa) | 4afa99d4b568aa8cbb9ac61fddd584111fed79c5  |
 | Beta 6  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta6.ipa) | 0130ebe60c97e2013a4b849b7d9bc321d749f304  |
 | Beta 5  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta5.ipa) | f8eb6cd37054a9d25b818e3bddd13bfedbf72df1  |
 | Beta 4  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta4.ipa) | f8270e59d7d7267613ffa63217b91fea425eec36  |
