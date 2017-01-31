@@ -245,8 +245,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "DESTPATH=\"$PROJECT_DIR/yalu102/include\"\nMACOSSDK=$PLATFORM_DIR/../MacOSX.platform/Developer/SDKs/MacOSX.sdk\nset -e\n[ ! -e \"$DESTPATH/IOKit\" ] && ln -s \"$MACOSSDK/System/Library/Frameworks/IOKit.framework/Headers\" \"$DESTPATH/IOKit\"\n[ ! -e \"$DESTPATH/libkern\" ] && ln -s \"$MACOSSDK/usr/include/libkern\" \"$DESTPATH/libkern\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "set -x\nset -e\nDESTPATH=\"$PROJECT_DIR/yalu102/include\"\nMACOSSDK=\"$PLATFORM_DIR/../MacOSX.platform/Developer/SDKs/MacOSX.sdk\"\nif [ ! -e \"$DESTPATH/IOKit\" ]; then\n  ln -s \"$MACOSSDK/System/Library/Frameworks/IOKit.framework/Headers\" \"$DESTPATH/IOKit\"\nfi\nif [ ! -e \"$DESTPATH/libkern\" ]; then\n  ln -s \"$MACOSSDK/usr/include/libkern\" \"$DESTPATH/libkern\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
