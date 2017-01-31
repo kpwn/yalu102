@@ -69,8 +69,13 @@ Do not install things that are untested.
 * [Check the SHA1 hash](http://onlinemd5.com) of the downloaded file (optional but recommended).
 * Install using [Cydia Impactor](http://www.cydiaimpactor.com/).
 * Open the application and follow instructions.
-    
 
+## Yalu Releases from [gzimbric](https://github.com/gzimbric)
+| Version | Download | SHA1 |
+|---------|----------|------|
+| Beta 7 | [Link](https://lampserv.net/yalu.php) | 77057857E3AF6D3A920656432EC63299F0BC727A |
+
+## Offical Yalu Releases
 | Version | Download | SHA1 |
 |---------|----------|------|
 | Beta 7  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta7.ipa) | 4afa99d4b568aa8cbb9ac61fddd584111fed79c5  |
