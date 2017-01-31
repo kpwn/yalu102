@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A70DFAA51E3E2D5C00769FE9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70DFAA41E3E2D5C00769FE9 /* IOKit.framework */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
 		EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BA61E398E33009CA025 /* 0.reload.plist */; };
 		EA1A3BAD1E399006009CA025 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BAC1E399006009CA025 /* reload */; };
@@ -23,7 +24,6 @@
 		EA99010E1E21A1560056FEBD /* jailbreak.m in Sources */ = {isa = PBXBuildFile; fileRef = EA99010D1E21A1560056FEBD /* jailbreak.m */; };
 		EA9901141E21A1B00056FEBD /* iokitmig64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9901131E21A1B00056FEBD /* iokitmig64.o */; };
 		EA9901171E21A1D90056FEBD /* devicesupport.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9901161E21A1D90056FEBD /* devicesupport.m */; };
-		EA9901191E21A2180056FEBD /* IOKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9901181E21A2180056FEBD /* IOKit.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A70DFAA41E3E2D5C00769FE9 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA01E398E28009CA025 /* mach_portal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mach_portal.xcodeproj; path = "../../Downloads/mach_portal_redist-1/mach_portal/mach_portal.xcodeproj"; sourceTree = "<group>"; };
@@ -62,7 +63,6 @@
 		EA9901131E21A1B00056FEBD /* iokitmig64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = iokitmig64.o; sourceTree = "<group>"; };
 		EA9901151E21A1D90056FEBD /* devicesupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = devicesupport.h; sourceTree = "<group>"; };
 		EA9901161E21A1D90056FEBD /* devicesupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = devicesupport.m; sourceTree = "<group>"; };
-		EA9901181E21A2180056FEBD /* IOKit.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = IOKit.tbd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 			files = (
 				EA9901141E21A1B00056FEBD /* iokitmig64.o in Frameworks */,
 				EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */,
-				EA9901191E21A2180056FEBD /* IOKit.tbd in Frameworks */,
+				A70DFAA51E3E2D5C00769FE9 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +127,7 @@
 				EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */,
 				EA99010F1E21A1A00056FEBD /* pte_stuff.h */,
 				EA1A3BC41E39D1FF009CA025 /* Assets.xcassets */,
-				EA9901181E21A2180056FEBD /* IOKit.tbd */,
+				A70DFAA41E3E2D5C00769FE9 /* IOKit.framework */,
 				EA9901151E21A1D90056FEBD /* devicesupport.h */,
 				EA9901161E21A1D90056FEBD /* devicesupport.m */,
 				EA9900E61E1E9F060056FEBD /* Supporting Files */,
