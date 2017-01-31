@@ -24,6 +24,7 @@
 		EA9901141E21A1B00056FEBD /* iokitmig64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9901131E21A1B00056FEBD /* iokitmig64.o */; };
 		EA9901171E21A1D90056FEBD /* devicesupport.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9901161E21A1D90056FEBD /* devicesupport.m */; };
 		EA9901191E21A2180056FEBD /* IOKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9901181E21A2180056FEBD /* IOKit.tbd */; };
+		EAA7F7C71E3EE4AF00BE3C64 /* dropbear.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAA7F7C61E3EE4AF00BE3C64 /* dropbear.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		EA9901151E21A1D90056FEBD /* devicesupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = devicesupport.h; sourceTree = "<group>"; };
 		EA9901161E21A1D90056FEBD /* devicesupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = devicesupport.m; sourceTree = "<group>"; };
 		EA9901181E21A2180056FEBD /* IOKit.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = IOKit.tbd; sourceTree = "<group>"; };
+		EAA7F7C61E3EE4AF00BE3C64 /* dropbear.plist */ = {isa = PBXFileReference; explicitFileType = file.bplist; path = dropbear.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		EA9900E51E1E9F060056FEBD /* yalu102 */ = {
 			isa = PBXGroup;
 			children = (
+				EAA7F7C61E3EE4AF00BE3C64 /* dropbear.plist */,
 				EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */,
 				EA9901021E219C210056FEBD /* offsets.c */,
 				EA9901031E219C210056FEBD /* offsets.h */,
@@ -186,6 +189,7 @@
 				EA99010C1E21A0520056FEBD /* launchctl in Resources */,
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
+				EAA7F7C71E3EE4AF00BE3C64 /* dropbear.plist in Resources */,
 				EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */,
 				EA1A3BAD1E399006009CA025 /* reload in Resources */,
 				EA1A3BC51E39D1FF009CA025 /* Assets.xcassets in Resources */,
