@@ -100,14 +100,19 @@ typedef struct {
             }
         }];
         
-        maxTracks = [tracks count] - 1;
-        trackIndex = arc4random_uniform(maxTracks + 1);
+        if (![tracks count]) {
+            NSLog(@"[Warning]: The \'tracks\' directory is present, but no tracks inside.");
+            [trackLabel setText:@"~"];
+        } else {
+            maxTracks = [tracks count] - 1;
+            trackIndex = arc4random_uniform(maxTracks + 1);
         
-        [self advanceTrack];
+            [self advanceTrack];
         
-        trackLabel.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
-        [trackLabel addGestureRecognizer:tapGesture];
+            trackLabel.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
+            [trackLabel addGestureRecognizer:tapGesture];
+        }
     } else {
         NSLog(@"[Warning]: No \'tracks\' folder present in bundle, so no tracks will play. If you want to play tracks, simply add a folder called \'tracks\' containing .mp3 files, inside your bundle.");
         
