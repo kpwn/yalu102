@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <CommonCrypto/CommonDigest.h>
 
 #include <stdlib.h>
 #include <string.h>

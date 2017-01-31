@@ -11,6 +11,10 @@
 #import <mach-o/loader.h>
 #import <sys/mman.h>
 #import <pthread.h>
+
+#include <sys/stat.h>
+#include <sys/mman.h>
+
 #undef __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <mach/mach.h>
 #include <sys/utsname.h>
@@ -23,6 +27,40 @@ typedef struct {
     mach_msg_ool_ports_descriptor_t desc[256];
     char pad[4096];
 } sprz;
+
+typedef struct file_map {
+    void            *map_data;
+    mach_vm_size_t   map_size;
+    uint32_t        unique_id;
+} file_map_t;
+
+file_map_t *map_file_with_path(const char *path, int mode)
+{
+    if (!path)  return NULL;
+    if (access(path, R_OK) == -1)   return NULL;
+    
+    int32_t fd = open(path, mode);
+    if (fd < 0) {
+        return NULL;
+    }
+    
+    struct stat st;
+    if(fstat(fd, &st) != 0)
+        goto fail;
+    
+    file_map_t *map = (file_map_t *)malloc(sizeof(file_map_t));
+    if((map->map_data = mmap(NULL, (uint32_t)st.st_size, PROT_READ|PROT_WRITE, (mode == O_RDONLY) ? MAP_PRIVATE : MAP_SHARED, fd, 0)) == MAP_FAILED)
+        goto fail;
+    map->map_size = (mach_vm_size_t)st.st_size;
+    map->unique_id = (uint32_t)(((uint64_t)map << 32) >> 32);
+    
+    return map;
+    
+fail:
+    close(fd);
+    
+    return NULL;
+}
 
 @interface ViewController ()
 
@@ -85,6 +123,7 @@ typedef struct {
         [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
     }
     
+#if 1   /* track player */
     NSString *bundlePath = [[NSBundle mainBundle] resourcePath];
     NSString *tracksPath = [bundlePath stringByAppendingPathComponent:@"tracks"];
     
@@ -104,6 +143,59 @@ typedef struct {
             NSLog(@"[Warning]: The \'tracks\' directory is present, but no tracks inside.");
             [trackLabel setText:@"~"];
         } else {
+            
+            /* 
+                hash checksum for track files.
+                
+                seems quick enough, but boring to add new tracks.
+                best way would be to ship tracks folder as a zip file,
+                checking sum for that, if it matches unzip it and go on.
+                
+                since i don't want to add too much code to yalu, i went with
+                this instead.
+             */
+            
+            #define TRACK_COUNT 3
+            static const char *track_checksums[TRACK_COUNT] = {
+                "fbc04d4ca819535e3377ffca65c16ff2899bb17c",     /* kjc 1 */
+                "2ed60a2638d5d6d224aecd7cded52d4e59fca86b",     /* kjc 2 */
+                "9e13620ffbe5b33a23a64ffbb4846a4089604961"      /* kjc 3 */
+            };
+            
+            if ([tracks count] > TRACK_COUNT) {
+                NSLog(@"[Error]: Expected %d mp3 files, found %d. Aborting.", TRACK_COUNT, [tracks count]);
+                exit(1);
+            } else if ([tracks count] < TRACK_COUNT) {
+                NSLog(@"[Error]: Expected %d mp3 files, found %d. Aborting.", TRACK_COUNT, [tracks count]);
+                exit(1);
+            }
+                
+            
+            for (uint32_t i = 0; i < [tracks count]; i++) { /* we ignore non-mp3 files */
+                file_map_t *map = map_file_with_path([tracks[i] UTF8String], O_RDONLY);
+                if (map) {
+                    uint8_t digest[CC_SHA1_DIGEST_LENGTH] = {0};
+                    CC_SHA1(map->map_data, (size_t)map->map_size, digest);
+                    
+                    NSMutableString *output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
+                    for (int k = 0; k < CC_SHA1_DIGEST_LENGTH; k++)
+                        [output appendFormat:@"%02x", digest[k]];
+                    
+                    for (uint32_t j = 0; j < TRACK_COUNT; j++)
+                        if (strcmp([output UTF8String], track_checksums[j]) == 0)
+                            goto ok;
+                    
+                    NSLog(@"[Error]: Checksum %@ for file \'%s\' is invalid! Aborting.", output, (strrchr([tracks[i] UTF8String], '/') + 1));
+                    exit(2);
+                    
+                ok:;
+                    NSLog(@"Checksum %@ for file \'%s\' validated!", output, (strrchr([tracks[i] UTF8String], '/') + 1));
+                    
+                    munmap(map->map_data, (vm_size_t)map->map_size);
+                    free(map);
+                }
+            }
+            
             maxTracks = [tracks count] - 1;
             trackIndex = arc4random_uniform(maxTracks + 1);
         
@@ -118,6 +210,9 @@ typedef struct {
         
         [trackLabel setText:@"~"];
     }
+#else
+    [trackLabel setText:@"~"];
+#endif
     
     // Do any additional setup after loading the view, typically from a nib.
 }
