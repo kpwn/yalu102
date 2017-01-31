@@ -3,9 +3,11 @@ ls /etc/rc.d | while read a; do /etc/rc.d/$a; done
 sleep 1
 launchctl unload $(ls /System/Library/LaunchDaemons/ | grep -v logd | grep -v ReportCrash | while read a; do printf /System/Library/LaunchDaemons/$a\ ; done)
 launchctl unload /System/Library/NanoLaunchDaemons
+launchctl unload /System/Library/LaunchDaemons/com.apple.MobileInternetSharing.plist
 sleep 1
 launchctl load /Library/LaunchDaemons
 launchctl load /System/Library/LaunchDaemons
 launchctl load /System/Library/NanoLaunchDaemons
+launchctl load /System/Library/LaunchDaemons/com.apple.MobileInternetSharing.plist
 
 exit 0
