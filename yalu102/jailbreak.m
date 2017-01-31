@@ -199,7 +199,8 @@ void jailbreak(void) {
                 kerndumpbase = seg->vmaddr;
             }
             kerndumpsize += seg->vmsize;
-        } else if (load_cmd->cmd == LC_UNIXTHREAD) {
+        }
+        else if (load_cmd->cmd == LC_UNIXTHREAD) {
             struct {
                 unsigned long cmd;          /* LC_THREAD or LC_UNIXTHREAD */
                 unsigned long cmdsize;      /* total size of this command */
@@ -539,8 +540,8 @@ remappage[remapcnt++] = (x & (~PMK));\
     {
         uint64_t endf = prelink_base+prelink_size;
         uint64_t ends = whole_size - (endf - whole_base);
-        uint32_t* opps_stream = whole_dump + endf - whole_base;
-        uint64_t* ptr_stream = whole_dump + endf - whole_base;
+        uint32_t* opps_stream = (uint32_t*)(whole_dump + endf - whole_base);
+        uint64_t* ptr_stream = (uint64_t*)(whole_dump + endf - whole_base);
 
         uint64_t lastk = 0;
         int streak = 0;
@@ -567,11 +568,11 @@ remappage[remapcnt++] = (x & (~PMK));\
         }
         
         if (streak == 9) {
-            char* sbstr = whole_dump + lastk + endf - whole_base - 8;
+            uint8_t* sbstr = whole_dump + lastk + endf - whole_base - 8;
             
             uint64_t extract_attr_recipe = *(uint64_t*)(sbstr + 72 * 0x20 + 8 /*fptr*/);
             
-            uint32_t* opcode_stream = extract_attr_recipe - whole_base + whole_dump;
+            uint32_t* opcode_stream = (uint32_t*)(extract_attr_recipe - whole_base + whole_dump);
             
             int l = 0;
             while (1) {
@@ -611,7 +612,7 @@ remappage[remapcnt++] = (x & (~PMK));\
             
             uint64_t tfp = *(uint64_t*)(sbstr + 45 * 0x20 + 8 /*fptr*/);
             
-            opcode_stream = tfp - whole_base + whole_dump;
+            opcode_stream = (uint32_t*)(tfp - whole_base + whole_dump);
             
             int cbz = 0;
             while (1) {
@@ -627,10 +628,11 @@ remappage[remapcnt++] = (x & (~PMK));\
     }
 
 
-    /*
-     nonceenabler
-     */
     {
+        /*
+         nonceenabler
+         */
+
         uint64_t endf = prelink_base+prelink_size;
         uint64_t ends = whole_size - (endf - whole_base);
         char* sbstr = memmem(whole_dump + endf - whole_base, ends, "com.apple.System.boot-nonce", strlen("com.apple.System.boot-nonce"));
