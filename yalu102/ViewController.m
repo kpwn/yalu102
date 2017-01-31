@@ -30,18 +30,90 @@ typedef struct {
 
 @implementation ViewController
 
+- (void)advanceTrack {
+    audioPlayer = [[AVPlayer alloc] initWithURL:[NSURL fileURLWithPath:tracks[trackIndex]]];
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive: YES error: nil];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    
+    audioPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEnd:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:[audioPlayer currentItem]];
+    
+    char *track_name_ext = strrchr([tracks[trackIndex] UTF8String], '/') + 1;
+    char *extension = strstr(track_name_ext, ".mp3");
+    
+    char track_name[256] = {0};
+    strncpy((char *)&track_name, track_name_ext, (size_t)(extension - track_name_ext));
+    
+    [trackLabel setText:[NSString stringWithUTF8String:track_name]];
+    
+    [audioPlayer play];
+}
+
+- (void)playerItemDidReachEnd:(NSNotification *)notification
+{
+    if (trackIndex >= maxTracks)
+        trackIndex = 0;
+    else
+        trackIndex++;
+    
+    [audioPlayer release];
+    
+    [self advanceTrack];
+}
+
+- (void)labelTap {
+    [self playerItemDidReachEnd:nil];
+}
+
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     init_offsets();
+    
     struct utsname u = { 0 };
     uname(&u);
     
-
     if (strstr(u.version, "MarijuanARM")) {
         [dope setEnabled:NO];
         [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
     }
-
+    
+    NSString *bundlePath = [[NSBundle mainBundle] resourcePath];
+    NSString *tracksPath = [bundlePath stringByAppendingPathComponent:@"tracks"];
+    
+    if (access([tracksPath UTF8String], R_OK) != -1) {
+        NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:tracksPath error:NULL];
+        
+        tracks = [[NSMutableArray alloc] init];
+        [dirs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSString *filename = (NSString *)obj;
+            NSString *extension = [[filename pathExtension] lowercaseString];
+            if ([extension isEqualToString:@"mp3"]) {
+                [tracks addObject:[tracksPath stringByAppendingPathComponent:filename]];
+            }
+        }];
+        
+        maxTracks = [tracks count] - 1;
+        trackIndex = arc4random_uniform(maxTracks + 1);
+        
+        [self advanceTrack];
+        
+        trackLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTap)];
+        [trackLabel addGestureRecognizer:tapGesture];
+    } else {
+        NSLog(@"[Warning]: No \'tracks\' folder present in bundle, so no tracks will play. If you want to play tracks, simply add a folder called \'tracks\' containing .mp3 files, inside your bundle.");
+        
+        [trackLabel setText:@"~"];
+    }
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -384,4 +456,8 @@ gotclock:;
 }
 
 
+- (void)dealloc {
+    [trackLabel release];
+    [super dealloc];
+}
 @end

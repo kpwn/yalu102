@@ -7,10 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+
+#include <stdlib.h>
+#include <string.h>
 
 @interface ViewController : UIViewController
 {
     IBOutlet UIButton* dope;
+    IBOutlet UILabel *trackLabel;
+    
+    AVPlayer *audioPlayer;
+    
+    NSMutableArray *tracks;
+    NSInteger trackIndex;
+    NSInteger maxTracks;
 }
 - (IBAction)yolo:(id)sender;
 
