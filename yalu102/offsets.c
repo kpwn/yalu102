@@ -57,6 +57,7 @@ void init_offsets() {
 
     s += ver_prefix_len;
 
+    /*** Darwin Kernel Version 16.3.0 **/
     if (strcmp(s, "Tue Nov 29 21:40:09 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_T7001") == 0) {
         allproc_offset = 0x5b8528;
         rootvnode_offset = 0x5be0b8;
@@ -85,6 +86,7 @@ void init_offsets() {
         allproc_offset = 0x5b8468;
         rootvnode_offset = 0x5be0b8;
     }//apple tv 4
+    /*** Darwin Kernel Version 16.1.0 ***/
     else if (strcmp(s, "Thu Sep 29 22:13:19 PDT 2016; root:xnu-3789.23.3~2/RELEASE_ARM64_T7000") == 0) {
         allproc_offset = 0x5b4168;
         rootvnode_offset = 0x5ba0b8;
@@ -109,6 +111,7 @@ void init_offsets() {
         allproc_offset = 0x5a4128;
         rootvnode_offset = 0x5aa0b8;
     }
+    /*** Darwin Kernel Version 16.1.0 ***/
     else if (strcmp(s, "Sun Aug 28 20:36:54 PDT 2016; root:xnu-3789.2.4~3/RELEASE_ARM64_T8010") == 0) {
         allproc_offset = 0x5ec178;
         rootvnode_offset = 0x5f20b8;
