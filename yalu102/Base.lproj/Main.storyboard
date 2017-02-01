@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dw0-9I-nv5">
-                                <rect key="frame" x="165" y="305" width="44" height="58"/>
+                                <rect key="frame" x="138" y="255" width="44" height="58"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <state key="normal" title="go"/>
                                 <connections>
@@ -31,30 +31,67 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yalu by qwertyoruiopz &amp; marcograssi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOx-xh-mld">
-                                <rect key="frame" x="46" y="30" width="283" height="21"/>
+                                <rect key="frame" x="19" y="30" width="283" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for all iOS 10 up to 10.2 pre-i7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBH-un-0mh">
-                                <rect key="frame" x="74.5" y="616" width="226" height="21"/>
+                                <rect key="frame" x="47" y="517" width="226" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6se-5j-7QX">
+                                <rect key="frame" x="10" y="343" width="300" height="128"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2jh-6j-hDi">
+                                        <rect key="frame" x="15" y="49" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable SSH remote access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hE-xp-UuD">
+                                        <rect key="frame" x="74" y="38.5" width="211" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do not enable. Change the mobile and root passwords if you do." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUp-M2-9fd">
+                                        <rect key="frame" x="74" y="59.5" width="211" height="30.5"/>
+                                        <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="2hE-xp-UuD" firstAttribute="leading" secondItem="2jh-6j-hDi" secondAttribute="trailing" constant="10" id="1ss-g7-I14"/>
+                                    <constraint firstItem="2jh-6j-hDi" firstAttribute="leading" secondItem="6se-5j-7QX" secondAttribute="leading" constant="15" id="21w-H7-zs5"/>
+                                    <constraint firstItem="wUp-M2-9fd" firstAttribute="leading" secondItem="2jh-6j-hDi" secondAttribute="trailing" constant="10" id="73J-Wu-S2q"/>
+                                    <constraint firstAttribute="width" constant="300" id="9vV-As-xXH"/>
+                                    <constraint firstItem="2jh-6j-hDi" firstAttribute="centerY" secondItem="6se-5j-7QX" secondAttribute="centerY" id="Vmm-yz-2M8"/>
+                                    <constraint firstItem="wUp-M2-9fd" firstAttribute="top" secondItem="2hE-xp-UuD" secondAttribute="bottom" id="afp-kc-kbC"/>
+                                    <constraint firstAttribute="trailing" secondItem="wUp-M2-9fd" secondAttribute="trailing" constant="15" id="dfk-KE-aYf"/>
+                                    <constraint firstAttribute="height" constant="128" id="sgW-ZK-PKD"/>
+                                    <constraint firstAttribute="trailing" secondItem="2hE-xp-UuD" secondAttribute="trailing" constant="15" id="xUi-sP-2ke"/>
+                                    <constraint firstItem="2hE-xp-UuD" firstAttribute="centerY" secondItem="6se-5j-7QX" secondAttribute="centerY" constant="-15" id="xeC-Ft-2wV"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6se-5j-7QX" firstAttribute="top" secondItem="dw0-9I-nv5" secondAttribute="bottom" constant="30" id="1jM-gZ-Cxf"/>
                             <constraint firstItem="gOx-xh-mld" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="30" id="Lak-A4-fwI"/>
                             <constraint firstItem="dw0-9I-nv5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VK2-I1-MuP"/>
                             <constraint firstItem="dw0-9I-nv5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Vix-Ed-EfU"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SBH-un-0mh" secondAttribute="bottom" constant="30" id="WX7-VB-beg"/>
                             <constraint firstItem="gOx-xh-mld" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="go3-GK-gg8"/>
                             <constraint firstItem="SBH-un-0mh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="llZ-Oo-VUY"/>
+                            <constraint firstItem="6se-5j-7QX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xvp-m8-j5K"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dope" destination="dw0-9I-nv5" id="h3W-Lb-cpp"/>
+                        <outlet property="dope" destination="dw0-9I-nv5" id="J9j-Nb-BJJ"/>
+                        <outlet property="sshSwitch" destination="2jh-6j-hDi" id="chC-op-NAl"/>
+                        <outlet property="sshView" destination="6se-5j-7QX" id="e6b-4q-m9p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

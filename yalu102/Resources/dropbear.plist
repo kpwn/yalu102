@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>ShaiHulud</string>
+	<string>dropbear</string>
 	<key>Program</key>
 	<string>/usr/local/bin/dropbear</string>
 	<key>ProgramArguments</key>
