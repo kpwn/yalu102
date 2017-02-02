@@ -15,7 +15,9 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 | iPhone SE  | iOS 10.0.0 -> iOS 10.2 |
 | iPhone 5S  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Air| iOS 10.0.0 -> iOS 10.2 |
+| iPad Air 2| iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 2| iOS 10.0.0 -> iOS 10.2 |
+| iPad Mini 4 | iOS 10.0.0 -> iOS 10.2 |
 | iPhone 6  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 3| iOS 10.0.0 -> iOS 10.2 |
 | iPad Air 2| iOS 10.0.0 -> iOS 10.2 |
