@@ -693,15 +693,15 @@ remappage[remapcnt++] = (x & (~PMK));\
          amfi
          */
         
-        uint64_t sbops = amfiops;
-        uint64_t sbops_end = sbops + sizeof(struct mac_policy_ops);
+        // already found amfiops above
+        uint64_t amfiops_end = amfiops + sizeof(struct mac_policy_ops) + PMK;
         
-        uint64_t nopag = sbops_end - sbops;
+        uint64_t nopag = (amfiops_end - amfiops)/(PSZ);
         
         for (int i = 0; i < nopag; i+= PSZ) {
-            RemapPage(((sbops + i) & (~PMK)));
+            RemapPage(((amfiops + i*(PSZ)) & (~PMK)));
         }
-        WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_file_check_mmap)), 0);
+        WriteAnywhere64(NewPointer(amfiops+offsetof(struct mac_policy_ops, mpo_file_check_mmap)), 0);
     }
     
     
@@ -755,7 +755,6 @@ remappage[remapcnt++] = (x & (~PMK));\
         
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_file_check_mmap)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_rename)), 0);
-        WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_rename)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_access)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_chroot)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_create)), 0);
@@ -774,7 +773,6 @@ remappage[remapcnt++] = (x & (~PMK));\
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_setflags)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_setmode)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_setowner)), 0);
-        WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_setutimes)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_setutimes)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_stat)), 0);
         WriteAnywhere64(NewPointer(sbops+offsetof(struct mac_policy_ops, mpo_vnode_check_truncate)), 0);
