@@ -12,7 +12,7 @@
 		<string>-F</string>
 		<string>-R</string>
 		<string>-p</string>
-		<string>127.0.0.1:2222</string>
+		<string>127.0.0.1:51022</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
