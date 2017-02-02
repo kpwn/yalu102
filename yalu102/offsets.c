@@ -38,9 +38,11 @@ void init_offsets() {
         allproc_offset = 0x5b8528;
         rootvnode_offset = 0x5be0b8;
     }
+    //ipod touch 7,1 code 
     else if (strcmp(u.version, "Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:08 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_T7000") == 0) {
         allproc_offset = 0x5b8468;
         rootvnode_offset = 0x5be0b8;
+        kernproc_offset = 0x5be0e0;// @iKilledAppl3 added this because it seemed to work for him.
     }
     else if (strcmp(u.version, "Darwin Kernel Version 16.3.0: Tue Nov 29 21:40:09 PST 2016; root:xnu-3789.32.1~4/RELEASE_ARM64_S8000") == 0) {
         allproc_offset = 0x5a8438;
@@ -109,7 +111,9 @@ void init_offsets() {
     else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Fri Aug  5 22:15:30 PDT 2016; root:xnu-3789.1.24~11/RELEASE_ARM64_S5L8960X") == 0) {
         allproc_offset = 0x5a4128;
         rootvnode_offset = 0x5aa0b8;
-    }//some beta ios
+    }
+
+    //some beta ios
     else {
         printf("missing offset, prob crashing\n");
     }
