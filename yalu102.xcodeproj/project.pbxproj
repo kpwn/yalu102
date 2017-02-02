@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A70DFAA11E3D35AC00769FE9 /* Kernels.plist in Resources */ = {isa = PBXBuildFile; fileRef = A70DFAA01E3D35AC00769FE9 /* Kernels.plist */; };
+		A70DFAAB1E3E35C200769FE9 /* YAKernelOffsets.m in Sources */ = {isa = PBXBuildFile; fileRef = A70DFAAA1E3E35C200769FE9 /* YAKernelOffsets.m */; };
+		A70DFAAF1E3E3B8900769FE9 /* YAExploitTFP0.m in Sources */ = {isa = PBXBuildFile; fileRef = A70DFAAE1E3E3B8900769FE9 /* YAExploitTFP0.m */; };
+		A72023721E3CFC2B00FADBFF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72023711E3CFBCA00FADBFF /* IOKit.framework */; };
+		A74FB7BC1E3F4DE4004651CA /* dropbear.plist in Resources */ = {isa = PBXBuildFile; fileRef = A74FB7BB1E3F4DE4004651CA /* dropbear.plist */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
 		EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BA61E398E33009CA025 /* 0.reload.plist */; };
 		EA1A3BAD1E399006009CA025 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BAC1E399006009CA025 /* reload */; };
@@ -16,17 +21,27 @@
 		EA9900EE1E1E9F060056FEBD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9900ED1E1E9F060056FEBD /* ViewController.m */; };
 		EA9900F11E1E9F060056FEBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA9900EF1E1E9F060056FEBD /* Main.storyboard */; };
 		EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA9900F41E1E9F060056FEBD /* LaunchScreen.storyboard */; };
-		EA9901041E219C210056FEBD /* offsets.c in Sources */ = {isa = PBXBuildFile; fileRef = EA9901021E219C210056FEBD /* offsets.c */; };
 		EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */ = {isa = PBXBuildFile; fileRef = EA9901051E219FF10056FEBD /* bootstrap.tar */; };
 		EA99010A1E21A04C0056FEBD /* tar in Resources */ = {isa = PBXBuildFile; fileRef = EA9901091E21A04C0056FEBD /* tar */; };
 		EA99010C1E21A0520056FEBD /* launchctl in Resources */ = {isa = PBXBuildFile; fileRef = EA99010B1E21A0520056FEBD /* launchctl */; };
 		EA99010E1E21A1560056FEBD /* jailbreak.m in Sources */ = {isa = PBXBuildFile; fileRef = EA99010D1E21A1560056FEBD /* jailbreak.m */; };
-		EA9901141E21A1B00056FEBD /* iokitmig64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9901131E21A1B00056FEBD /* iokitmig64.o */; };
-		EA9901171E21A1D90056FEBD /* devicesupport.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9901161E21A1D90056FEBD /* devicesupport.m */; };
-		EA9901191E21A2180056FEBD /* IOKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9901181E21A2180056FEBD /* IOKit.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A70DFA9C1E3D314F00769FE9 /* jailbreak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jailbreak.h; sourceTree = "<group>"; };
+		A70DFA9D1E3D332500769FE9 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		A70DFA9F1E3D338B00769FE9 /* mac_policy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_policy.h; sourceTree = "<group>"; };
+		A70DFAA01E3D35AC00769FE9 /* Kernels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Kernels.plist; sourceTree = "<group>"; };
+		A70DFAA21E3D8FAF00769FE9 /* csflags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = csflags.h; sourceTree = "<group>"; };
+		A70DFAA91E3E35C200769FE9 /* YAKernelOffsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAKernelOffsets.h; sourceTree = "<group>"; };
+		A70DFAAA1E3E35C200769FE9 /* YAKernelOffsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAKernelOffsets.m; sourceTree = "<group>"; };
+		A70DFAAC1E3E389100769FE9 /* mach_vm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mach_vm.h; sourceTree = "<group>"; };
+		A70DFAAD1E3E3B8900769FE9 /* YAExploitTFP0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAExploitTFP0.h; sourceTree = "<group>"; };
+		A70DFAAE1E3E3B8900769FE9 /* YAExploitTFP0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAExploitTFP0.m; sourceTree = "<group>"; };
+		A72023711E3CFBCA00FADBFF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		A72023751E3CFE2E00FADBFF /* yalu102.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = yalu102.xcconfig; sourceTree = "<group>"; };
+		A74FB7BB1E3F4DE4004651CA /* dropbear.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dropbear.plist; sourceTree = "<group>"; };
+		A766FD8B1E3E499A002A75CE /* pte_stuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pte_stuff.h; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA61E398E33009CA025 /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
@@ -41,17 +56,10 @@
 		EA9900F01E1E9F060056FEBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA9900F51E1E9F060056FEBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA9900F71E1E9F060056FEBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA9901021E219C210056FEBD /* offsets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = offsets.c; sourceTree = "<group>"; };
-		EA9901031E219C210056FEBD /* offsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = offsets.h; sourceTree = "<group>"; };
 		EA9901051E219FF10056FEBD /* bootstrap.tar */ = {isa = PBXFileReference; lastKnownFileType = archive.tar; path = bootstrap.tar; sourceTree = "<group>"; };
 		EA9901091E21A04C0056FEBD /* tar */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = tar; sourceTree = "<group>"; };
 		EA99010B1E21A0520056FEBD /* launchctl */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = launchctl; sourceTree = "<group>"; };
 		EA99010D1E21A1560056FEBD /* jailbreak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jailbreak.m; sourceTree = "<group>"; };
-		EA99010F1E21A1A00056FEBD /* pte_stuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pte_stuff.h; sourceTree = "<group>"; };
-		EA9901131E21A1B00056FEBD /* iokitmig64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = iokitmig64.o; sourceTree = "<group>"; };
-		EA9901151E21A1D90056FEBD /* devicesupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = devicesupport.h; sourceTree = "<group>"; };
-		EA9901161E21A1D90056FEBD /* devicesupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = devicesupport.m; sourceTree = "<group>"; };
-		EA9901181E21A2180056FEBD /* IOKit.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = IOKit.tbd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,19 +67,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA9901141E21A1B00056FEBD /* iokitmig64.o in Frameworks */,
 				EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */,
-				EA9901191E21A2180056FEBD /* IOKit.tbd in Frameworks */,
+				A72023721E3CFC2B00FADBFF /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A720236F1E3CFB3500FADBFF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EA1A3BA61E398E33009CA025 /* 0.reload.plist */,
+				EA9901051E219FF10056FEBD /* bootstrap.tar */,
+				A74FB7BB1E3F4DE4004651CA /* dropbear.plist */,
+				EA99010B1E21A0520056FEBD /* launchctl */,
+				EA1A3BAC1E399006009CA025 /* reload */,
+				EA9901091E21A04C0056FEBD /* tar */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A72023701E3CFBB900FADBFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A72023711E3CFBCA00FADBFF /* IOKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EA9900DA1E1E9F060056FEBD = {
 			isa = PBXGroup;
 			children = (
+				A72023751E3CFE2E00FADBFF /* yalu102.xcconfig */,
 				EA9900E51E1E9F060056FEBD /* yalu102 */,
+				A72023701E3CFBB900FADBFF /* Frameworks */,
 				EA9900E41E1E9F060056FEBD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,30 +117,30 @@
 		EA9900E51E1E9F060056FEBD /* yalu102 */ = {
 			isa = PBXGroup;
 			children = (
-				EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */,
-				EA9901021E219C210056FEBD /* offsets.c */,
-				EA9901031E219C210056FEBD /* offsets.h */,
-				EA99010D1E21A1560056FEBD /* jailbreak.m */,
+				A70DFA9D1E3D332500769FE9 /* include */,
+				EA1A3BC41E39D1FF009CA025 /* Assets.xcassets */,
+				A720236F1E3CFB3500FADBFF /* Resources */,
+				EA9900E61E1E9F060056FEBD /* Supporting Files */,
+				EA9900F41E1E9F060056FEBD /* LaunchScreen.storyboard */,
+				EA9900EF1E1E9F060056FEBD /* Main.storyboard */,
 				EA9900E91E1E9F060056FEBD /* AppDelegate.h */,
-				EA1A3BA61E398E33009CA025 /* 0.reload.plist */,
-				EA1A3BAC1E399006009CA025 /* reload */,
 				EA9900EA1E1E9F060056FEBD /* AppDelegate.m */,
+				A70DFAA21E3D8FAF00769FE9 /* csflags.h */,
+				EA9900F71E1E9F060056FEBD /* Info.plist */,
+				A70DFAA01E3D35AC00769FE9 /* Kernels.plist */,
+				A70DFA9F1E3D338B00769FE9 /* mac_policy.h */,
+				A70DFAAC1E3E389100769FE9 /* mach_vm.h */,
+				EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */,
+				EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */,
+				A766FD8B1E3E499A002A75CE /* pte_stuff.h */,
 				EA9900EC1E1E9F060056FEBD /* ViewController.h */,
 				EA9900ED1E1E9F060056FEBD /* ViewController.m */,
-				EA9900EF1E1E9F060056FEBD /* Main.storyboard */,
-				EA9900F41E1E9F060056FEBD /* LaunchScreen.storyboard */,
-				EA9900F71E1E9F060056FEBD /* Info.plist */,
-				EA9901051E219FF10056FEBD /* bootstrap.tar */,
-				EA9901091E21A04C0056FEBD /* tar */,
-				EA99010B1E21A0520056FEBD /* launchctl */,
-				EA9901131E21A1B00056FEBD /* iokitmig64.o */,
-				EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */,
-				EA99010F1E21A1A00056FEBD /* pte_stuff.h */,
-				EA1A3BC41E39D1FF009CA025 /* Assets.xcassets */,
-				EA9901181E21A2180056FEBD /* IOKit.tbd */,
-				EA9901151E21A1D90056FEBD /* devicesupport.h */,
-				EA9901161E21A1D90056FEBD /* devicesupport.m */,
-				EA9900E61E1E9F060056FEBD /* Supporting Files */,
+				A70DFA9C1E3D314F00769FE9 /* jailbreak.h */,
+				EA99010D1E21A1560056FEBD /* jailbreak.m */,
+				A70DFAAD1E3E3B8900769FE9 /* YAExploitTFP0.h */,
+				A70DFAAE1E3E3B8900769FE9 /* YAExploitTFP0.m */,
+				A70DFAA91E3E35C200769FE9 /* YAKernelOffsets.h */,
+				A70DFAAA1E3E35C200769FE9 /* YAKernelOffsets.m */,
 			);
 			path = yalu102;
 			sourceTree = "<group>";
@@ -130,6 +160,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA9900FA1E1E9F060056FEBD /* Build configuration list for PBXNativeTarget "yalu102" */;
 			buildPhases = (
+				A72976DF1E3CD3E10011A922 /* Create IOKit symlink */,
 				EA9900DF1E1E9F060056FEBD /* Sources */,
 				EA9900E01E1E9F060056FEBD /* Frameworks */,
 				EA9900E11E1E9F060056FEBD /* Resources */,
@@ -154,7 +185,7 @@
 				TargetAttributes = {
 					EA9900E21E1E9F060056FEBD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = CGTX3WH3ZS;
+						DevelopmentTeam = N3S4C3QL65;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -187,7 +218,9 @@
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
 				EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */,
+				A70DFAA11E3D35AC00769FE9 /* Kernels.plist in Resources */,
 				EA1A3BAD1E399006009CA025 /* reload in Resources */,
+				A74FB7BC1E3F4DE4004651CA /* dropbear.plist in Resources */,
 				EA1A3BC51E39D1FF009CA025 /* Assets.xcassets in Resources */,
 				EA9900F11E1E9F060056FEBD /* Main.storyboard in Resources */,
 			);
@@ -195,15 +228,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A72976DF1E3CD3E10011A922 /* Create IOKit symlink */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create IOKit symlink";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -x\nset -e\nDESTPATH=\"$PROJECT_DIR/yalu102/include\"\nMACOSSDK=\"$PLATFORM_DIR/../MacOSX.platform/Developer/SDKs/MacOSX.sdk\"\nif [ ! -e \"$DESTPATH/IOKit\" ]; then\n  ln -s \"$MACOSSDK/System/Library/Frameworks/IOKit.framework/Headers\" \"$DESTPATH/IOKit\"\nfi\n\nif [ ! -e \"$DESTPATH/libkern\" ]; then\n  mkdir -p \"$DESTPATH/libkern\"\n  ln -s \"$MACOSSDK/usr/include/libkern/OSTypes.h\" \"$DESTPATH/libkern/OSTypes.h\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EA9900DF1E1E9F060056FEBD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA9901041E219C210056FEBD /* offsets.c in Sources */,
-				EA9901171E21A1D90056FEBD /* devicesupport.m in Sources */,
 				EA9900EE1E1E9F060056FEBD /* ViewController.m in Sources */,
 				EA9900EB1E1E9F060056FEBD /* AppDelegate.m in Sources */,
+				A70DFAAB1E3E35C200769FE9 /* YAKernelOffsets.m in Sources */,
+				A70DFAAF1E3E3B8900769FE9 /* YAExploitTFP0.m in Sources */,
 				EA99010E1E21A1560056FEBD /* jailbreak.m in Sources */,
 				EA9900E81E1E9F060056FEBD /* main.m in Sources */,
 			);
@@ -233,6 +283,7 @@
 /* Begin XCBuildConfiguration section */
 		EA9900F81E1E9F060056FEBD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A72023751E3CFE2E00FADBFF /* yalu102.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = armv7;
@@ -284,6 +335,7 @@
 		};
 		EA9900F91E1E9F060056FEBD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A72023751E3CFE2E00FADBFF /* yalu102.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = armv7;
@@ -332,15 +384,17 @@
 			buildSettings = {
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				DEVELOPMENT_TEAM = CGTX3WH3ZS;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/yalu102/include",
+				);
 				INFOPLIST_FILE = yalu102/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/yalu102",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kim.cracksby.yalu102;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = armv7;
 			};
@@ -351,15 +405,17 @@
 			buildSettings = {
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				DEVELOPMENT_TEAM = CGTX3WH3ZS;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/yalu102/include",
+				);
 				INFOPLIST_FILE = yalu102/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/yalu102",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kim.cracksby.yalu102;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = armv7;
 			};
