@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD16AFE31E3CE058008E3C2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD16AFE21E3CE058008E3C2F /* Images.xcassets */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
 		EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BA61E398E33009CA025 /* 0.reload.plist */; };
 		EA1A3BAD1E399006009CA025 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BAC1E399006009CA025 /* reload */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD16AFE21E3CE058008E3C2F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA61E398E33009CA025 /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				EA9901151E21A1D90056FEBD /* devicesupport.h */,
 				EA9901161E21A1D90056FEBD /* devicesupport.m */,
 				EA9900E61E1E9F060056FEBD /* Supporting Files */,
+				AD16AFE21E3CE058008E3C2F /* Images.xcassets */,
 			);
 			path = yalu102;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD16AFE31E3CE058008E3C2F /* Images.xcassets in Resources */,
 				EA99010A1E21A04C0056FEBD /* tar in Resources */,
 				EA99010C1E21A0520056FEBD /* launchctl in Resources */,
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,

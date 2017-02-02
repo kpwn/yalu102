@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,42 +14,91 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="5Qw-3n-s4Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="zGg-6f-Cjz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dw0-9I-nv5">
-                                <rect key="frame" x="165" y="305" width="44" height="58"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
-                                <state key="normal" title="go"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBH-un-0mh">
+                                <rect key="frame" x="102.5" y="599" width="171" height="20"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="iPhone SE: 10.0 - 10.2">
+                                        <attributes>
+                                            <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amS-KI-mMd">
+                                <rect key="frame" x="109.5" y="627" width="157" height="20"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="iPad Pro: 10.0 - 10.2">
+                                        <attributes>
+                                            <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Bo-VD-tPM">
+                                <rect key="frame" x="102.5" y="571" width="170" height="20"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="iPhone 6S: 10.0 - 10.2">
+                                        <attributes>
+                                            <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dw0-9I-nv5">
+                                <rect key="frame" x="143.5" y="288.5" width="89" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="89" id="QKA-DO-wtj"/>
+                                </constraints>
+                                <state key="normal" image="AppIcon60x60">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="yolo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OEX-ZS-X4Q"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yalu by qwertyoruiopz &amp; marcograssi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOx-xh-mld">
-                                <rect key="frame" x="46" y="30" width="283" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="qwertyoruiopz &amp; marcosgrassi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7h-9K-Mzf">
+                                <rect key="frame" x="65.5" y="103" width="244" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for all iOS 10 up to 10.2 pre-i7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBH-un-0mh">
-                                <rect key="frame" x="74.5" y="616" width="226" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yalu for iOS 10 by:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOx-xh-mld">
+                                <rect key="frame" x="104.5" y="71" width="166" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.17854595515463087" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gOx-xh-mld" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="30" id="Lak-A4-fwI"/>
-                            <constraint firstItem="dw0-9I-nv5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VK2-I1-MuP"/>
-                            <constraint firstItem="dw0-9I-nv5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Vix-Ed-EfU"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SBH-un-0mh" secondAttribute="bottom" constant="30" id="WX7-VB-beg"/>
-                            <constraint firstItem="gOx-xh-mld" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="go3-GK-gg8"/>
-                            <constraint firstItem="SBH-un-0mh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="llZ-Oo-VUY"/>
+                            <constraint firstItem="gOx-xh-mld" firstAttribute="centerX" secondItem="d7h-9K-Mzf" secondAttribute="centerX" id="5Hj-Bg-pcU"/>
+                            <constraint firstAttribute="bottom" secondItem="amS-KI-mMd" secondAttribute="bottom" constant="20" symbolic="YES" id="5Za-LE-uG4"/>
+                            <constraint firstItem="gOx-xh-mld" firstAttribute="top" secondItem="5Qw-3n-s4Q" secondAttribute="bottom" constant="51" id="6aH-RT-N3b"/>
+                            <constraint firstItem="dw0-9I-nv5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9vy-mG-Zip"/>
+                            <constraint firstItem="gOx-xh-mld" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Afm-fl-8P8"/>
+                            <constraint firstItem="dw0-9I-nv5" firstAttribute="centerX" secondItem="0Bo-VD-tPM" secondAttribute="centerX" id="AmP-Bd-i84"/>
+                            <constraint firstItem="SBH-un-0mh" firstAttribute="top" secondItem="0Bo-VD-tPM" secondAttribute="bottom" constant="8" symbolic="YES" id="DN8-eN-5x6"/>
+                            <constraint firstItem="SBH-un-0mh" firstAttribute="centerX" secondItem="amS-KI-mMd" secondAttribute="centerX" id="Ila-8t-6Fc"/>
+                            <constraint firstItem="amS-KI-mMd" firstAttribute="top" secondItem="SBH-un-0mh" secondAttribute="bottom" constant="8" symbolic="YES" id="hOx-dj-Fas"/>
+                            <constraint firstItem="0Bo-VD-tPM" firstAttribute="leading" secondItem="SBH-un-0mh" secondAttribute="leading" id="lbu-bJ-Oiu"/>
+                            <constraint firstItem="d7h-9K-Mzf" firstAttribute="top" secondItem="gOx-xh-mld" secondAttribute="bottom" constant="8" symbolic="YES" id="o7E-uB-gK1"/>
+                            <constraint firstItem="d7h-9K-Mzf" firstAttribute="centerX" secondItem="dw0-9I-nv5" secondAttribute="centerX" id="whG-b5-hfZ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -62,4 +110,7 @@
             <point key="canvasLocation" x="152.80000000000001" y="154.27286356821591"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AppIcon60x60" width="90" height="90"/>
+    </resources>
 </document>
