@@ -839,14 +839,9 @@ remappage[remapcnt++] = (x & (~PMK));\
     }
     
     {
-        char path[256];
-        uint32_t size = sizeof(path);
-        _NSGetExecutablePath(path, &size);
-        char* pt = realpath(path, 0);
-        
         {
             __block pid_t pd = 0;
-            NSString* execpath = [[NSString stringWithUTF8String:pt]  stringByDeletingLastPathComponent];
+            NSString* execpath = [[NSBundle mainBundle] bundlePath];
             
             
             int f = open("/.installed_yaluX", O_RDONLY);
