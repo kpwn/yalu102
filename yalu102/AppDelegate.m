@@ -13,13 +13,44 @@
 @end
 
 @implementation AppDelegate
-
+@synthesize shouldJailbreak = _shouldJailbreak;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    // URL scheme handling
+    NSString *urlParameter = [url host];
+    if ([urlParameter isEqual:@"break"]) {
+        // URL scheme to jailbreak is being handled
+        UIAlertController *alertvc = [UIAlertController alertControllerWithTitle:@"Do you really want to jailbreak?" message:@"You used a URI scheme to break out of jail." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"I want to jailbreak!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"We're breaking out of jail bois!");
+            _shouldJailbreak = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ReevaluateShouldJailbreak" object:nil userInfo:nil];
+        }];
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil];
+        [alertvc addAction:actionOk];
+        [alertvc addAction:cancelAction];
+        UIViewController *vc = self.window.rootViewController;
+        [vc presentViewController:alertvc animated:YES completion:nil];
+    }
+    return YES;
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    // 3D Touch shortcut action handling
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSLog(@"%@", shortcutItem.type);
+    if ([shortcutItem.type isEqual:[NSString stringWithFormat: @"%@.BREAK", bundleIdentifier]]) {
+        // User has requested through 3D Touch to jailbreal
+        NSLog(@"3D Touch shortcut action to jailbreak hit!");
+        _shouldJailbreak = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName: @"ReevaluateShouldJailbreak" object:nil userInfo:nil];
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -46,6 +77,5 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 
 @end

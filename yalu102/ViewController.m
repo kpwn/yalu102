@@ -14,6 +14,7 @@
 #undef __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <mach/mach.h>
 #include <sys/utsname.h>
+#include "AppDelegate.h"
 
 extern uint64_t procoff;
 
@@ -32,17 +33,43 @@ typedef struct {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Check if user is already jailbroken
+    [self performForJailbrokenState];
     init_offsets();
+    
+    // Check if user has requested to jailbreak through URL schemes or 3D Touch
+    [self evaluateShouldJailbreak];
+    // Keep checking for when we need to reevaluate this
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(evaluateShouldJailbreak) name:@"ReevaluateShouldJailbreak" object:nil];
+}
+
+- (void) evaluateShouldJailbreak {
+    if([(AppDelegate*)[[UIApplication sharedApplication] delegate] shouldJailbreak]) {
+        // User opened through 3D touch or URL scheme
+        if(![self alreadyJailbroken]) {
+            [self doIt];
+        }
+        [(AppDelegate*)[[UIApplication sharedApplication] delegate] setShouldJailbreak:NO];
+    }
+}
+
+- (bool) alreadyJailbroken {
     struct utsname u = { 0 };
     uname(&u);
     
+    bool alreadyJailbroken = strstr(u.version, "MarijuanARM");
+    return alreadyJailbroken;
+}
 
-    if (strstr(u.version, "MarijuanARM")) {
-        [dope setEnabled:NO];
-        [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+- (void) performForJailbrokenState {
+    // Check if the device is already jailbroken and change the UI accordingly
+    if ([self alreadyJailbroken]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [dope setEnabled:NO];
+            [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+        });
     }
-
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 typedef natural_t not_natural_t;
@@ -117,13 +144,25 @@ struct not_essers_ipc_object {
 #define IKOT_CLOCK 25
 
 char dt[128];
-- (IBAction)yolo:(UIButton*)sender
-{
+
+- (IBAction)yolo:(UIButton*)sender {
+    [self doIt];
+}
+    
+- (void)doIt {
+    #if TARGET_IPHONE_SIMULATOR
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Cannot Jailbreak" message:@"You are currently running the app in the iOS Simulator. To jailbreak, run the tool on a real device." preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction: [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+    #else
     /*
      
      we out here!
      
      */
+    //[dope setEnabled:NO];
+    //[dope setTitle:@"jailbreaking" forState:UIControlStateDisabled];
+    // Breaks something
     
     mach_port_t vch = 0;
     
@@ -253,7 +292,7 @@ char dt[128];
             ports[i] = 0;
         }
     }
-    [sender setTitle:@"failed, retry" forState:UIControlStateNormal];
+    [dope setTitle:@"failed, retry" forState:UIControlStateNormal];
     return;
     
 foundp:
@@ -273,7 +312,7 @@ foundp:
             }
         }
     }
-    [sender setTitle:@"failed, retry" forState:UIControlStateNormal];
+    [dope setTitle:@"failed, retry" forState:UIControlStateNormal];
     return;
     
 gotclock:;
@@ -371,16 +410,11 @@ gotclock:;
     extern uint64_t slide;
     slide = kernel_base - 0xFFFFFFF007004000;
     
-    void exploit(void*, mach_port_t, uint64_t, uint64_t);
-    exploit(sender, pt, kernel_base, allproc_offset);
-    [dope setEnabled:NO];
-    [dope setTitle:@"already jailbroken" forState:UIControlStateDisabled];
+    void exploit(mach_port_t, uint64_t, uint64_t);
+    exploit(pt, kernel_base, allproc_offset);
+    [self performForJailbrokenState];
+    #endif
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

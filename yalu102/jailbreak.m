@@ -11,6 +11,7 @@
 #import <mach/mach.h>
 #import "devicesupport.h"
 
+#if !(TARGET_OS_SIMULATOR)
 #import <IOKit/IOKitLib.h>
 #import <dlfcn.h>
 #import <Foundation/Foundation.h>
@@ -95,7 +96,7 @@ uint64_t WriteAnywhere32(uint64_t addr, uint32_t val) {
 
 #import "pte_stuff.h"
 
-void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
+void exploit(mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
 {
     io_iterator_t iterator;
     IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IOSurfaceRoot"), &iterator);
@@ -935,3 +936,4 @@ remappage[remapcnt++] = (x & (~PMK));\
     
     NSLog(@"done");
 }
+#endif
