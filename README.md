@@ -69,6 +69,10 @@ Do not install things that are untested.
 | Beta 2  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta.ipa) | 4fddad7cca8aa0c0a6579c1d63d00917f15efc86  |
 | Beta 1  | [Link](https://yalu.qwertyoruiop.com/yalu102_alpha.ipa) | 2fe14f1c1e1a0d26203bbb123f6747a978dd2b4f  |
 
+## Some possible solutions for iPad 5,X help documented here
+
+https://www.reddit.com/r/jailbreak/comments/5sgbyp/tutorial_readding_cydia_in_case_of_loss_ios_102/
+
 ## Contributing
 
 Create a fork of the repository, make your changes and then create a pull request.
