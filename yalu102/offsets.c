@@ -113,7 +113,7 @@ void init_offsets() {
     else if (strcmp(u.version, "Darwin Kernel Version 16.0.0: Wed Jul 27 19:44:34 PDT 2016; root:xnu-3789.1.4.2.1~2/RELEASE_ARM64_S8000") == 0) {
         allproc_offset = 0x5a0038;
         rootvnode_offset = 0x5a60b8;
-    } //iPhone8,2 iOS 10 beta 4
+    }//iPhone8,2 iOS 10 beta 4
     else {
         printf("missing offset, prob crashing\n");
     }
