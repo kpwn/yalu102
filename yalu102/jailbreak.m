@@ -928,7 +928,7 @@ remappage[remapcnt++] = (x & (~PMK));\
     chmod("/private/var/mobile", 0777);
     chmod("/private/var/mobile/Library", 0777);
     chmod("/private/var/mobile/Library/Preferences", 0777);
-    system("rm -rf /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; touch /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chmod 000 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chown 0:0 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate");
+    system("/bin/launchctl unload -w /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist; mv /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist.disabled");
     system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
