@@ -44,7 +44,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-yz-uBu">
                                 <rect key="frame" x="16" y="565.5" width="343" height="20.5"/>
-                                <string key="text">Stuck in a SpringBoard Loop? You can enter "no substrate" mode by holding down the volume up and the power button immediatly after pressing the go button. Continue to hold the buttons until the device is at the lock screen.</string>
+                                <string key="text">Stuck in a SpringBoard Loop? You can enter "no substrate" mode by holding the volume up button immediatly after pressing the go button. Continue to hold the button until the device is at the lock screen.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
