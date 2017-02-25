@@ -904,6 +904,30 @@ remappage[remapcnt++] = (x & (~PMK));\
                 
             }
             {
+                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"sftp-server"];
+                char* jl = [jlaunchctl UTF8String];
+                unlink("/usr/libexec/sftp-server");
+                copyfile(jl, "/usr/libexec/sftp-server", 0, COPYFILE_ALL);
+                chmod("/usr/libexec/sftp-server", 0755);
+                chown("/usr/libexec/sftp-server", 0, 0);
+            }
+            {
+                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"scp"];
+                char* jl = [jlaunchctl UTF8String];
+                unlink("/usr/bin/scp");
+                copyfile(jl, "/usr/bin/scp", 0, COPYFILE_ALL);
+                chmod("/usr/bin/scp", 0755);
+                chown("/usr/bin/scp", 0, 0);
+            }
+            {
+                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"sftp"];
+                char* jl = [jlaunchctl UTF8String];
+                unlink("/usr/bin/sftp");
+                copyfile(jl, "/usr/bin/sftp", 0, COPYFILE_ALL);
+                chmod("/usr/bin/sftp", 0755);
+                chown("/usr/bin/sftp", 0, 0);
+            }
+            {
                 NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"0.reload.plist"];
                 char* jl = [jlaunchctl UTF8String];
                 unlink("/Library/LaunchDaemons/0.reload.plist");
@@ -919,8 +943,6 @@ remappage[remapcnt++] = (x & (~PMK));\
                 chmod("/Library/LaunchDaemons/dropbear.plist", 0644);
                 chown("/Library/LaunchDaemons/dropbear.plist", 0, 0);
             }
-            unlink("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist");
-            
         }
     }
     chmod("/private", 0777);
@@ -928,7 +950,7 @@ remappage[remapcnt++] = (x & (~PMK));\
     chmod("/private/var/mobile", 0777);
     chmod("/private/var/mobile/Library", 0777);
     chmod("/private/var/mobile/Library/Preferences", 0777);
-    system("rm -rf /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; touch /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chmod 000 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chown 0:0 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate");
+    system("/bin/launchctl unload -w /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist; mv /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist.disabled");
     system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
