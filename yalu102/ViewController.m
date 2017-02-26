@@ -23,6 +23,23 @@ typedef struct {
     mach_msg_ool_ports_descriptor_t desc[256];
     char pad[4096];
 } sprz;
+@interface AboutController ()
+
+@end
+
+@implementation AboutController
+
+- (void)viewDidLoad {
+    
+}
+
+- (IBAction)github:(UIButton*)sender
+{
+    NSURL *url = [NSURL URLWithString:@"https://github.com/kpwn/yalu102"];
+    UIApplication *application = [UIApplication sharedApplication];
+    [application openURL:url options:@{} completionHandler:nil];
+}
+@end
 
 @interface ViewController ()
 
@@ -44,6 +61,7 @@ typedef struct {
 
     // Do any additional setup after loading the view, typically from a nib.
 }
+
 
 typedef natural_t not_natural_t;
 
@@ -117,6 +135,9 @@ struct not_essers_ipc_object {
 #define IKOT_CLOCK 25
 
 char dt[128];
+
+
+
 - (IBAction)yolo:(UIButton*)sender
 {
     /*
