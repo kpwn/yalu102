@@ -16,3 +16,10 @@
 
 @end
 
+@interface AboutController : UIViewController
+{
+    IBOutlet UIButton* github;
+}
+- (IBAction)github:(id)sender;
+
+@end
