@@ -1,12 +1,15 @@
 # yalu102
+**WARNING: Any issue that isn't code related will be closed. Read this entire file first! You have been warned.**
 
 ![Yalu logo](https://github.com/kpwn/yalu102/blob/master/yalu102/Assets.xcassets/AppIcon.appiconset/AppIcon60x60@3x.png?raw=true)
 
-A "work in progress" iOS jailbreak for 64-bit devices created by [qwertyoruiopz](https://twitter.com/qwertyoruiopz) and [marcograssi](marcograss).
+This is a "work in progress" iOS jailbreak for 64-bit devices created by [qwertyoruiopz](https://twitter.com/qwertyoruiopz) and [marcograssi](marcograss).
 
-Please use the "Issues" tab for **code related** issues only. If you need support please search on [/r/jailbreak](https://reddit.com/r/jailbreak) before posting a question there.
+Please use the "Issues" tab for **code related** issues only. If you need support please search on [/r/jailbreak](https://reddit.com/r/jailbreak) first. Otherwise, don't submit an issue **at all.**
 
 ## Supported Devices and iOS versions
+
+These devices are supported (if it fails, run the jailbreak again):
 
 | Device | Version |
 |---------|----------|
@@ -45,9 +48,11 @@ If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual expl
 
 This jailbreak is a work in progress. Some things do not work, but most things do.
 
-Do not install things that are untested.
+If the app fails, run the app again, and keep doing it until it succeeds.
 
-**AppSync and other unsupported and untested software will probably throw your device into a bootloop or do other bad things.** Do not open an issue complaining that your device has been bootlooped because you installed other software. You have been warned.
+Do not install things that are untested. If you want anything that supports iOS 10, go [here](https://docs.google.com/spreadsheets/d/14e9GB-PNhDJuKI799InVFWrUQc-qn-Wd3zRJHKGkKr0/pubhtml).
+
+If your issue isn't code-related, and it's in the issues tab, it will be **CLOSED**. Do qwertyoruiopz a favor and respect the warning.
 
 ## Installing
 
@@ -72,5 +77,6 @@ Do not install things that are untested.
 ## Contributing
 
 Create a fork of the repository, make your changes and then create a pull request.
-Please be sure to check if the pull request has been made before, before creating a new one. Note, any pull requests adding IOKit headers will be closed. Please respect copyright laws, and do not distribute / download IOKit headers from unofficial sources: they are bundled legally with macOS SDK
+
+Please be sure to check if the pull request has been made before, before creating a new one. Note, any pull requests adding IOKit headers will be closed. Please respect copyright laws, and do not distribute / download IOKit headers from unofficial sources: they are bundled legally with macOS SDK.
 
