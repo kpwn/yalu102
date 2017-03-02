@@ -24,24 +24,14 @@
 		EA9901141E21A1B00056FEBD /* iokitmig64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9901131E21A1B00056FEBD /* iokitmig64.o */; };
 		EA9901171E21A1D90056FEBD /* devicesupport.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9901161E21A1D90056FEBD /* devicesupport.m */; };
 		EA9901191E21A2180056FEBD /* IOKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9901181E21A2180056FEBD /* IOKit.tbd */; };
+		EAA7F7C71E3EE4AF00BE3C64 /* dropbear.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAA7F7C61E3EE4AF00BE3C64 /* dropbear.plist */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		EA1A3BA41E398E28009CA025 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA1A3BA01E398E28009CA025 /* mach_portal.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B0FB96FC1DEB2C8600C0D3C4;
-			remoteInfo = mach_portal;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
-		EA1A3BA01E398E28009CA025 /* mach_portal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mach_portal.xcodeproj; path = "../../Downloads/mach_portal_redist-1/mach_portal/mach_portal.xcodeproj"; sourceTree = "<group>"; };
 		EA1A3BA61E398E33009CA025 /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
-		EA1A3BAC1E399006009CA025 /* reload */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = reload; sourceTree = "<group>"; };
+		EA1A3BAC1E399006009CA025 /* reload */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = reload; sourceTree = "<group>"; };
 		EA1A3BC41E39D1FF009CA025 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA9900E31E1E9F060056FEBD /* yalu102.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yalu102.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9900E71E1E9F060056FEBD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,6 +53,7 @@
 		EA9901151E21A1D90056FEBD /* devicesupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = devicesupport.h; sourceTree = "<group>"; };
 		EA9901161E21A1D90056FEBD /* devicesupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = devicesupport.m; sourceTree = "<group>"; };
 		EA9901181E21A2180056FEBD /* IOKit.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = IOKit.tbd; sourceTree = "<group>"; };
+		EAA7F7C61E3EE4AF00BE3C64 /* dropbear.plist */ = {isa = PBXFileReference; explicitFileType = file.bplist; path = dropbear.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,14 +70,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EA1A3BA11E398E28009CA025 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EA1A3BA51E398E28009CA025 /* mach_portal.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		EA9900DA1E1E9F060056FEBD = {
 			isa = PBXGroup;
 			children = (
@@ -106,10 +89,10 @@
 		EA9900E51E1E9F060056FEBD /* yalu102 */ = {
 			isa = PBXGroup;
 			children = (
+				EAA7F7C61E3EE4AF00BE3C64 /* dropbear.plist */,
 				EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */,
 				EA9901021E219C210056FEBD /* offsets.c */,
 				EA9901031E219C210056FEBD /* offsets.h */,
-				EA1A3BA01E398E28009CA025 /* mach_portal.xcodeproj */,
 				EA99010D1E21A1560056FEBD /* jailbreak.m */,
 				EA9900E91E1E9F060056FEBD /* AppDelegate.h */,
 				EA1A3BA61E398E33009CA025 /* 0.reload.plist */,
@@ -190,28 +173,12 @@
 			mainGroup = EA9900DA1E1E9F060056FEBD;
 			productRefGroup = EA9900E41E1E9F060056FEBD /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = EA1A3BA11E398E28009CA025 /* Products */;
-					ProjectRef = EA1A3BA01E398E28009CA025 /* mach_portal.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				EA9900E21E1E9F060056FEBD /* yalu102 */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		EA1A3BA51E398E28009CA025 /* mach_portal.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = mach_portal.app;
-			remoteRef = EA1A3BA41E398E28009CA025 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EA9900E11E1E9F060056FEBD /* Resources */ = {
@@ -222,6 +189,7 @@
 				EA99010C1E21A0520056FEBD /* launchctl in Resources */,
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
+				EAA7F7C71E3EE4AF00BE3C64 /* dropbear.plist in Resources */,
 				EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */,
 				EA1A3BAD1E399006009CA025 /* reload in Resources */,
 				EA1A3BC51E39D1FF009CA025 /* Assets.xcassets in Resources */,

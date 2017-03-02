@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>ShaiHulud</string>
+	<key>Program</key>
+	<string>/usr/local/bin/dropbear</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/dropbear</string>
+		<string>-F</string>
+		<string>-R</string>
+		<string>-p</string>
+		<string>127.0.0.1:22</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+</dict>
+</plist>
