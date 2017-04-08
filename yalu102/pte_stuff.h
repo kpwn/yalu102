@@ -60,10 +60,11 @@ void checkvad() {
     if (!sz) {
         struct utsname u = { 0 };
         uname(&u);
-        host_page_size(mach_host_self(), &sz);
         NSLog(@"checkvad: %x %x", sz, getpagesize());
-        if (strstr(u.machine, "iPad5,") == u.machine) {
-            sz = 4096; // this is 4k but host_page_size lies to us
+        if ((strstr(u.machine, "iPad4,") == u.machine) || (strstr(u.machine, "iPad5,") == u.machine) || (strstr(u.machine, "iPhone6,") == u.machine) || (strstr(u.machine, "iPhone7,") == u.machine) || (strstr(u.machine, "iPod7,") == u.machine)) {
+            sz = 4096;
+        } else if ((strstr(u.machine, "iPad6,") == u.machine) || (strstr(u.machine, "iPhone8,") == u.machine) || (strstr(u.machine, "iPhone9,") == u.machine)) {
+            sz = 4096*4;
         }
         assert(sz);
         if (sz == 4096) {
