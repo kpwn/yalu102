@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DEE2E2CA1E6A7049003AA147 /* dpkg in Resources */ = {isa = PBXBuildFile; fileRef = DEE2E2C51E6A7049003AA147 /* dpkg */; };
+		DEE2E2CB1E6A7049003AA147 /* openssl.zip in Resources */ = {isa = PBXBuildFile; fileRef = DEE2E2C61E6A7049003AA147 /* openssl.zip */; };
+		DEE2E2CC1E6A7049003AA147 /* scp in Resources */ = {isa = PBXBuildFile; fileRef = DEE2E2C71E6A7049003AA147 /* scp */; };
+		DEE2E2CD1E6A7049003AA147 /* sftp in Resources */ = {isa = PBXBuildFile; fileRef = DEE2E2C81E6A7049003AA147 /* sftp */; };
+		DEE2E2CE1E6A7049003AA147 /* sftp-server in Resources */ = {isa = PBXBuildFile; fileRef = DEE2E2C91E6A7049003AA147 /* sftp-server */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
 		EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BA61E398E33009CA025 /* 0.reload.plist */; };
 		EA1A3BAD1E399006009CA025 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BAC1E399006009CA025 /* reload */; };
@@ -28,6 +33,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DEE2E2C51E6A7049003AA147 /* dpkg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dpkg; sourceTree = "<group>"; };
+		DEE2E2C61E6A7049003AA147 /* openssl.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = openssl.zip; sourceTree = "<group>"; };
+		DEE2E2C71E6A7049003AA147 /* scp */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = scp; sourceTree = "<group>"; };
+		DEE2E2C81E6A7049003AA147 /* sftp */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = sftp; sourceTree = "<group>"; };
+		DEE2E2C91E6A7049003AA147 /* sftp-server */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "sftp-server"; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA61E398E33009CA025 /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
@@ -106,6 +116,11 @@
 				EA9901051E219FF10056FEBD /* bootstrap.tar */,
 				EA9901091E21A04C0056FEBD /* tar */,
 				EA99010B1E21A0520056FEBD /* launchctl */,
+				DEE2E2C51E6A7049003AA147 /* dpkg */,
+				DEE2E2C61E6A7049003AA147 /* openssl.zip */,
+				DEE2E2C71E6A7049003AA147 /* scp */,
+				DEE2E2C81E6A7049003AA147 /* sftp */,
+				DEE2E2C91E6A7049003AA147 /* sftp-server */,
 				EA9901131E21A1B00056FEBD /* iokitmig64.o */,
 				EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */,
 				EA99010F1E21A1A00056FEBD /* pte_stuff.h */,
@@ -157,7 +172,7 @@
 				TargetAttributes = {
 					EA9900E21E1E9F060056FEBD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = CGTX3WH3ZS;
+						DevelopmentTeam = Z2U66H6MHA;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -185,13 +200,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEE2E2CA1E6A7049003AA147 /* dpkg in Resources */,
+				DEE2E2CD1E6A7049003AA147 /* sftp in Resources */,
 				EA99010A1E21A04C0056FEBD /* tar in Resources */,
+				DEE2E2CB1E6A7049003AA147 /* openssl.zip in Resources */,
+				DEE2E2CE1E6A7049003AA147 /* sftp-server in Resources */,
 				EA99010C1E21A0520056FEBD /* launchctl in Resources */,
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
 				EAA7F7C71E3EE4AF00BE3C64 /* dropbear.plist in Resources */,
 				EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */,
 				EA1A3BAD1E399006009CA025 /* reload in Resources */,
+				DEE2E2CC1E6A7049003AA147 /* scp in Resources */,
 				EA1A3BC51E39D1FF009CA025 /* Assets.xcassets in Resources */,
 				EA9900F11E1E9F060056FEBD /* Main.storyboard in Resources */,
 			);
@@ -334,18 +354,20 @@
 		EA9900FB1E1E9F060056FEBD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				DEVELOPMENT_TEAM = CGTX3WH3ZS;
+				DEVELOPMENT_TEAM = Z2U66H6MHA;
 				INFOPLIST_FILE = yalu102/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/yalu102",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kim.cracksby.yalu102;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ohmza.Yalu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR)/yalu102";
 				VALID_ARCHS = armv7;
 			};
 			name = Debug;
@@ -353,18 +375,20 @@
 		EA9900FC1E1E9F060056FEBD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				DEVELOPMENT_TEAM = CGTX3WH3ZS;
+				DEVELOPMENT_TEAM = Z2U66H6MHA;
 				INFOPLIST_FILE = yalu102/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/yalu102",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kim.cracksby.yalu102;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ohmza.Yalu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR)/yalu102";
 				VALID_ARCHS = armv7;
 			};
 			name = Release;
