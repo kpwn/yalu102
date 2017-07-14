@@ -7,15 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4495B58F1F18AA24001FBA13 /* unjail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4495B58E1F18AA24001FBA13 /* unjail.m */; };
+		4495B59B1F18ABA9001FBA13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B5901F18ABA9001FBA13 /* AppDelegate.swift */; };
+		4495B59C1F18ABA9001FBA13 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B5911F18ABA9001FBA13 /* Device.swift */; };
+		4495B59D1F18ABA9001FBA13 /* DrawerToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B5921F18ABA9001FBA13 /* DrawerToggleView.swift */; };
+		4495B59E1F18ABA9001FBA13 /* JailbreakStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B5941F18ABA9001FBA13 /* JailbreakStatus.swift */; };
+		4495B59F1F18ABA9001FBA13 /* ProgressCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B5951F18ABA9001FBA13 /* ProgressCircleView.swift */; };
+		4495B5A11F18ABA9001FBA13 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B5971F18ABA9001FBA13 /* ProgressView.swift */; };
+		4495B5A21F18ABA9001FBA13 /* SexyFillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B5981F18ABA9001FBA13 /* SexyFillButton.swift */; };
+		4495B5A31F18ABA9001FBA13 /* UIApplication+GracefulExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B5991F18ABA9001FBA13 /* UIApplication+GracefulExit.swift */; };
+		4495B5A41F18ABA9001FBA13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B59A1F18ABA9001FBA13 /* ViewController.swift */; };
+		4495B5A71F18ABFD001FBA13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4495B5A51F18ABFD001FBA13 /* LaunchScreen.storyboard */; };
+		4495B5A81F18ABFD001FBA13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4495B5A61F18ABFD001FBA13 /* Main.storyboard */; };
+		4495B5B91F18AEAB001FBA13 /* IOKit in Resources */ = {isa = PBXBuildFile; fileRef = 4495B5B81F18AEAB001FBA13 /* IOKit */; };
+		4495B5BC1F18B11C001FBA13 /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B5961F18ABA9001FBA13 /* ProgressState.swift */; };
+		4495B5C11F18B8F5001FBA13 /* bootstrap_nocydia.tar in Resources */ = {isa = PBXBuildFile; fileRef = 4495B5C01F18B8F5001FBA13 /* bootstrap_nocydia.tar */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
 		EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BA61E398E33009CA025 /* 0.reload.plist */; };
 		EA1A3BAD1E399006009CA025 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BAC1E399006009CA025 /* reload */; };
 		EA1A3BC51E39D1FF009CA025 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BC41E39D1FF009CA025 /* Assets.xcassets */; };
-		EA9900E81E1E9F060056FEBD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9900E71E1E9F060056FEBD /* main.m */; };
-		EA9900EB1E1E9F060056FEBD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9900EA1E1E9F060056FEBD /* AppDelegate.m */; };
-		EA9900EE1E1E9F060056FEBD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9900ED1E1E9F060056FEBD /* ViewController.m */; };
-		EA9900F11E1E9F060056FEBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA9900EF1E1E9F060056FEBD /* Main.storyboard */; };
-		EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA9900F41E1E9F060056FEBD /* LaunchScreen.storyboard */; };
 		EA9901041E219C210056FEBD /* offsets.c in Sources */ = {isa = PBXBuildFile; fileRef = EA9901021E219C210056FEBD /* offsets.c */; };
 		EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */ = {isa = PBXBuildFile; fileRef = EA9901051E219FF10056FEBD /* bootstrap.tar */; };
 		EA99010A1E21A04C0056FEBD /* tar in Resources */ = {isa = PBXBuildFile; fileRef = EA9901091E21A04C0056FEBD /* tar */; };
@@ -28,19 +38,30 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4495B58D1F18AA17001FBA13 /* unjail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = unjail.h; sourceTree = "<group>"; };
+		4495B58E1F18AA24001FBA13 /* unjail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = unjail.m; sourceTree = "<group>"; };
+		4495B5901F18ABA9001FBA13 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4495B5911F18ABA9001FBA13 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		4495B5921F18ABA9001FBA13 /* DrawerToggleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerToggleView.swift; sourceTree = "<group>"; };
+		4495B5941F18ABA9001FBA13 /* JailbreakStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JailbreakStatus.swift; sourceTree = "<group>"; };
+		4495B5951F18ABA9001FBA13 /* ProgressCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressCircleView.swift; sourceTree = "<group>"; };
+		4495B5961F18ABA9001FBA13 /* ProgressState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressState.swift; sourceTree = "<group>"; };
+		4495B5971F18ABA9001FBA13 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		4495B5981F18ABA9001FBA13 /* SexyFillButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexyFillButton.swift; sourceTree = "<group>"; };
+		4495B5991F18ABA9001FBA13 /* UIApplication+GracefulExit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+GracefulExit.swift"; sourceTree = "<group>"; };
+		4495B59A1F18ABA9001FBA13 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4495B5A51F18ABFD001FBA13 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4495B5A61F18ABFD001FBA13 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4495B5AC1F18AD09001FBA13 /* yalu102-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yalu102-Bridging-Header.h"; sourceTree = "<group>"; };
+		4495B5B81F18AEAB001FBA13 /* IOKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IOKit; sourceTree = "<group>"; };
+		4495B5BE1F18B708001FBA13 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4495B5C01F18B8F5001FBA13 /* bootstrap_nocydia.tar */ = {isa = PBXFileReference; lastKnownFileType = archive.tar; path = bootstrap_nocydia.tar; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA61E398E33009CA025 /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
 		EA1A3BAC1E399006009CA025 /* reload */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = reload; sourceTree = "<group>"; };
 		EA1A3BC41E39D1FF009CA025 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA9900E31E1E9F060056FEBD /* yalu102.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yalu102.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA9900E71E1E9F060056FEBD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EA9900E91E1E9F060056FEBD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		EA9900EA1E1E9F060056FEBD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EA9900EC1E1E9F060056FEBD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EA9900ED1E1E9F060056FEBD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		EA9900F01E1E9F060056FEBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EA9900F51E1E9F060056FEBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA9900F71E1E9F060056FEBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA9901021E219C210056FEBD /* offsets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = offsets.c; sourceTree = "<group>"; };
 		EA9901031E219C210056FEBD /* offsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = offsets.h; sourceTree = "<group>"; };
@@ -70,11 +91,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4495B5BD1F18B708001FBA13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4495B5BE1F18B708001FBA13 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EA9900DA1E1E9F060056FEBD = {
 			isa = PBXGroup;
 			children = (
 				EA9900E51E1E9F060056FEBD /* yalu102 */,
 				EA9900E41E1E9F060056FEBD /* Products */,
+				4495B5BD1F18B708001FBA13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,21 +119,29 @@
 		EA9900E51E1E9F060056FEBD /* yalu102 */ = {
 			isa = PBXGroup;
 			children = (
+				4495B5B81F18AEAB001FBA13 /* IOKit */,
+				4495B5901F18ABA9001FBA13 /* AppDelegate.swift */,
+				4495B5911F18ABA9001FBA13 /* Device.swift */,
+				4495B5921F18ABA9001FBA13 /* DrawerToggleView.swift */,
+				4495B5941F18ABA9001FBA13 /* JailbreakStatus.swift */,
+				4495B5951F18ABA9001FBA13 /* ProgressCircleView.swift */,
+				4495B5961F18ABA9001FBA13 /* ProgressState.swift */,
+				4495B5971F18ABA9001FBA13 /* ProgressView.swift */,
+				4495B5981F18ABA9001FBA13 /* SexyFillButton.swift */,
+				4495B5991F18ABA9001FBA13 /* UIApplication+GracefulExit.swift */,
+				4495B59A1F18ABA9001FBA13 /* ViewController.swift */,
 				EAA7F7C61E3EE4AF00BE3C64 /* dropbear.plist */,
 				EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */,
 				EA9901021E219C210056FEBD /* offsets.c */,
 				EA9901031E219C210056FEBD /* offsets.h */,
 				EA99010D1E21A1560056FEBD /* jailbreak.m */,
-				EA9900E91E1E9F060056FEBD /* AppDelegate.h */,
+				4495B5A51F18ABFD001FBA13 /* LaunchScreen.storyboard */,
+				4495B5A61F18ABFD001FBA13 /* Main.storyboard */,
 				EA1A3BA61E398E33009CA025 /* 0.reload.plist */,
 				EA1A3BAC1E399006009CA025 /* reload */,
-				EA9900EA1E1E9F060056FEBD /* AppDelegate.m */,
-				EA9900EC1E1E9F060056FEBD /* ViewController.h */,
-				EA9900ED1E1E9F060056FEBD /* ViewController.m */,
-				EA9900EF1E1E9F060056FEBD /* Main.storyboard */,
-				EA9900F41E1E9F060056FEBD /* LaunchScreen.storyboard */,
 				EA9900F71E1E9F060056FEBD /* Info.plist */,
 				EA9901051E219FF10056FEBD /* bootstrap.tar */,
+				4495B5C01F18B8F5001FBA13 /* bootstrap_nocydia.tar */,
 				EA9901091E21A04C0056FEBD /* tar */,
 				EA99010B1E21A0520056FEBD /* launchctl */,
 				EA9901131E21A1B00056FEBD /* iokitmig64.o */,
@@ -114,6 +152,9 @@
 				EA9901151E21A1D90056FEBD /* devicesupport.h */,
 				EA9901161E21A1D90056FEBD /* devicesupport.m */,
 				EA9900E61E1E9F060056FEBD /* Supporting Files */,
+				4495B58D1F18AA17001FBA13 /* unjail.h */,
+				4495B58E1F18AA24001FBA13 /* unjail.m */,
+				4495B5AC1F18AD09001FBA13 /* yalu102-Bridging-Header.h */,
 			);
 			path = yalu102;
 			sourceTree = "<group>";
@@ -121,7 +162,6 @@
 		EA9900E61E1E9F060056FEBD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EA9900E71E1E9F060056FEBD /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -157,7 +197,8 @@
 				TargetAttributes = {
 					EA9900E21E1E9F060056FEBD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = CGTX3WH3ZS;
+						DevelopmentTeam = SJDBF6FZ2C;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -186,14 +227,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA99010A1E21A04C0056FEBD /* tar in Resources */,
+				4495B5A71F18ABFD001FBA13 /* LaunchScreen.storyboard in Resources */,
+				4495B5C11F18B8F5001FBA13 /* bootstrap_nocydia.tar in Resources */,
 				EA99010C1E21A0520056FEBD /* launchctl in Resources */,
+				4495B5B91F18AEAB001FBA13 /* IOKit in Resources */,
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
 				EAA7F7C71E3EE4AF00BE3C64 /* dropbear.plist in Resources */,
-				EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */,
+				4495B5A81F18ABFD001FBA13 /* Main.storyboard in Resources */,
 				EA1A3BAD1E399006009CA025 /* reload in Resources */,
 				EA1A3BC51E39D1FF009CA025 /* Assets.xcassets in Resources */,
-				EA9900F11E1E9F060056FEBD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,35 +247,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4495B5BC1F18B11C001FBA13 /* ProgressState.swift in Sources */,
+				4495B5A11F18ABA9001FBA13 /* ProgressView.swift in Sources */,
+				4495B59F1F18ABA9001FBA13 /* ProgressCircleView.swift in Sources */,
+				4495B5A31F18ABA9001FBA13 /* UIApplication+GracefulExit.swift in Sources */,
+				4495B59E1F18ABA9001FBA13 /* JailbreakStatus.swift in Sources */,
+				4495B5A41F18ABA9001FBA13 /* ViewController.swift in Sources */,
+				4495B59C1F18ABA9001FBA13 /* Device.swift in Sources */,
+				4495B59B1F18ABA9001FBA13 /* AppDelegate.swift in Sources */,
 				EA9901041E219C210056FEBD /* offsets.c in Sources */,
 				EA9901171E21A1D90056FEBD /* devicesupport.m in Sources */,
-				EA9900EE1E1E9F060056FEBD /* ViewController.m in Sources */,
-				EA9900EB1E1E9F060056FEBD /* AppDelegate.m in Sources */,
+				4495B59D1F18ABA9001FBA13 /* DrawerToggleView.swift in Sources */,
 				EA99010E1E21A1560056FEBD /* jailbreak.m in Sources */,
-				EA9900E81E1E9F060056FEBD /* main.m in Sources */,
+				4495B5A21F18ABA9001FBA13 /* SexyFillButton.swift in Sources */,
+				4495B58F1F18AA24001FBA13 /* unjail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		EA9900EF1E1E9F060056FEBD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA9900F01E1E9F060056FEBD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		EA9900F41E1E9F060056FEBD /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA9900F51E1E9F060056FEBD /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		EA9900F81E1E9F060056FEBD /* Debug */ = {
@@ -336,16 +368,25 @@
 			buildSettings = {
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				DEVELOPMENT_TEAM = CGTX3WH3ZS;
+				DEVELOPMENT_TEAM = SJDBF6FZ2C;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = yalu102/Info.plist;
+				KEEP_PRIVATE_EXTERNS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/yalu102",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kim.cracksby.yalu102;
+				PRODUCT_BUNDLE_IDENTIFIER = couk.mullak99.yalu102;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = all;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "yalu102/yalu102-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = armv7;
 			};
 			name = Debug;
@@ -355,16 +396,23 @@
 			buildSettings = {
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				DEVELOPMENT_TEAM = CGTX3WH3ZS;
+				DEVELOPMENT_TEAM = SJDBF6FZ2C;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = yalu102/Info.plist;
+				KEEP_PRIVATE_EXTERNS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/yalu102",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kim.cracksby.yalu102;
+				PRODUCT_BUNDLE_IDENTIFIER = couk.mullak99.yalu102;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = all;
+				SWIFT_OBJC_BRIDGING_HEADER = "yalu102/yalu102-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = armv7;
 			};
 			name = Release;
