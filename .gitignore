@@ -21,7 +21,10 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
-*/IOKit
+
+## IOKit
+IOKit/
+
 
 .DS_Store
 
