@@ -5,6 +5,7 @@
 ## Build generated
 build/
 DerivedData/
+IOKit/
 
 ## Various settings
 *.pbxuser
@@ -21,9 +22,6 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
-
-## IOKit
-IOKit/
 
 
 .DS_Store
