@@ -8,6 +8,6 @@
 
 #ifndef unjail_h
 #define unjail_h
-
+extern uint64_t AGXCommandQueue_vtable;
 
 #endif /* unjail_h */

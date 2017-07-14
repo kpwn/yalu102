@@ -4,5 +4,6 @@
 
 int unjail();
 int init_offsets();
+int isSupported();
 int substrateEnable;
 int isJailbroken();

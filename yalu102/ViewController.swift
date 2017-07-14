@@ -55,10 +55,10 @@ class ViewController: UIViewController, DrawerToggleViewDelegate {
     }
     
     @IBAction func bang(_ sender: UIButton) {
-        doJailbreak()
+        doJailbreak(sender)
     }
     
-    func doJailbreak() {
+    func doJailbreak(_ sender: Any) {
         if !hasStarted {
             hasStarted = true
             progressContainerView.effect = nil
@@ -99,9 +99,8 @@ class ViewController: UIViewController, DrawerToggleViewDelegate {
     
     private func loadDeviceData() {
         let deviceName = Device().getDeviceName(extra: false)
-        let supported = init_offsets() == 0
-        deviceLabel.text = "\(deviceName) (iOS \(systemVersion))\nYour device is \(supported ? "" : "not ")supported."
-        goButton.isEnabled = supported
+        deviceLabel.text = "\n\(deviceName) (iOS \(systemVersion))"
+        //goButton.isEnabled = supported
         goButton.isEnabled = Bool(isJailbroken() as NSNumber)
     }
     

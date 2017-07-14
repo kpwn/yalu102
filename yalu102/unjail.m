@@ -14,6 +14,7 @@
 #undef __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <mach/mach.h>
 #include <sys/utsname.h>
+#include <UIKit/UIKit.h>
 
 extern uint64_t procoff;
 
@@ -53,8 +54,10 @@ int unjail(id sender)
      we out here!
      
      */
+
     
     if (isJailbroken()) {
+        printf("device already jailbroken");
         return 99;
     }
     

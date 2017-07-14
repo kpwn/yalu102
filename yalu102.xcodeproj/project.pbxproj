@@ -19,7 +19,6 @@
 		4495B5A41F18ABA9001FBA13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B59A1F18ABA9001FBA13 /* ViewController.swift */; };
 		4495B5A71F18ABFD001FBA13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4495B5A51F18ABFD001FBA13 /* LaunchScreen.storyboard */; };
 		4495B5A81F18ABFD001FBA13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4495B5A61F18ABFD001FBA13 /* Main.storyboard */; };
-		4495B5B91F18AEAB001FBA13 /* IOKit in Resources */ = {isa = PBXBuildFile; fileRef = 4495B5B81F18AEAB001FBA13 /* IOKit */; };
 		4495B5BC1F18B11C001FBA13 /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495B5961F18ABA9001FBA13 /* ProgressState.swift */; };
 		4495B5C11F18B8F5001FBA13 /* bootstrap_nocydia.tar in Resources */ = {isa = PBXBuildFile; fileRef = 4495B5C01F18B8F5001FBA13 /* bootstrap_nocydia.tar */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
@@ -53,7 +52,6 @@
 		4495B5A51F18ABFD001FBA13 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4495B5A61F18ABFD001FBA13 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4495B5AC1F18AD09001FBA13 /* yalu102-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yalu102-Bridging-Header.h"; sourceTree = "<group>"; };
-		4495B5B81F18AEAB001FBA13 /* IOKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IOKit; sourceTree = "<group>"; };
 		4495B5BE1F18B708001FBA13 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4495B5C01F18B8F5001FBA13 /* bootstrap_nocydia.tar */ = {isa = PBXFileReference; lastKnownFileType = archive.tar; path = bootstrap_nocydia.tar; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 		EA9900E51E1E9F060056FEBD /* yalu102 */ = {
 			isa = PBXGroup;
 			children = (
-				4495B5B81F18AEAB001FBA13 /* IOKit */,
 				4495B5901F18ABA9001FBA13 /* AppDelegate.swift */,
 				4495B5911F18ABA9001FBA13 /* Device.swift */,
 				4495B5921F18ABA9001FBA13 /* DrawerToggleView.swift */,
@@ -230,7 +227,6 @@
 				4495B5A71F18ABFD001FBA13 /* LaunchScreen.storyboard in Resources */,
 				4495B5C11F18B8F5001FBA13 /* bootstrap_nocydia.tar in Resources */,
 				EA99010C1E21A0520056FEBD /* launchctl in Resources */,
-				4495B5B91F18AEAB001FBA13 /* IOKit in Resources */,
 				EA9901061E219FF10056FEBD /* bootstrap.tar in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
 				EAA7F7C71E3EE4AF00BE3C64 /* dropbear.plist in Resources */,

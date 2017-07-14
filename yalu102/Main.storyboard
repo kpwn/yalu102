@@ -208,9 +208,6 @@ UI by AppleBetas (ported by mullak99)</string>
                             <constraint firstItem="JBK-QT-eNS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="y7n-6T-5eU"/>
                         </constraints>
                         <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="JBK-QT-eNS"/>
-                            </mask>
                             <mask key="constraints">
                                 <exclude reference="kxZ-yX-diD"/>
                             </mask>
