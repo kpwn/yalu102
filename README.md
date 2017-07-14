@@ -1,10 +1,10 @@
-# yalu102
+# yalu102 (Another Yalu)
 
 ![Yalu logo](https://github.com/kpwn/yalu102/blob/master/yalu102/Assets.xcassets/AppIcon.appiconset/AppIcon60x60@3x.png?raw=true)
 
-A "work in progress" iOS jailbreak for 64-bit devices created by [qwertyoruiopz](https://twitter.com/qwertyoruiopz) and [marcograssi](marcograss).
+Yep, another fork of yalu102, originally by [qwertyoruiopz](https://twitter.com/qwertyoruiopz) and [marcograssi](marcograss). Although, using the UI made by [AppleBetas](https://twitter.com/applebetasdev) for extra_recipe.
 
-Please use the "Issues" tab for **code related** issues only. If you need support please search on [/r/jailbreak](https://reddit.com/r/jailbreak) before posting a question there.
+Please use the "Issues" tab for any issues.
 
 ## Supported Devices and iOS versions
 
@@ -14,7 +14,7 @@ Please use the "Issues" tab for **code related** issues only. If you need suppor
 | iPhone 6S  | iOS 10.0.0 -> iOS 10.2 |
 | iPhone SE  | iOS 10.0.0 -> iOS 10.2 |
 | iPhone 5S  | iOS 10.0.0 -> iOS 10.2 |
-| iPad Air| iOS 10.0.0 -> iOS 10.2 |
+| iPad Air | iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 2| iOS 10.0.0 -> iOS 10.2 |
 | iPhone 6  | iOS 10.0.0 -> iOS 10.2 |
 | iPad Mini 3| iOS 10.0.0 -> iOS 10.2 |
@@ -30,8 +30,7 @@ In the near future, the jailbreak will support the following devices:
 |---------|----------|
 | iPhone 7  | iOS 10.0.0 -> iOS 10.1.1 |
 
-**Note, the iPhone 7 is only supported till iOS 10.1.1**
-If you are already on iOS 10.2 with an iPhone 7, **stay there**. The actual exploit behind this still works, but the KPP bypass does not.
+Not expecting this to ever be updated to work with the iPhone 7. Use extra_recipe for that. Either the [official one](https://github.com/xerub/extra_recipe), [my fork](https://github.com/mullak99/extra_recipe) (which also uses the UI by AppleBetas), or one of the many other forks.
 
 ## Compiling:
 
@@ -61,13 +60,9 @@ Do not install things that are untested.
 
 | Version | Download | SHA1 |
 |---------|----------|------|
-| Beta 7  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta7.ipa) | 4afa99d4b568aa8cbb9ac61fddd584111fed79c5  |
-| Beta 6  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta6.ipa) | 0130ebe60c97e2013a4b849b7d9bc321d749f304  |
-| Beta 5  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta5.ipa) | f8eb6cd37054a9d25b818e3bddd13bfedbf72df1  |
-| Beta 4  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta4.ipa) | f8270e59d7d7267613ffa63217b91fea425eec36  |
-| Beta 3  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta3.ipa) | b2e0bdd31566f876d67cba036b5d29aef7ff257d  |
-| Beta 2  | [Link](https://yalu.qwertyoruiop.com/yalu102_beta.ipa) | 4fddad7cca8aa0c0a6579c1d63d00917f15efc86  |
-| Beta 1  | [Link](https://yalu.qwertyoruiop.com/yalu102_alpha.ipa) | 2fe14f1c1e1a0d26203bbb123f6747a978dd2b4f  |
+| v1.0_RC | [Link](https://builds.mullak99.co.uk/Jailbreak/anotheryalu/AnotherYalu-v1.0_RC1.ipa) | 80840790ebc3eea7e0ace137168bab6eec348d1d  |
+
+(Also can be found in the 'Releases' tab).
 
 ## Contributing
 
