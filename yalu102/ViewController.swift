@@ -33,7 +33,7 @@ class ViewController: UIViewController, DrawerToggleViewDelegate {
         drawerToggleView.delegate = self
         menuDarkeningView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ViewController.menuDarkeningViewTapped)))
         loadDeviceData()
-        print("jailed:", Bool(isJailbroken() as NSNumber))
+        print("jailed (unreliable result):", Bool(isJailbroken() as NSNumber))
         print("substrate:", (Bool(substrateEnable as NSNumber) ? "enabled" : "disabled"));
     }
     
@@ -101,7 +101,7 @@ class ViewController: UIViewController, DrawerToggleViewDelegate {
         let deviceName = Device().getDeviceName(extra: false)
         deviceLabel.text = "\n\(deviceName) (iOS \(systemVersion))"
         //goButton.isEnabled = supported
-        goButton.isEnabled = Bool(isJailbroken() as NSNumber)
+        //goButton.isEnabled = Bool(isJailbroken() as NSNumber)
     }
     
     func setDrawer(opened open: Bool) {
