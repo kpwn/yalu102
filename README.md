@@ -60,9 +60,10 @@ Do not install things that are untested.
 
 | Version | Download | SHA1 |
 |---------|----------|------|
-| v1.0_RC | [Link](https://builds.mullak99.co.uk/Jailbreak/anotheryalu/AnotherYalu-v1.0_RC1.ipa) | cb3408015c32ee199c902f7c691dff7e45a3d259  |
+| v1.0_RC1 | [Link](https://builds.mullak99.co.uk/Jailbreak/anotheryalu/AnotherYalu-v1.0_RC1.ipa) | cb3408015c32ee199c902f7c691dff7e45a3d259  |
+| v1.0_RC2 | [Link](https://builds.mullak99.co.uk/Jailbreak/anotheryalu/AnotherYalu-v1.0_RC2.ipa) | 98aadcceab5c6a24b9e7db4649851ca2eda1d4ef  |
 
-(Also can be found in the 'Releases' tab).
+(Also can be found in the ['Releases'](https://github.com/mullak99/yalu102/releases) tab if the builds server dies).
 
 ## Contributing
 
