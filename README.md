@@ -4,7 +4,7 @@
 
 Yep, another fork of yalu102, originally by [qwertyoruiopz](https://twitter.com/qwertyoruiopz) and [marcograssi](marcograss). Although, using the UI made by [AppleBetas](https://twitter.com/applebetasdev) for extra_recipe.
 
-Please use the "Issues" tab for any issues.
+Please use the ['Issues'](https://github.com/mullak99/yalu102/issues) tab for reporting any issues.
 
 ## Supported Devices and iOS versions
 
