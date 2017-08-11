@@ -22,15 +22,7 @@ Please use the "Issues" tab for any issues.
 | iPad Mini 4 | iOS 10.0.0 -> iOS 10.2 |
 | iPod touch (6G)  | iOS 10.0.0 -> iOS 10.2 |
 
-### Planned Support:
-
-In the near future, the jailbreak will support the following devices:
-
-| Device | Version |
-|---------|----------|
-| iPhone 7  | iOS 10.0.0 -> iOS 10.1.1 |
-
-Not expecting this to ever be updated to work with the iPhone 7. Use extra_recipe for that. Either the [official one](https://github.com/xerub/extra_recipe), [my fork](https://github.com/mullak99/extra_recipe) (which also uses the UI by AppleBetas), or one of the many other forks.
+Use extra_recipe for the iPhone 7 (iOS 10.0.0 -> iOS 10.1.1). Either the [official one](https://github.com/xerub/extra_recipe), [my fork](https://github.com/mullak99/extra_recipe) (which also uses the UI by AppleBetas), or one of the many other forks.
 
 ## Compiling:
 
