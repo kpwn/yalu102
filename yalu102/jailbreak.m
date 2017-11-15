@@ -847,8 +847,13 @@ remappage[remapcnt++] = (x & (~PMK));\
         {
             __block pid_t pd = 0;
             NSString* execpath = [[NSString stringWithUTF8String:pt]  stringByDeletingLastPathComponent];
-            
-            
+
+            if (dlsym(NULL, "system") == NULL) {
+
+                NSLog(@"function ´system´ not found. Using ´popen´ instead.");
+                #define system(x) popen(x,"r")
+            }
+
             int f = open("/.installed_yaluX", O_RDONLY);
             
             if (f == -1) {
