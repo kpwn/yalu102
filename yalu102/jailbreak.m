@@ -861,11 +861,10 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 
                 copyfile(jl, "/bin/tar", 0, COPYFILE_ALL);
                 chmod("/bin/tar", 0777);
-                jl="/bin/tar"; //
                 
                 chdir("/");
                 
-                posix_spawn(&pd, jl, 0, 0, (char**)&(const char*[]){jl, "--preserve-permissions", "--no-overwrite-dir", "-xvf", [bootstrap UTF8String], NULL}, NULL);
+                posix_spawn(&pd, "/bin/tar", 0, 0, (char**)&(const char*[]){"/bin/tar", "--preserve-permissions", "--no-overwrite-dir", "-xvf", [bootstrap UTF8String], NULL}, NULL);
                 NSLog(@"pid = %x", pd);
                 waitpid(pd, 0, 0);
                 
@@ -880,26 +879,27 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 open("/.cydia_no_stash",O_RDWR|O_CREAT);
                 
                 
-                system("echo '127.0.0.1 iphonesubmissions.apple.com' >> /etc/hosts");
-                system("echo '127.0.0.1 radarsubmissions.apple.com' >> /etc/hosts");
+                posix_spawn(&pd, "/bin/bash", 0, 0, (char**)&(const char*[]){"/bin/bash", "-c", """echo '127.0.0.1 iphonesubmissions.apple.com' >> /etc/hosts""", NULL}, NULL);
+                posix_spawn(&pd, "/bin/bash", 0, 0, (char**)&(const char*[]){"/bin/bash", "-c", """echo '127.0.0.1 radarsubmissions.apple.com' >> /etc/hosts""", NULL}, NULL);
                 
-                system("/usr/bin/uicache");
+                posix_spawn(&pd, "/usr/bin/uicache", 0, 0, (char**)&(const char*[]){"/usr/bin/uicache", NULL}, NULL);
                 
-                system("killall -SIGSTOP cfprefsd");
+                posix_spawn(&pd, "killall", 0, 0, (char**)&(const char*[]){"killall", "-SIGSTOP", "cfprefsd", NULL}, NULL);
                 NSMutableDictionary* md = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist"];
                 
                 [md setObject:[NSNumber numberWithBool:YES] forKey:@"SBShowNonDefaultSystemApps"];
                 
                 [md writeToFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist" atomically:YES];
-                system("killall -9 cfprefsd");
+                posix_spawn(&pd, "killall", 0, 0, (char**)&(const char*[]){"killall", "-9", "cfprefsd", NULL}, NULL);
                 
             }
             
             
-            int g = open("/.installed_YaluXPatched", O_RDONLY);
+            int g = open("/.installed_yaluXPatched", O_RDONLY);
             
             if (g == -1) {
-                system("/bin/launchctl unload -w /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist; mv /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist /System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist.disabled");
+                posix_spawn(&pd, "/bin/launchctl", 0, 0, (char**)&(const char*[]){"/bin/launchctl", "unload", "-w", "/System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist", NULL}, NULL);
+                posix_spawn(&pd, "/bin/mv", 0, 0, (char**)&(const char*[]){"/bin/mv", "/System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist", "/System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist.disabled", NULL}, NULL);
                 
                 NSString* dpkg = [execpath stringByAppendingPathComponent:@"dpkg"];
                 const char* jl = [dpkg UTF8String];
@@ -916,9 +916,10 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 copyfile(jl, "/tmp/openssl.deb", 0, COPYFILE_ALL);
                 chmod("/tmp/openssl.deb", 0755);
                 
-                system("/usr/bin/dpkg -i /tmp/openssl.deb");
+                posix_spawn(&pd, "/usr/bin/dpkg", 0, 0, (char**)&(const char*[]){"/usr/bin/dpkg", "-i", "/tmp/openssl.deb", NULL}, NULL);
+                posix_spawn(&pd, "/bin/rm", 0, 0, (char**)&(const char*[]){"/bin/rm", "/tmp/openssl.deb", NULL}, NULL);
                 
-                open("/.installed_YaluXPatched", O_RDWR|O_CREAT);
+                open("/.installed_yaluXPatched", O_RDWR|O_CREAT);
             }
             
             {
@@ -970,14 +971,17 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 chmod("/Library/LaunchDaemons/dropbear.plist", 0644);
                 chown("/Library/LaunchDaemons/dropbear.plist", 0, 0);
             }
+            {
+                chmod("/private", 0777);
+                chmod("/private/var", 0777);
+                chmod("/private/var/mobile", 0777);
+                chmod("/private/var/mobile/Library", 0777);
+                chmod("/private/var/mobile/Library/Preferences", 0777);
+                posix_spawn(&pd, "/bin/bash", 0, 0, (char**)&(const char*[]){"/bin/bash", "-c", """echo 'really jailbroken'""", NULL}, NULL);
+                posix_spawn(&pd, "/bin/launchctl", 0, 0, (char**)&(const char*[]){"/bin/launchctl", "load", "/Library/LaunchDaemons/0.reload.plist", NULL}, NULL);
+            }
         }
     }
-    chmod("/private", 0777);
-    chmod("/private/var", 0777);
-    chmod("/private/var/mobile", 0777);
-    chmod("/private/var/mobile/Library", 0777);
-    chmod("/private/var/mobile/Library/Preferences", 0777);
-    system("(echo 'really jailbroken'; /bin/launchctl load /Library/LaunchDaemons/0.reload.plist)&");
     WriteAnywhere64(bsd_task+0x100, orig_cred);
     sleep(2);
     
