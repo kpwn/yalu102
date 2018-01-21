@@ -860,7 +860,7 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 unlink("/bin/launchctl");
                 
                 copyfile(jl, "/bin/tar", 0, COPYFILE_ALL);
-                chmod("/bin/tar", 0777);
+                chmod("/bin/tar", 0755);
                 
                 chdir("/");
                 
@@ -901,23 +901,24 @@ void exploit(void* btn, mach_port_t pt, uint64_t kernbase, uint64_t allprocs)
                 posix_spawn(&pd, "/bin/launchctl", 0, 0, (char**)&(const char*[]){"/bin/launchctl", "unload", "-w", "/System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist", NULL}, NULL);
                 posix_spawn(&pd, "/bin/mv", 0, 0, (char**)&(const char*[]){"/bin/mv", "/System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist", "/System/Library/LaunchDaemons/com.apple.softwareupdateservicesd.plist.disabled", NULL}, NULL);
                 
-                NSString* dpkg = [execpath stringByAppendingPathComponent:@"dpkg"];
-                const char* jl = [dpkg UTF8String];
+                unlink("/var/root/Media/Cydia/AutoInstall/openssl.deb");
                 
-                unlink("/usr/bin/dpkg");
-                unlink("/tmp/openssl.deb");
+                chdir("/var/root/");
                 
-                copyfile(jl, "/usr/bin/dpkg", 0, COPYFILE_ALL);
-                chmod("/usr/bin/dpkg", 0755);
+                posix_spawn(&pd, "/bin/mkdir", 0, 0, (char**)&(const char*[]){"/bin/mkdir", "-p", "Media/Cydia/AutoInstall", NULL}, NULL);
+                waitpid(pd, 0, 0);
+                
+                chmod("/var/root/Media", 0755);
+                chmod("/var/root/Media/Cydia", 0755);
+                chmod("/var/root/Media/Cydia/AutoInstall", 0755);
+                chown("/var/root/Media", 0, 0);
+                chown("/var/root/Media/Cydia", 0, 0);
+                chown("/var/root/Media/Cydia/AutoInstall", 0, 0);
                 
                 NSString* openssl = [execpath stringByAppendingPathComponent:@"openssl.zip"];
-                jl = [openssl UTF8String];
                 
-                copyfile(jl, "/tmp/openssl.deb", 0, COPYFILE_ALL);
-                chmod("/tmp/openssl.deb", 0755);
-                
-                posix_spawn(&pd, "/usr/bin/dpkg", 0, 0, (char**)&(const char*[]){"/usr/bin/dpkg", "-i", "/tmp/openssl.deb", NULL}, NULL);
-                posix_spawn(&pd, "/bin/rm", 0, 0, (char**)&(const char*[]){"/bin/rm", "/tmp/openssl.deb", NULL}, NULL);
+                copyfile([openssl UTF8String], "/var/root/Media/Cydia/AutoInstall/openssl.deb", 0, COPYFILE_ALL);
+                chmod("/var/root/Media/Cydia/AutoInstall/openssl.deb", 0644);
                 
                 open("/.installed_yaluXPatched", O_RDWR|O_CREAT);
             }
