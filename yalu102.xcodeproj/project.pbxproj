@@ -11,7 +11,6 @@
 		DEB213961FA5915F008227DA /* openssl.zip in Resources */ = {isa = PBXBuildFile; fileRef = DEB213911FA5915F008227DA /* openssl.zip */; };
 		DEB213971FA5915F008227DA /* sftp-server in Resources */ = {isa = PBXBuildFile; fileRef = DEB213921FA5915F008227DA /* sftp-server */; };
 		DEB213981FA5915F008227DA /* scp in Resources */ = {isa = PBXBuildFile; fileRef = DEB213931FA5915F008227DA /* scp */; };
-		DEB213991FA5915F008227DA /* dpkg in Resources */ = {isa = PBXBuildFile; fileRef = DEB213941FA5915F008227DA /* dpkg */; };
 		EA1A3B9D1E391C4F009CA025 /* patchfinder64.o in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */; };
 		EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BA61E398E33009CA025 /* 0.reload.plist */; };
 		EA1A3BAD1E399006009CA025 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = EA1A3BAC1E399006009CA025 /* reload */; };
@@ -37,7 +36,6 @@
 		DEB213911FA5915F008227DA /* openssl.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = openssl.zip; sourceTree = "<group>"; };
 		DEB213921FA5915F008227DA /* sftp-server */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "sftp-server"; sourceTree = "<group>"; };
 		DEB213931FA5915F008227DA /* scp */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = scp; sourceTree = "<group>"; };
-		DEB213941FA5915F008227DA /* dpkg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dpkg; sourceTree = "<group>"; };
 		EA1A3B9B1E38BBDB009CA025 /* patchfinder64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		EA1A3B9C1E391C4F009CA025 /* patchfinder64.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = patchfinder64.o; sourceTree = "<group>"; };
 		EA1A3BA61E398E33009CA025 /* 0.reload.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.reload.plist; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 				EA9900F71E1E9F060056FEBD /* Info.plist */,
 				EA9901051E219FF10056FEBD /* bootstrap.tar */,
 				EA9901091E21A04C0056FEBD /* tar */,
-				DEB213941FA5915F008227DA /* dpkg */,
 				DEB213911FA5915F008227DA /* openssl.zip */,
 				DEB213931FA5915F008227DA /* scp */,
 				DEB213901FA5915E008227DA /* sftp */,
@@ -208,7 +205,6 @@
 				DEB213981FA5915F008227DA /* scp in Resources */,
 				EA1A3BA81E398E33009CA025 /* 0.reload.plist in Resources */,
 				EAA7F7C71E3EE4AF00BE3C64 /* dropbear.plist in Resources */,
-				DEB213991FA5915F008227DA /* dpkg in Resources */,
 				EA9900F61E1E9F060056FEBD /* LaunchScreen.storyboard in Resources */,
 				EA1A3BAD1E399006009CA025 /* reload in Resources */,
 				EA1A3BC51E39D1FF009CA025 /* Assets.xcassets in Resources */,
