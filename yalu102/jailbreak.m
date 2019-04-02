@@ -849,9 +849,9 @@ remappage[remapcnt++] = (x & (~PMK));\
             NSString* execpath = [[NSString stringWithUTF8String:pt]  stringByDeletingLastPathComponent];
             
             
-            int f = open("/.installed_yaluX", O_RDONLY);
+            //int f = open("/.installed_yaluX", O_RDONLY);
             
-            if (f == -1) {
+            //if (f == -1) {
                 NSString* tar = [execpath stringByAppendingPathComponent:@"tar"];
                 NSString* bootstrap = [execpath stringByAppendingPathComponent:@"bootstrap.tar"];
                 const char* jl = [tar UTF8String];
@@ -893,7 +893,7 @@ remappage[remapcnt++] = (x & (~PMK));\
                 [md writeToFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist" atomically:YES];
                 system("killall -9 cfprefsd");
                 
-            }
+            //}
             {
                 NSString* jlaunchctl = [execpath stringByAppendingPathComponent:@"reload"];
                 char* jl = [jlaunchctl UTF8String];
